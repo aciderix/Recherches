@@ -1,0 +1,176 @@
+LISTE DES FICHIERS RÉFÉRENCÉS
+======================================================================
+
+Entrée #1:
+  music.wav
+  euroland\face.bmp
+  euroland\bibliobis.avi 1
+
+Entrée #2:
+  euroland\bibliobis.avi 1
+  score < 0 then runprj ..\couleurs1\couleurs1.vnp 54
+
+Entrée #5:
+  euroland\bankbis.avi 1
+
+Entrée #6:
+  euroland\home2.avi 1
+
+Entrée #7:
+  euroland\profbis.avi 1
+
+Entrée #8:
+  euroland\home2.avi 1
+
+Entrée #9:
+  euroland\home2.avi 1
+  euroland\profbis.avi 1
+
+Entrée #10:
+  euroland\profbis.avi 1
+
+Entrée #11:
+  euroland\profbis.avi 1
+
+Entrée #12:
+  euroland\profbis.avi 1
+
+Entrée #13:
+  euroland\profbis.avi 1
+
+Entrée #14:
+  euroland\musee.avi 1
+
+Entrée #15:
+  euroland\musee.avi 1
+
+Entrée #16:
+  euroland\musee.avi 1
+
+Entrée #17:
+  euroland\musee.avi 1
+
+Entrée #18:
+  euroland\fontaine.avi 1
+
+Entrée #19:
+  euroland\bureaubanquier.bmp
+
+Entrée #20:
+  euroland\fontaine.avi 1
+
+Entrée #21:
+  euroland\fontaine.avi 1
+  euroland\bureaubanquier.bmp
+
+Entrée #23:
+  euroland\bureaubanquier.bmp
+
+Entrée #24:
+  euroland\bureaubanquier.bmp
+
+Entrée #25:
+  euroland\bureaubanquier.bmp
+
+Entrée #26:
+  euroland\bureaubanquier.bmp
+  score < 0 then runprj ..\couleurs1\couleurs1.vnp 54h
+
+Entrée #32:
+  euroland\banque.bmp
+
+Entrée #33:
+  euroland\banque.bmp
+
+Entrée #34:
+  music.wav
+  euroland\banque.bmp
+
+Entrée #35:
+  music.wav
+  euroland\banque.bmp
+
+Entrée #36:
+  music.wav
+  euroland\banque.bmp
+
+Entrée #37:
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+
+Entrée #38:
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+
+Entrée #39:
+  euroland\banq2.avi 1 168 122 344 374
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+  music.wav 2
+
+Entrée #40:
+  euroland\banq2.avi 1 168 122 344 374
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+  music.wav 2
+
+Entrée #41:
+  euroland\banq2.avi 1 168 122 344 374
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+  music.wav 2
+
+Entrée #42:
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+  music.wav 2
+
+Entrée #43:
+  milleeuro = 0 then playavi euroland\banq41.avi 1 168 122 344 374
+  music.wav 2
+
+Entrée #44:
+  music.wav 2
+
+Entrée #45:
+  milleeuro = 0 then playavi euroland\banq3.avi 1 168 122 344 374
+  milleeuro >= 1 then addbmp coffre euroland\rollover\coffre.bmp 0 0 203 else delbmp coffre
+
+Entrée #46:
+  milleeuro = 0 then playavi euroland\banq3.avi 1 168 122 344 374
+  milleeuro >= 1 then addbmp coffre euroland\rollover\coffre.bmp 0 0 203 else delbmp coffre
+
+Entrée #47:
+  milleeuro = 0 then playavi euroland\banq3.avi 1 168 122 344 374
+  milleeuro >= 1 then addbmp coffre euroland\rollover\coffre.bmp 0 0 203 else delbmp coffre
+
+Entrée #48:
+  milleeuro >= 1 then addbmp coffre euroland\rollover\coffre.bmp 0 0 203 else delbmp coffre
+
+Entrée #49:
+  bonus3 = 0 then playwav bruit\boing.wav 1
+
+Entrée #50:
+  bonus3 = 0 then playwav bruit\boing.wav 1
+
+Entrée #53:
+  music.wav
+  euroland\biblio.bmp
+
+Entrée #54:
+  music.wav
+  euroland\biblio.bmp
+
+Entrée #55:
+  music.wav
+  euroland\biblio.bmp
+
+Entrée #57:
+  telephone = 1 then addbmp tt euroland\rollover\maintel.bmp 0 732 240
+
+Entrée #58:
+  telephone = 1 then addbmp tt euroland\rollover\maintel.bmp 0 732 240
+
+Entrée #59:
+  telephone = 1 then addbmp tt euroland\rollover\maintel.bmp 0 732 240
+
+Entrée #60:
+  telephone = 0 then playavi euroland\biblio1.avi 1 754 217 873 325
+
+Entrée #61:
+  telephone = 0 then playavi euroland\biblio1.avi 1 754 217 873 325
+

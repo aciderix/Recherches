@@ -1,0 +1,437 @@
+LISTE DES TEXTES EXTRAITS
+======================================================================
+
+Entrée #3 @ 0x001202
+Police: Comic sans MS, taille=1
+Couleur: #000000
+Position: (57, 60) - 125x365
+Texte: La biblioth
+----------------------------------------------------------------------
+
+Entrée #4 @ 0x00120a
+Police: Comic sans MS, taille=9984
+Couleur: #000000
+Position: (57, 60) - 125x365
+Texte: La biblioth
+----------------------------------------------------------------------
+
+Entrée #6 @ 0x001631
+Police: Comic sans MS, taille=1
+Couleur: #000000
+Position: (387, 18) - 125x365
+Texte: La maison de prof
+----------------------------------------------------------------------
+
+Entrée #7 @ 0x001639
+Police: Comic sans MS, taille=3328
+Couleur: #000000
+Position: (387, 18) - 125x365
+Texte: La maison de prof
+----------------------------------------------------------------------
+
+Entrée #14 @ 0x0017e5
+Police: Comic sans MS, taille=1
+Couleur: #000000
+Position: (348, 357) - 125x365
+Texte: La fontaine 
+----------------------------------------------------------------------
+
+Entrée #15 @ 0x0017ed
+Police: Comic sans MS, taille=3072
+Couleur: #000000
+Position: (348, 357) - 125x365
+Texte: La fontaine 
+----------------------------------------------------------------------
+
+Entrée #18 @ 0x0018d9
+Police: Comic sans MS, taille=1
+Couleur: #000000
+Position: (348, 357) - 125x365
+Texte: La fontaine 
+----------------------------------------------------------------------
+
+Entrée #19 @ 0x0018e1
+Police: Comic sans MS, taille=2816
+Couleur: #000000
+Position: (348, 357) - 125x365
+Texte: La fontaine 
+----------------------------------------------------------------------
+
+Entrée #27 @ 0x001ad9
+Police: Comic sans MS, taille=1
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Une tasse de caf
+----------------------------------------------------------------------
+
+Entrée #28 @ 0x001ae1
+Police: Comic sans MS, taille=9984
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Une tasse de caf
+----------------------------------------------------------------------
+
+Entrée #29 @ 0x001b83
+Police: Comic sans MS, taille=16777216
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Une bouteille d'encre noire
+----------------------------------------------------------------------
+
+Entrée #30 @ 0x001b8e
+Police: Comic sans MS, taille=2
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Une bouteille d'encre noire
+----------------------------------------------------------------------
+
+Entrée #31 @ 0x001c18
+Police: Comic sans MS, taille=0
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Du courrierj
+----------------------------------------------------------------------
+
+Entrée #32 @ 0x001cfa
+Police: Comic sans MS, taille=2
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Dossier euroj
+----------------------------------------------------------------------
+
+Entrée #33 @ 0x001d28
+Police: Comic sans MS, taille=2
+Couleur: #ffffff
+Position: (40, 350) - 125x365
+Texte: Dossier euroj
+----------------------------------------------------------------------
+
+Entrée #37 @ 0x001eca
+Police: Comic sans MS, taille=1
+Couleur: #000000
+Position: (160, 350) - 125x365
+Texte: Le banquier d'Eurolandl
+----------------------------------------------------------------------
+
+Entrée #38 @ 0x001ed2
+Police: Comic sans MS, taille=9984
+Couleur: #000000
+Position: (160, 350) - 125x365
+Texte: Le banquier d'Eurolandl
+----------------------------------------------------------------------
+
+Entrée #51 @ 0x002276
+Police: Comic sans MS, taille=32
+Couleur: #000000
+Position: (380, 330) - 639x365
+Texte: Le bureau du banquierj
+----------------------------------------------------------------------
+
+Entrée #52 @ 0x0022a2
+Police: Comic sans MS, taille=24
+Couleur: #000000
+Position: (380, 330) - 639x365
+Texte: Le bureau du banquierj
+----------------------------------------------------------------------
+
+Entrée #56 @ 0x0024be
+Police: Comic sans MS, taille=0
+Couleur: #ffffff
+Position: (380, 225) - 125x365
+Texte: recettes d'Europej
+----------------------------------------------------------------------
+
+Entrée #57 @ 0x002580
+Police: Comic sans MS, taille=33554432
+Couleur: #ffffff
+Position: (850, 360) - 125x365
+Texte: La biblioth
+----------------------------------------------------------------------
+
+Entrée #58 @ 0x00259c
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (850, 360) - 125x365
+Texte: La biblioth
+----------------------------------------------------------------------
+
+Entrée #59 @ 0x0025ad
+Police: Comic sans MS, taille=42
+Couleur: #ffffff
+Position: (850, 360) - 125x365
+Texte: La biblioth
+----------------------------------------------------------------------
+
+Entrée #62 @ 0x0027a7
+Police: Comic sans MS, taille=27
+Couleur: #ffffff
+Position: (1385, 232) - 125x365
+Texte: d'Europe.j
+----------------------------------------------------------------------
+
+Entrée #63 @ 0x0027e3
+Police: Comic sans MS, taille=0
+Couleur: #ffffff
+Position: (1385, 232) - 125x365
+Texte: d'Europe.j
+----------------------------------------------------------------------
+
+Entrée #64 @ 0x00287b
+Police: Comic sans MS, taille=16777216
+Couleur: #ffffff
+Position: (1120, 162) - 125x365
+Texte: nationauxj
+----------------------------------------------------------------------
+
+Entrée #65 @ 0x002886
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1120, 162) - 125x365
+Texte: nationauxj
+----------------------------------------------------------------------
+
+Entrée #66 @ 0x002897
+Police: Comic sans MS, taille=42
+Couleur: #ffffff
+Position: (1120, 162) - 125x365
+Texte: nationauxj
+----------------------------------------------------------------------
+
+Entrée #67 @ 0x002968
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (355, 42) - 125x365
+Texte: de Vincij
+----------------------------------------------------------------------
+
+Entrée #68 @ 0x002979
+Police: Comic sans MS, taille=43
+Couleur: #ffffff
+Position: (355, 42) - 125x365
+Texte: de Vincij
+----------------------------------------------------------------------
+
+Entrée #69 @ 0x002a58
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (375, 362) - 125x365
+Texte: L'euro et nousj
+----------------------------------------------------------------------
+
+Entrée #70 @ 0x002a69
+Police: Comic sans MS, taille=44
+Couleur: #ffffff
+Position: (375, 362) - 125x365
+Texte: L'euro et nousj
+----------------------------------------------------------------------
+
+Entrée #71 @ 0x002b30
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (700, 32) - 125x365
+Texte: Ben
+----------------------------------------------------------------------
+
+Entrée #72 @ 0x002b41
+Police: Comic sans MS, taille=44
+Couleur: #ffffff
+Position: (700, 32) - 125x365
+Texte: Ben
+----------------------------------------------------------------------
+
+Entrée #73 @ 0x002be0
+Police: Comic sans MS, taille=0
+Couleur: #ffffff
+Position: (1740, 22) - 125x365
+Texte: Berlinj
+----------------------------------------------------------------------
+
+Entrée #74 @ 0x002c51
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1350, 332) - 125x365
+Texte: les corsaires
+----------------------------------------------------------------------
+
+Entrée #75 @ 0x002c62
+Police: Comic sans MS, taille=45
+Couleur: #ffffff
+Position: (1350, 332) - 125x365
+Texte: les corsaires
+----------------------------------------------------------------------
+
+Entrée #76 @ 0x002cbb
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1350, 332) - 125x365
+Texte: les corsaires
+----------------------------------------------------------------------
+
+Entrée #77 @ 0x002ccc
+Police: Comic sans MS, taille=41
+Couleur: #ffffff
+Position: (1350, 332) - 125x365
+Texte: les corsaires
+----------------------------------------------------------------------
+
+Entrée #78 @ 0x002dfc
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1440, 42) - 125x365
+Texte: Olympiquesj
+----------------------------------------------------------------------
+
+Entrée #79 @ 0x002e0d
+Police: Comic sans MS, taille=43
+Couleur: #ffffff
+Position: (1440, 42) - 125x365
+Texte: Olympiquesj
+----------------------------------------------------------------------
+
+Entrée #80 @ 0x002e59
+Police: Comic sans MS, taille=16777216
+Couleur: #ffffff
+Position: (1100, 100) - 125x365
+Texte: La cornemusej
+----------------------------------------------------------------------
+
+Entrée #81 @ 0x002e64
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1100, 100) - 125x365
+Texte: La cornemusej
+----------------------------------------------------------------------
+
+Entrée #82 @ 0x002e75
+Police: Comic sans MS, taille=41
+Couleur: #ffffff
+Position: (1100, 100) - 125x365
+Texte: La cornemusej
+----------------------------------------------------------------------
+
+Entrée #83 @ 0x002f4f
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (410, 360) - 125x365
+Texte: d'Angleterrej
+----------------------------------------------------------------------
+
+Entrée #84 @ 0x002f60
+Police: Comic sans MS, taille=43
+Couleur: #ffffff
+Position: (410, 360) - 125x365
+Texte: d'Angleterrej
+----------------------------------------------------------------------
+
+Entrée #85 @ 0x003018
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (900, 182) - 125x365
+Texte: La tour Eiffelj
+----------------------------------------------------------------------
+
+Entrée #86 @ 0x003029
+Police: Comic sans MS, taille=44
+Couleur: #ffffff
+Position: (900, 182) - 125x365
+Texte: La tour Eiffelj
+----------------------------------------------------------------------
+
+Entrée #87 @ 0x00311a
+Police: Comic sans MS, taille=16777216
+Couleur: #ffffff
+Position: (1600, 82) - 125x365
+Texte: universellej
+----------------------------------------------------------------------
+
+Entrée #88 @ 0x003125
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1600, 82) - 125x365
+Texte: universellej
+----------------------------------------------------------------------
+
+Entrée #89 @ 0x003136
+Police: Comic sans MS, taille=43
+Couleur: #ffffff
+Position: (1600, 82) - 125x365
+Texte: universellej
+----------------------------------------------------------------------
+
+Entrée #90 @ 0x0031df
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (120, 342) - 125x365
+Texte: la fabrication
+----------------------------------------------------------------------
+
+Entrée #91 @ 0x0031f0
+Police: Comic sans MS, taille=41
+Couleur: #ffffff
+Position: (120, 342) - 125x365
+Texte: la fabrication
+----------------------------------------------------------------------
+
+Entrée #92 @ 0x0032ce
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (950, 162) - 125x365
+Texte: L'histoire
+----------------------------------------------------------------------
+
+Entrée #93 @ 0x0032df
+Police: Comic sans MS, taille=40
+Couleur: #ffffff
+Position: (950, 162) - 125x365
+Texte: L'histoire
+----------------------------------------------------------------------
+
+Entrée #94 @ 0x0033e5
+Police: Comic sans MS, taille=16777216
+Couleur: #ffffff
+Position: (515, 44) - 125x365
+Texte: Le fadoj
+----------------------------------------------------------------------
+
+Entrée #95 @ 0x0033f0
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (515, 44) - 125x365
+Texte: Le fadoj
+----------------------------------------------------------------------
+
+Entrée #96 @ 0x003401
+Police: Comic sans MS, taille=41
+Couleur: #ffffff
+Position: (515, 44) - 125x365
+Texte: Le fadoj
+----------------------------------------------------------------------
+
+Entrée #97 @ 0x0034cd
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1300, 280) - 125x365
+Texte: Les grands couturiersj
+----------------------------------------------------------------------
+
+Entrée #98 @ 0x0034de
+Police: Comic sans MS, taille=41
+Couleur: #ffffff
+Position: (1300, 280) - 125x365
+Texte: Les grands couturiersj
+----------------------------------------------------------------------
+
+Entrée #99 @ 0x00357d
+Police: Comic sans MS, taille=5
+Couleur: #ffffff
+Position: (1110, 260) - 125x365
+Texte: Les tulipesj
+----------------------------------------------------------------------
+
+Entrée #100 @ 0x00358e
+Police: Comic sans MS, taille=43
+Couleur: #ffffff
+Position: (1110, 260) - 125x365
+Texte: Les tulipesj
+----------------------------------------------------------------------
+
