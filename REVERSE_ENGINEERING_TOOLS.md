@@ -34,6 +34,26 @@ r2 -d <binary>        # Mode débogage
 - `s <addr>` - Seek vers une adresse
 - `px 100` - Afficher 100 bytes en hex
 
+### IDA Free
+**Version**: 8.4
+**Description**: Désassembleur et débogueur interactif professionnel (version gratuite)
+**Installation**: `/opt/idafree/`
+
+**Commandes utiles**:
+```bash
+ida64 <binary>           # Lancer IDA (interface graphique - nécessite X11)
+idat64 <binary>          # Mode texte/script
+```
+
+**Fonctionnalités clés**:
+- Désassemblage interactif de haute qualité
+- Analyse de flux de contrôle et de données
+- Décompilation (limitée dans la version Free)
+- Support d'architectures multiples (x86, x64, ARM, etc.)
+- Scripting Python/IDC
+
+**Note**: Version Free limitée aux binaires 64-bit non commerciaux.
+
 ### Ghidra
 **Version**: 12.0.1
 **Description**: Suite d'analyse de logiciels de la NSA avec décompilateur avancé
