@@ -1,0 +1,116 @@
+# Structure des blocs VND
+
+Bloc 1:
+  Offset: 0x00005a
+  Type:   0x001f
+  Taille: 1
+  Contenu: binaire
+
+Bloc 2:
+  Offset: 0x00005e
+  Type:   0x0000
+  Taille: 31
+  Contenu: binaire
+
+Bloc 3:
+  Offset: 0x00115c
+  Type:   0x0000
+  Taille: 0
+  Contenu: texte?
+
+Bloc 4:
+  Offset: 0x0011de
+  Type:   0x0018
+  Taille: 9
+  Contenu: texte?
+
+Bloc 5:
+  Offset: 0x001202
+  Type:   0x0001
+  Taille: 6
+  Contenu: binaire
+
+Bloc 6:
+  Offset: 0x00120a
+  Type:   0x2700
+  Taille: 52
+  Contenu: binaire
+
+Bloc 7:
+  Offset: 0x00160f
+  Type:   0x0016
+  Taille: 9
+  Contenu: texte?
+
+Bloc 8:
+  Offset: 0x001631
+  Type:   0x0001
+  Taille: 6
+  Contenu: binaire
+
+Bloc 9:
+  Offset: 0x001639
+  Type:   0x0d00
+  Taille: 26931
+  Contenu: binaire
+
+Bloc 10:
+  Offset: 0x001702
+  Type:   0x0014
+  Taille: 9
+  Contenu: texte?
+
+Bloc 11:
+  Offset: 0x001722
+  Type:   0x0001
+  Taille: 6
+  Contenu: binaire
+
+Bloc 12:
+  Offset: 0x00172a
+  Type:   0x0600
+  Taille: 26933
+  Contenu: binaire
+
+Bloc 13:
+  Offset: 0x00175f
+  Type:   0x0000
+  Taille: 248
+  Contenu: binaire
+
+Bloc 14:
+  Offset: 0x0017c3
+  Type:   0x0016
+  Taille: 9
+  Contenu: texte?
+
+Bloc 15:
+  Offset: 0x0017e5
+  Type:   0x0001
+  Taille: 6
+  Contenu: binaire
+
+Bloc 16:
+  Offset: 0x0017ed
+  Type:   0x0c00
+  Taille: 26934
+  Contenu: binaire
+
+Bloc 17:
+  Offset: 0x00181e
+  Type:   0x0007
+  Taille: 495
+  Contenu: binaire
+
+Bloc 18:
+  Offset: 0x0018b9
+  Type:   0x0014
+  Taille: 9
+  Contenu: texte?
+
+Bloc 19:
+  Offset: 0x0018d9
+  Type:   0x0001
+  Taille: 6
+  Contenu: binaire
+
