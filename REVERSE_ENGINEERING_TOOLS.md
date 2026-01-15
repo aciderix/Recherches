@@ -34,6 +34,72 @@ r2 -d <binary>        # Mode débogage
 - `s <addr>` - Seek vers une adresse
 - `px 100` - Afficher 100 bytes en hex
 
+### Ghidra
+**Version**: 12.0.1
+**Description**: Suite d'analyse de logiciels de la NSA avec décompilateur avancé
+**Installation**: `/opt/ghidra`
+
+**Commandes utiles**:
+```bash
+ghidra                        # Lancer l'interface graphique
+analyzeHeadless <project_dir> <project_name> -import <binary> -analyze
+analyzeHeadless <project_dir> <project_name> -process <binary> -postScript <script.py>
+```
+
+**Interface graphique**:
+- **CodeBrowser**: Interface principale pour analyser les binaires
+- **Decompiler**: Décompilateur C/C++ très puissant
+- **Function Graph**: Vue graphique du flux d'exécution
+- **Listing**: Vue désassemblée avec annotations
+- **Symbol Tree**: Arbre des symboles et fonctions
+- **Data Type Manager**: Gestion des types de données
+
+**Fonctionnalités clés**:
+- Décompilation en C pseudo-code de haute qualité
+- Support de nombreuses architectures (x86, ARM, MIPS, PowerPC, etc.)
+- Analyse automatique des fonctions et du flux de contrôle
+- Scripting en Python et Java
+- Comparaison de binaires (diff)
+- Analyse de firmware
+- Extension via plugins
+
+**Mode headless (CLI)**:
+```bash
+# Analyser un binaire automatiquement
+analyzeHeadless /tmp/ghidra_projects MyProject -import binary.exe -analyze
+
+# Exécuter un script Python sur un binaire
+analyzeHeadless /tmp/ghidra_projects MyProject -process binary.exe \
+  -postScript analyze.py
+
+# Exporter les fonctions décompilées
+analyzeHeadless /tmp/ghidra_projects MyProject -process binary.exe \
+  -postScript DecompileAllScript.java /tmp/output
+```
+
+**Scripting Python dans Ghidra**:
+```python
+# Script Ghidra Python (exécuté dans le contexte Ghidra)
+# Obtenir le programme actuel
+prog = getCurrentProgram()
+
+# Lister toutes les fonctions
+fm = prog.getFunctionManager()
+for func in fm.getFunctions(True):
+    print("Function: {} at {}".format(func.getName(), func.getEntryPoint()))
+
+# Obtenir la décompilation d'une fonction
+from ghidra.app.decompiler import DecompInterface
+decomp = DecompInterface()
+decomp.openProgram(prog)
+
+func = getFirstFunction()  # Obtenir la première fonction
+if func:
+    result = decomp.decompileFunction(func, 30, monitor)
+    if result.decompileCompleted():
+        print(result.getDecompiledFunction().getC())
+```
+
 ### GDB (GNU Debugger)
 **Version**: 15.0.50
 **Description**: Débogueur standard pour Linux
@@ -334,7 +400,20 @@ s main       # Aller à main
 VV           # Vue graphique
 ```
 
-4. **Débogage avec GDB + GEF**
+4. **Analyse avec Ghidra (décompilation)**
+```bash
+ghidra                    # Lancer l'interface graphique
+# 1. Create New Project
+# 2. Import File -> sélectionner le binaire
+# 3. Double-cliquer sur le fichier importé
+# 4. Analyze -> Oui (analyse automatique)
+# 5. Naviguer dans le code décompilé
+
+# Ou en mode headless:
+analyzeHeadless /tmp/ghidra_proj MyProj -import binary -analyze
+```
+
+5. **Débogage avec GDB + GEF**
 ```bash
 gdb binary
 # Dans GDB:
@@ -345,7 +424,7 @@ vmmap
 disassemble
 ```
 
-5. **Analyse dynamique**
+6. **Analyse dynamique**
 ```bash
 strace ./binary 2>&1 | less
 ltrace ./binary 2>&1 | less
@@ -402,6 +481,7 @@ p.interactive()
 ## 📚 Ressources supplémentaires
 
 ### Documentation officielle
+- Ghidra: https://ghidra-sre.org/ et https://github.com/NationalSecurityAgency/ghidra
 - Radare2: https://book.rada.re/
 - GDB: https://sourceware.org/gdb/documentation/
 - GEF: https://hugsy.github.io/gef/

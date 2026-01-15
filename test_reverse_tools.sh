@@ -44,6 +44,24 @@ test_command "r2" "Radare2"
 test_command "gdb" "GDB"
 test_command "gdb-multiarch" "GDB Multiarch"
 
+echo "=== Test Ghidra ==="
+if [ -d /opt/ghidra ]; then
+    echo -e "${GREEN}✓${NC} Ghidra installé: /opt/ghidra"
+    if [ -f /opt/ghidra/Ghidra/application.properties ]; then
+        version=$(grep "application.version" /opt/ghidra/Ghidra/application.properties | cut -d'=' -f2)
+        echo "  Version: $version"
+    fi
+    if command -v ghidra &> /dev/null; then
+        echo "  Commande: $(which ghidra)"
+    fi
+    if command -v analyzeHeadless &> /dev/null; then
+        echo "  Headless: $(which analyzeHeadless)"
+    fi
+else
+    echo -e "${RED}✗${NC} Ghidra: Not found"
+fi
+echo ""
+
 echo "=== Outils d'analyse binaire ==="
 test_command "objdump" "objdump (binutils)"
 test_command "readelf" "readelf (binutils)"
