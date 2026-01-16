@@ -1,0 +1,4 @@
+  File "/home/user/Recherches/analyze_large_unknown_functions.py", line 213
+    print(f"  ... and {len(data['assembly'].split('\n')) - 50} more instructions")
+                                                                                 ^
+SyntaxError: f-string expression part cannot include a backslash
