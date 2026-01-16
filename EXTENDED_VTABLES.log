@@ -1,0 +1,1552 @@
+================================================================================
+EXTENDED VTABLE SEARCH - ENTIRE DATA SECTIONS
+================================================================================
+
+Loading binary...
+
+PE Sections:
+  CODE      VA=0x00001000  Size=  231936  Chars=0x60000020
+  DATA      VA=0x0003A000  Size=   84992  Chars=0xC0000040
+  .tls      VA=0x0004F000  Size=     512  Chars=0xC0000040
+  .rdata    VA=0x00050000  Size=     512  Chars=0x50000040
+  .INIT     VA=0x00051000  Size=   13312  Chars=0x42000040
+  .idata    VA=0x00055000  Size=    4608  Chars=0xC0000040
+  .edata    VA=0x00057000  Size=     512  Chars=0x40000040
+  .reloc    VA=0x00058000  Size=   18944  Chars=0x50000040
+  .rsrc     VA=0x0005D000  Size=  509440  Chars=0xD0000040
+
+  Scanning section: DATA
+    VA: 0x0003A000
+    Size: 84992 bytes (83 KB)
+    Progress: 0.0%    Progress: 48.2%    Progress: 97.7%    Progress: 100.0% - Found 113 potential vtables
+  Section '.data' not found!
+
+  Scanning section: .rdata
+    VA: 0x00050000
+    Size: 512 bytes (0 KB)
+    Progress: 0.0%    Progress: 100.0% - Found 1 potential vtables
+
+  Scanning section: CODE
+    VA: 0x00001000
+    Size: 231936 bytes (226 KB)
+    Progress: 0.0%    Progress: 17.2%    Progress: 34.5%    Progress: 51.7%    Progress: 69.0%    Progress: 86.2%    Progress: 100.0% - Found 1 potential vtables
+  Section '.text' not found!
+
+
+Total vtables found: 115
+
+================================================================================
+QUALITY ANALYSIS
+================================================================================
+
+HIGH confidence: 29
+MEDIUM confidence: 86
+LOW confidence: 0
+
+================================================================================
+VTABLES GROUPED BY STRUCTURE
+================================================================================
+
+
+TVNApplication @ 0x00438A7A
+  Found 114 candidate vtable(s):
+
+    Vtable @ 0x0043A02C
+      Methods: 4
+      Distance: +5554 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0044EB8C
+        [ 1] 0x0044EBC8
+        [ 2] 0x0044EBC8
+        [ 3] 0x0044EBFE
+
+    Vtable @ 0x0043A044
+      Methods: 3
+      Distance: +5578 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00401158
+        [ 1] 0x00403658
+        [ 2] 0x00403684
+
+    Vtable @ 0x0043B4EC
+      Methods: 3
+      Distance: +10866 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00405B50
+        [ 1] 0x00405A63
+        [ 2] 0x00406CB5
+
+    Vtable @ 0x0043B500
+      Methods: 5
+      Distance: +10886 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00406DE5
+        [ 1] 0x00406DF0
+        [ 2] 0x00406DFB
+        [ 3] 0x00406E02
+        [ 4] 0x00406E07
+
+    Vtable @ 0x0043B51C
+      Methods: 5
+      Distance: +10914 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00406DE5
+        [ 1] 0x00406DF0
+        [ 2] 0x00406DFB
+        [ 3] 0x00406C2B
+        [ 4] 0x00406E7F
+
+    Vtable @ 0x0043B538
+      Methods: 5
+      Distance: +10942 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00406EF7
+        [ 1] 0x00406F02
+        [ 2] 0x00406F0D
+        [ 3] 0x00406C2B
+        [ 4] 0x00406831
+
+    Vtable @ 0x0043B554
+      Methods: 4
+      Distance: +10970 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00406D2D
+        [ 1] 0x00406F18
+        [ 2] 0x00406FAA
+        [ 3] 0x00403C25
+
+    Vtable @ 0x004400A0
+      Methods: 6
+      Distance: +30246 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x0041053B
+        [ 1] 0x0040E0E2
+        [ 2] 0x00410626
+        [ 3] 0x00410643
+        [ 4] 0x0040E2E5
+        [ 5] 0x0040E989
+
+    Vtable @ 0x004400D0
+      Methods: 3
+      Distance: +30294 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x0041065D
+        [ 1] 0x00410653
+        [ 2] 0x0040FBC8
+
+    Vtable @ 0x004400E4
+      Methods: 5
+      Distance: +30314 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0041067B
+        [ 1] 0x00410686
+        [ 2] 0x00410691
+        [ 3] 0x00410698
+        [ 4] 0x0041069D
+
+    Vtable @ 0x00440100
+      Methods: 5
+      Distance: +30342 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0041067B
+        [ 1] 0x00410686
+        [ 2] 0x00410691
+        [ 3] 0x00410698
+        [ 4] 0x00410715
+
+    Vtable @ 0x0044011C
+      Methods: 6
+      Distance: +30370 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410791
+        [ 1] 0x0041079C
+        [ 2] 0x004107A7
+        [ 3] 0x00410698
+        [ 4] 0x0040F970
+        [ 5] 0x0040F6AE
+
+    Vtable @ 0x0044013C
+      Methods: 5
+      Distance: +30402 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x0040F5DA
+        [ 1] 0x004107B2
+        [ 2] 0x0040DF8B
+        [ 3] 0x0040B990
+        [ 4] 0x0040DE32
+
+    Vtable @ 0x00440158
+      Methods: 3
+      Distance: +30430 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x004107E0
+        [ 1] 0x004107D6
+        [ 2] 0x0040FDBB
+
+    Vtable @ 0x0044016C
+      Methods: 5
+      Distance: +30450 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0040D8A9
+        [ 1] 0x004107EA
+        [ 2] 0x004108D5
+        [ 3] 0x0040DAA9
+        [ 4] 0x0040DC1E
+
+    Vtable @ 0x00440198
+      Methods: 3
+      Distance: +30494 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x004108FC
+        [ 1] 0x004108F2
+        [ 2] 0x0040FC44
+
+    Vtable @ 0x004401AC
+      Methods: 5
+      Distance: +30514 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0041091A
+        [ 1] 0x00410925
+        [ 2] 0x00410930
+        [ 3] 0x00410937
+        [ 4] 0x0041093C
+
+    Vtable @ 0x004401C8
+      Methods: 5
+      Distance: +30542 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x0041091A
+        [ 1] 0x00410925
+        [ 2] 0x00410930
+        [ 3] 0x00410937
+        [ 4] 0x004109B0
+
+    Vtable @ 0x004401E4
+      Methods: 6
+      Distance: +30570 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410A24
+        [ 1] 0x00410A2F
+        [ 2] 0x00410A3A
+        [ 3] 0x00410937
+        [ 4] 0x0040F74F
+        [ 5] 0x0040F25A
+
+    Vtable @ 0x00440204
+      Methods: 4
+      Distance: +30602 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410A45
+        [ 1] 0x0040A228
+        [ 2] 0x0040A2C3
+        [ 3] 0x0040F202
+
+    Vtable @ 0x0044021C
+      Methods: 4
+      Distance: +30626 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410A45
+        [ 1] 0x0040A228
+        [ 2] 0x0040A28C
+        [ 3] 0x00410A5C
+
+    Vtable @ 0x00440234
+      Methods: 3
+      Distance: +30650 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410AA0
+        [ 1] 0x0040834C
+        [ 2] 0x00410AB2
+
+    Vtable @ 0x00440248
+      Methods: 3
+      Distance: +30670 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410AF6
+        [ 1] 0x0040874A
+        [ 2] 0x00410437
+
+    Vtable @ 0x0044025C
+      Methods: 3
+      Distance: +30690 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410AF6
+        [ 1] 0x0040879F
+        [ 2] 0x0040F36E
+
+    Vtable @ 0x00440270
+      Methods: 3
+      Distance: +30710 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410B08
+        [ 1] 0x0040B488
+        [ 2] 0x0040EF76
+
+    Vtable @ 0x00440284
+      Methods: 3
+      Distance: +30730 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410B1A
+        [ 1] 0x0040B235
+        [ 2] 0x0040F316
+
+    Vtable @ 0x00440298
+      Methods: 3
+      Distance: +30750 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410B1A
+        [ 1] 0x0040AE3E
+        [ 2] 0x0040EDFE
+
+    Vtable @ 0x004402AC
+      Methods: 3
+      Distance: +30770 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00410B1A
+        [ 1] 0x00410B31
+        [ 2] 0x00410B72
+
+    Vtable @ 0x004402C0
+      Methods: 3
+      Distance: +30790 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410BBE
+        [ 1] 0x00403984
+        [ 2] 0x00410BDD
+
+    Vtable @ 0x004402D4
+      Methods: 3
+      Distance: +30810 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410C25
+        [ 1] 0x00403984
+        [ 2] 0x0041047B
+
+    Vtable @ 0x004402F8
+      Methods: 3
+      Distance: +30846 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410C9C
+        [ 1] 0x00403984
+        [ 2] 0x0040ED19
+
+    Vtable @ 0x0044030C
+      Methods: 4
+      Distance: +30866 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x0040F471
+        [ 1] 0x0040B97E
+        [ 2] 0x0040D6F4
+        [ 3] 0x0040B990
+
+    Vtable @ 0x00440324
+      Methods: 3
+      Distance: +30890 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00410CB0
+        [ 1] 0x00410CA6
+        [ 2] 0x0040F13E
+
+    Vtable @ 0x00440338
+      Methods: 4
+      Distance: +30910 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410CBA
+        [ 1] 0x0040AA17
+        [ 2] 0x0040A9AD
+        [ 3] 0x00410CEA
+
+    Vtable @ 0x00440350
+      Methods: 3
+      Distance: +30934 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x0040A479
+        [ 1] 0x0040A51D
+        [ 2] 0x0040F1A2
+
+    Vtable @ 0x00440364
+      Methods: 4
+      Distance: +30954 bytes
+      Confidence: HIGH
+      Score: 6/6
+      First 10 methods:
+        [ 0] 0x00410A45
+        [ 1] 0x0040A228
+        [ 2] 0x0040A1F0
+        [ 3] 0x0040F0DE
+
+    Vtable @ 0x0044037C
+      Methods: 3
+      Distance: +30978 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x0040A043
+        [ 2] 0x0040F086
+
+    Vtable @ 0x00440390
+      Methods: 3
+      Distance: +30998 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x00409E0D
+        [ 2] 0x0040EF16
+
+    Vtable @ 0x004403A4
+      Methods: 3
+      Distance: +31018 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x00409960
+        [ 2] 0x0040EEB6
+
+    Vtable @ 0x004403B8
+      Methods: 3
+      Distance: +31038 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x004094E6
+        [ 2] 0x0040EE5E
+
+    Vtable @ 0x004403CC
+      Methods: 3
+      Distance: +31058 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x0040912A
+        [ 2] 0x00410D3D
+
+    Vtable @ 0x004403E0
+      Methods: 3
+      Distance: +31078 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D7D
+        [ 1] 0x00408D22
+        [ 2] 0x0040EFD6
+
+    Vtable @ 0x004403F4
+      Methods: 3
+      Distance: +31098 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D84
+        [ 1] 0x00408B45
+        [ 2] 0x0040F02E
+
+    Vtable @ 0x00440408
+      Methods: 3
+      Distance: +31118 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x00408972
+        [ 2] 0x004104E3
+
+    Vtable @ 0x0044041C
+      Methods: 3
+      Distance: +31138 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x004086E6
+        [ 2] 0x0040F2B2
+
+    Vtable @ 0x00440430
+      Methods: 3
+      Distance: +31158 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00410D26
+        [ 1] 0x00410D9B
+        [ 2] 0x00410DDC
+
+    Vtable @ 0x00440444
+      Methods: 3
+      Distance: +31178 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00410E20
+        [ 1] 0x00408517
+        [ 2] 0x0040FE68
+
+    Vtable @ 0x004417A0
+      Methods: 6
+      Distance: +36134 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004134C7
+        [ 1] 0x0041436E
+        [ 2] 0x0041438B
+        [ 3] 0x00414395
+        [ 4] 0x004135B0
+        [ 5] 0x00413E21
+
+    Vtable @ 0x004417D0
+      Methods: 3
+      Distance: +36182 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x004143B4
+        [ 1] 0x004143AA
+        [ 2] 0x004143D2
+
+    Vtable @ 0x004417E4
+      Methods: 5
+      Distance: +36202 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00406DE5
+        [ 1] 0x00406DF0
+        [ 2] 0x00406DFB
+        [ 3] 0x0041423E
+        [ 4] 0x00414446
+
+    Vtable @ 0x00441800
+      Methods: 5
+      Distance: +36230 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004144BE
+        [ 1] 0x004144C9
+        [ 2] 0x004144D4
+        [ 3] 0x0041423E
+        [ 4] 0x00414312
+
+    Vtable @ 0x0044181C
+      Methods: 9
+      Distance: +36258 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00411D4D
+        [ 1] 0x004144DF
+        [ 2] 0x004144FC
+        [ 3] 0x00411E7A
+        [ 4] 0x004120F3
+        [ 5] 0x00411F15
+        [ 6] 0x004121BA
+        [ 7] 0x00412324
+        [ 8] 0x004132F1
+
+    Vtable @ 0x00441848
+      Methods: 3
+      Distance: +36302 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00414521
+        [ 1] 0x00414517
+        [ 2] 0x00403C25
+
+    Vtable @ 0x00442CA8
+      Methods: 5
+      Distance: +41518 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00417EE6
+        [ 1] 0x00417EF1
+        [ 2] 0x00417EFC
+        [ 3] 0x00417F03
+        [ 4] 0x00417B82
+
+    Vtable @ 0x00442D64
+      Methods: 5
+      Distance: +41706 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00415A75
+        [ 1] 0x004161FA
+        [ 2] 0x00415444
+        [ 3] 0x00418046
+        [ 4] 0x00415FAD
+
+    Vtable @ 0x00442D90
+      Methods: 3
+      Distance: +41750 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00418075
+        [ 1] 0x0041806B
+        [ 2] 0x00418093
+
+    Vtable @ 0x00442DA4
+      Methods: 3
+      Distance: +41770 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00414B2A
+        [ 1] 0x00414CA1
+        [ 2] 0x00417DAA
+
+    Vtable @ 0x00442DB8
+      Methods: 5
+      Distance: +41790 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0040D8A9
+        [ 1] 0x004180EB
+        [ 2] 0x004181D1
+        [ 3] 0x0040DAA9
+        [ 4] 0x0041505F
+
+    Vtable @ 0x00442DE4
+      Methods: 3
+      Distance: +41834 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00418203
+        [ 1] 0x004181F9
+        [ 2] 0x00417E06
+
+    Vtable @ 0x00442DF8
+      Methods: 3
+      Distance: +41854 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00418221
+        [ 1] 0x00418263
+        [ 2] 0x00414D9C
+
+    Vtable @ 0x00442E0C
+      Methods: 3
+      Distance: +41874 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x004182A2
+        [ 1] 0x00418298
+        [ 2] 0x0041A5B9
+
+    Vtable @ 0x00443638
+      Methods: 8
+      Distance: +43966 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0041A872
+        [ 1] 0x0041921B
+        [ 2] 0x0041A8F9
+        [ 3] 0x0041A28E
+        [ 4] 0x0041A903
+        [ 5] 0x0041A91C
+        [ 6] 0x0041A205
+        [ 7] 0x0041A77E
+
+    Vtable @ 0x00443660
+      Methods: 7
+      Distance: +44006 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0041A92B
+        [ 1] 0x00419387
+        [ 2] 0x0041A9B2
+        [ 3] 0x00419C23
+        [ 4] 0x0041A903
+        [ 5] 0x00419F78
+        [ 6] 0x0041A7D2
+
+    Vtable @ 0x00443684
+      Methods: 7
+      Distance: +44042 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041A9BC
+        [ 1] 0x0041921B
+        [ 2] 0x0041A9B2
+        [ 3] 0x00403984
+        [ 4] 0x0041A903
+        [ 5] 0x0041A91C
+        [ 6] 0x0041A81E
+
+    Vtable @ 0x004436A8
+      Methods: 6
+      Distance: +44078 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041AA1C
+        [ 1] 0x0041AA46
+        [ 2] 0x00418FDE
+        [ 3] 0x004190C1
+        [ 4] 0x004190FF
+        [ 5] 0x0041A68E
+
+    Vtable @ 0x00443F3C
+      Methods: 15
+      Distance: +46274 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041C79A
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041BB48
+        [ 6] 0x0041BBD9
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x00443F80
+      Methods: 31
+      Distance: +46342 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0041C996
+        [ 1] 0x0043967E
+        [ 2] 0x004395CA
+        [ 3] 0x0043966C
+        [ 4] 0x004395A0
+        [ 5] 0x00439540
+        [ 6] 0x0043958E
+        [ 7] 0x004395D6
+        [ 8] 0x0043959A
+        [ 9] 0x004394BC
+        ... and 21 more
+
+    Vtable @ 0x00444040
+      Methods: 15
+      Distance: +46534 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041CA24
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041B376
+        [ 6] 0x0041AF68
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x00444084
+      Methods: 15
+      Distance: +46602 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041B434
+        [ 1] 0x0041C824
+        [ 2] 0x0041B496
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041B4CD
+        [ 6] 0x0041AF68
+        [ 7] 0x0041B53C
+        [ 8] 0x0041B5DF
+        [ 9] 0x0041B66A
+        ... and 5 more
+
+    Vtable @ 0x004440C8
+      Methods: 15
+      Distance: +46670 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041C6A3
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041B376
+        [ 6] 0x0041AF68
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x0044410C
+      Methods: 15
+      Distance: +46738 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041ADC9
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041AF0C
+        [ 6] 0x0041AF68
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x004449EC
+      Methods: 4
+      Distance: +49010 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041D898
+        [ 1] 0x0041E882
+        [ 2] 0x0041E893
+        [ 3] 0x0041E68E
+
+    Vtable @ 0x00444A04
+      Methods: 5
+      Distance: +49034 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0041E9A2
+        [ 1] 0x0041E9FE
+        [ 2] 0x0041EA10
+        [ 3] 0x00403984
+        [ 4] 0x0041DF3E
+
+    Vtable @ 0x004469D8
+      Methods: 5
+      Distance: +57182 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004236F2
+        [ 1] 0x004236FD
+        [ 2] 0x00423708
+        [ 3] 0x0042370F
+        [ 4] 0x00423714
+
+    Vtable @ 0x004469F4
+      Methods: 5
+      Distance: +57210 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004236F2
+        [ 1] 0x004236FD
+        [ 2] 0x00423708
+        [ 3] 0x0042370F
+        [ 4] 0x00423788
+
+    Vtable @ 0x00446A10
+      Methods: 6
+      Distance: +57238 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00423800
+        [ 1] 0x0042380B
+        [ 2] 0x00423816
+        [ 3] 0x0042370F
+        [ 4] 0x00423405
+        [ 5] 0x0042361A
+
+    Vtable @ 0x00446A30
+      Methods: 5
+      Distance: +57270 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00423821
+        [ 1] 0x0042382C
+        [ 2] 0x00423837
+        [ 3] 0x0042383E
+        [ 4] 0x00423843
+
+    Vtable @ 0x00446A4C
+      Methods: 5
+      Distance: +57298 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00423821
+        [ 1] 0x0042382C
+        [ 2] 0x00423837
+        [ 3] 0x0042383E
+        [ 4] 0x004238BB
+
+    Vtable @ 0x00446A68
+      Methods: 6
+      Distance: +57326 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00423933
+        [ 1] 0x0042393E
+        [ 2] 0x00423949
+        [ 3] 0x0042383E
+        [ 4] 0x00423252
+        [ 5] 0x00423692
+
+    Vtable @ 0x00446BDC
+      Methods: 5
+      Distance: +57698 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004245FA
+        [ 1] 0x0042472B
+        [ 2] 0x00424750
+        [ 3] 0x00424764
+        [ 4] 0x00403C25
+
+    Vtable @ 0x004479F0
+      Methods: 3
+      Distance: +61302 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0041860C
+        [ 1] 0x00426608
+        [ 2] 0x0042662B
+
+    Vtable @ 0x00447A04
+      Methods: 3
+      Distance: +61322 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042668E
+        [ 1] 0x00426684
+        [ 2] 0x00418D3F
+
+    Vtable @ 0x00447A18
+      Methods: 5
+      Distance: +61342 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00406DE5
+        [ 1] 0x00406DF0
+        [ 2] 0x00406DFB
+        [ 3] 0x0042657C
+        [ 4] 0x00418C25
+
+    Vtable @ 0x00447A34
+      Methods: 5
+      Distance: +61370 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00426698
+        [ 1] 0x004266A3
+        [ 2] 0x004266AE
+        [ 3] 0x0042657C
+        [ 4] 0x004244FA
+
+    Vtable @ 0x00447A50
+      Methods: 5
+      Distance: +61398 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00424C7E
+        [ 1] 0x0042472B
+        [ 2] 0x00424750
+        [ 3] 0x00424764
+        [ 4] 0x004266B9
+
+    Vtable @ 0x00447A6C
+      Methods: 3
+      Distance: +61426 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x004052EB
+        [ 1] 0x00405354
+        [ 2] 0x00403C25
+
+    Vtable @ 0x00449490
+      Methods: 5
+      Distance: +68118 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042A802
+        [ 1] 0x0042A80D
+        [ 2] 0x0042A818
+        [ 3] 0x0042A81F
+        [ 4] 0x0042A62C
+
+    Vtable @ 0x004494F0
+      Methods: 6
+      Distance: +68214 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042A91B
+        [ 1] 0x0041E9FE
+        [ 2] 0x0041EA10
+        [ 3] 0x0041E044
+        [ 4] 0x0041DF3E
+        [ 5] 0x0042A6E0
+
+    Vtable @ 0x00449510
+      Methods: 6
+      Distance: +68246 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042A978
+        [ 1] 0x0041E9FE
+        [ 2] 0x0041EA10
+        [ 3] 0x0042AA01
+        [ 4] 0x0041DF3E
+        [ 5] 0x0042B1E3
+
+    Vtable @ 0x00449614
+      Methods: 16
+      Distance: +68506 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042AF80
+        [ 1] 0x004395D0
+        [ 2] 0x00439594
+        [ 3] 0x00439606
+        [ 4] 0x004395C4
+        [ 5] 0x0043957C
+        [ 6] 0x004395A6
+        [ 7] 0x00439510
+        [ 8] 0x0043961E
+        [ 9] 0x004395E8
+        ... and 6 more
+
+    Vtable @ 0x00449674
+      Methods: 32
+      Distance: +68602 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042B361
+        [ 1] 0x0043967E
+        [ 2] 0x0042B34E
+        [ 3] 0x0043966C
+        [ 4] 0x0042B33B
+        [ 5] 0x0042B328
+        [ 6] 0x0042B315
+        [ 7] 0x0042B302
+        [ 8] 0x0043959A
+        [ 9] 0x0042B2EF
+        ... and 22 more
+
+    Vtable @ 0x00449DA4
+      Methods: 16
+      Distance: +70442 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042B816
+        [ 1] 0x004395D0
+        [ 2] 0x00439594
+        [ 3] 0x00439606
+        [ 4] 0x004395C4
+        [ 5] 0x0043957C
+        [ 6] 0x004395A6
+        [ 7] 0x00439510
+        [ 8] 0x0043961E
+        [ 9] 0x004395E8
+        ... and 6 more
+
+    Vtable @ 0x00449E04
+      Methods: 32
+      Distance: +70538 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042C3A3
+        [ 1] 0x0043967E
+        [ 2] 0x0042C390
+        [ 3] 0x0043966C
+        [ 4] 0x0042C37D
+        [ 5] 0x0042C36A
+        [ 6] 0x0042C357
+        [ 7] 0x0042C344
+        [ 8] 0x0043959A
+        [ 9] 0x0042C331
+        ... and 22 more
+
+    Vtable @ 0x00449FD0
+      Methods: 15
+      Distance: +70998 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042C654
+        [ 1] 0x004395D0
+        [ 2] 0x00439594
+        [ 3] 0x00439606
+        [ 4] 0x004395C4
+        [ 5] 0x0043957C
+        [ 6] 0x004395A6
+        [ 7] 0x00439510
+        [ 8] 0x0043961E
+        [ 9] 0x004395E8
+        ... and 5 more
+
+    Vtable @ 0x0044A02C
+      Methods: 32
+      Distance: +71090 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042C9B5
+        [ 1] 0x0043967E
+        [ 2] 0x0042C9A2
+        [ 3] 0x0043966C
+        [ 4] 0x0042C98F
+        [ 5] 0x0042C97C
+        [ 6] 0x0042C969
+        [ 7] 0x0042C956
+        [ 8] 0x0043959A
+        [ 9] 0x0042C943
+        ... and 22 more
+
+    Vtable @ 0x0044A0B4
+      Methods: 15
+      Distance: +71226 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0042CA5D
+        [ 1] 0x004395D0
+        [ 2] 0x00439594
+        [ 3] 0x00439606
+        [ 4] 0x004395C4
+        [ 5] 0x0043957C
+        [ 6] 0x004395A6
+        [ 7] 0x00439510
+        [ 8] 0x0043961E
+        [ 9] 0x004395E8
+        ... and 5 more
+
+    Vtable @ 0x0044A110
+      Methods: 31
+      Distance: +71318 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042CBBB
+        [ 1] 0x0043967E
+        [ 2] 0x0042CBA8
+        [ 3] 0x0043966C
+        [ 4] 0x0042CB95
+        [ 5] 0x0042CB82
+        [ 6] 0x0042CB6F
+        [ 7] 0x0042CB5C
+        [ 8] 0x0043959A
+        [ 9] 0x0042CB49
+        ... and 21 more
+
+    Vtable @ 0x0044CFF4
+      Methods: 4
+      Distance: +83322 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004365C4
+        [ 1] 0x0041E882
+        [ 2] 0x0041E893
+        [ 3] 0x004363DC
+
+    Vtable @ 0x0044D00C
+      Methods: 15
+      Distance: +83346 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x0043660B
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041BB48
+        [ 6] 0x0041BBD9
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x0044D050
+      Methods: 31
+      Distance: +83414 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x004366C9
+        [ 1] 0x0043967E
+        [ 2] 0x004395CA
+        [ 3] 0x0043966C
+        [ 4] 0x004395A0
+        [ 5] 0x00439540
+        [ 6] 0x0043958E
+        [ 7] 0x004395D6
+        [ 8] 0x0043959A
+        [ 9] 0x004394BC
+        ... and 21 more
+
+    Vtable @ 0x0044D0F0
+      Methods: 15
+      Distance: +83574 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004366D3
+        [ 1] 0x0041C824
+        [ 2] 0x0041C839
+        [ 3] 0x0041C85B
+        [ 4] 0x0041C87F
+        [ 5] 0x0041B873
+        [ 6] 0x0041B920
+        [ 7] 0x0041AFF4
+        [ 8] 0x0041B095
+        [ 9] 0x0041B119
+        ... and 5 more
+
+    Vtable @ 0x0044D134
+      Methods: 5
+      Distance: +83642 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00406DE5
+        [ 1] 0x00406DF0
+        [ 2] 0x00406DFB
+        [ 3] 0x00435C4C
+        [ 4] 0x0041EE92
+
+    Vtable @ 0x0044D150
+      Methods: 5
+      Distance: +83670 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00436722
+        [ 1] 0x0043672D
+        [ 2] 0x00436738
+        [ 3] 0x00435C4C
+        [ 4] 0x0043649C
+
+    Vtable @ 0x0044D16C
+      Methods: 34
+      Distance: +83698 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0042DEBC
+        [ 1] 0x0043967E
+        [ 2] 0x004395CA
+        [ 3] 0x0043966C
+        [ 4] 0x0042E73A
+        [ 5] 0x00439540
+        [ 6] 0x0043958E
+        [ 7] 0x004395D6
+        [ 8] 0x0043959A
+        [ 9] 0x004394BC
+        ... and 24 more
+
+    Vtable @ 0x0044D228
+      Methods: 3
+      Distance: +83886 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00436765
+        [ 1] 0x0041E882
+        [ 2] 0x0041E893
+
+    Vtable @ 0x0044D388
+      Methods: 17
+      Distance: +84238 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00436C07
+        [ 1] 0x00439402
+        [ 2] 0x00439312
+        [ 3] 0x00439384
+        [ 4] 0x0043933C
+        [ 5] 0x00439348
+        [ 6] 0x0043937E
+        [ 7] 0x0043934E
+        [ 8] 0x0043936C
+        [ 9] 0x00439372
+        ... and 7 more
+
+    Vtable @ 0x0044D3EC
+      Methods: 32
+      Distance: +84338 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00436D65
+        [ 1] 0x0043967E
+        [ 2] 0x004395CA
+        [ 3] 0x0043966C
+        [ 4] 0x004395A0
+        [ 5] 0x00439540
+        [ 6] 0x0043958E
+        [ 7] 0x004395D6
+        [ 8] 0x0043959A
+        [ 9] 0x00436D52
+        ... and 22 more
+
+    Vtable @ 0x0044E09C
+      Methods: 15
+      Distance: +87586 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00438B9B
+        [ 1] 0x004395D0
+        [ 2] 0x00439594
+        [ 3] 0x00439606
+        [ 4] 0x004395C4
+        [ 5] 0x0043957C
+        [ 6] 0x004395A6
+        [ 7] 0x00439510
+        [ 8] 0x0043961E
+        [ 9] 0x004395E8
+        ... and 5 more
+
+    Vtable @ 0x0044E0F8
+      Methods: 32
+      Distance: +87678 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00438D01
+        [ 1] 0x0043967E
+        [ 2] 0x00438CEE
+        [ 3] 0x0043966C
+        [ 4] 0x00438CDB
+        [ 5] 0x00438CC8
+        [ 6] 0x00438CB5
+        [ 7] 0x00438CA2
+        [ 8] 0x0043959A
+        [ 9] 0x00438C8F
+        ... and 22 more
+
+    Vtable @ 0x0044E180
+      Methods: 15
+      Distance: +87814 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x00437DFD
+        [ 1] 0x00439360
+        [ 2] 0x00439300
+        [ 3] 0x004397AA
+        [ 4] 0x00439306
+        [ 5] 0x004393EA
+        [ 6] 0x00439660
+        [ 7] 0x00439330
+        [ 8] 0x0043935A
+        [ 9] 0x00439390
+        ... and 5 more
+
+    Vtable @ 0x0044E1C4
+      Methods: 3
+      Distance: +87882 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x00438D8C
+        [ 1] 0x00439708
+        [ 2] 0x0043971A
+
+    Vtable @ 0x0044E1D8
+      Methods: 8
+      Distance: +87902 bytes
+      Confidence: MEDIUM
+      Score: 4/6
+      First 10 methods:
+        [ 0] 0x004390DE
+        [ 1] 0x00438D82
+        [ 2] 0x00438D78
+        [ 3] 0x00438D6E
+        [ 4] 0x00438D64
+        [ 5] 0x00438D5A
+        [ 6] 0x00438D50
+        [ 7] 0x00438D46
+
+    Vtable @ 0x0044E928
+      Methods: 3
+      Distance: +89774 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x004032B9
+        [ 1] 0x0043915C
+        [ 2] 0x0043914A
+
+    Vtable @ 0x00450000
+      Methods: 3
+      Distance: +95622 bytes
+      Confidence: MEDIUM
+      Score: 3/6
+      First 10 methods:
+        [ 0] 0x0044F000
+        [ 1] 0x0044F0B0
+        [ 2] 0x0043A063
+
+TVNAviMedia @ 0x00435953
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNBitmap @ 0x0041E5FC
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNBmpImg @ 0x004358CF
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNCDAMedia @ 0x00435939
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNEventCommand @ 0x0040F51E
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNFileNameParms @ 0x0040F3CE
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNGdiObject @ 0x0041E673
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNHtmlText @ 0x004231F0
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNImageObject @ 0x0042A40B
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNMidiMedia @ 0x0041C590
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNScene @ 0x004179AE
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNTextObject @ 0x0042A448
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNToolBar @ 0x00435901
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNVariable @ 0x004067B8
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+TVNWaveMedia @ 0x0041C51D
+  Found 1 candidate vtable(s):
+
+    Vtable @ 0x0041AAB8
+      Methods: 4
+      Distance: -6757 bytes
+      Confidence: HIGH
+      Score: 5/6
+      First 10 methods:
+        [ 0] 0x00439474
+        [ 1] 0x00480001
+        [ 2] 0x00434454
+        [ 3] 0x004142DE
+
+TVNWindow @ 0x00435921
+  ✗ No HIGH/MEDIUM confidence vtables found
+
+
+Generating detailed report...
+✓ Report saved to EXTENDED_VTABLES.md
+
