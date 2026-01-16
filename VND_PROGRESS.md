@@ -2,7 +2,7 @@
 
 **Version**: 2.0
 **Date**: 2026-01-16
-**Complétion globale**: 70%
+**Complétion globale**: 75%
 
 > **Note**: Document centralisé pour suivre l'avancement. Mettre à jour ce fichier au lieu de créer de nouveaux TODOs.
 
@@ -10,10 +10,14 @@
 
 ## 📊 État Actuel
 
-### Handlers Analysés: 9/43 (20.9%)
+### Handlers Analysés: 13/43 (30.2%)
 
 | Handler | Status | Fonction | Occurrences | Priorité |
 |---------|--------|----------|-------------|----------|
+| **'a' (1)** | ✅ | Pre-processor A | 1 | - |
+| **'b' (2)** | ✅ | Pre-processor B | 0 | - |
+| **'c' (3)** | ✅ | Images variant | 0 | - |
+| **'d' (4)** | ✅ | Pre-processor D | 434* | - |
 | **'e' (5)** | ✅ | Audio+Image | 35 | - |
 | 'f' (6) | ✅ | Navigation | 11 | - |
 | **'g' (7)** | ✅ | Tooltip variant | 44 | - |
@@ -24,22 +28,24 @@
 | 'l' (12) | ✅ | MIDI Music | 94 | - |
 | 'u' (21) | ✅ | Logic if/then | 0 | - |
 
-**Dernière découverte**: Handler 'e' (Audio+Image combiné) - 35 occurrences
+**Dernière découverte**: Handlers a,b,c,d analysés - Tous pré-processeurs → handler 'i'
+
+*Note: 'd' (434 occ.) = probablement suffixe DIRECT, pas le handler lui-même
 
 ---
 
-### Handlers À Analyser: 34 restants
+### Handlers À Analyser: 30 restants
 
 #### Priorité HAUTE (avec occurrences)
 
-| Handler | Adresse | Occurrences | Raison |
-|---------|---------|-------------|--------|
-| **'a' (1)** | 0x00431A20 | 1 | Rare mais existe |
-| **'b' (2)** | 0x00431A39 | 0? | À confirmer |
-| **'c' (3)** | 0x00431881 | 0? | À confirmer |
-| **'d' (4)** | 0x00431A53 | 434 | Suffixe DIRECT mais handler? |
+**Tous les handlers de base (a-l, u) analysés!**
 
-**Action**: Analyser handlers 1-4 (a,b,c,d) pour compléter la base
+Prochains handlers prioritaires:
+- 'm' (13) - À vérifier occurrences
+- 'n' (14) - 144 occurrences mais FAUX POSITIFS (noms fichiers)
+- 'o'-'t' (15-20) - À vérifier
+
+**Action**: Analyser handlers 13-20 (m-t) pour continuer la progression
 
 ---
 
@@ -101,6 +107,13 @@
 ## 🎯 TODO Actif
 
 ### Récemment Complété ✅
+
+- [x] **Handlers a,b,c,d (1-4)** - ANALYSÉS
+  - Handler 'a' (1) @ 0x00431A20: Pre-processor A → calls 0x426b62 → handler 'i'
+  - Handler 'b' (2) @ 0x00431A39: Pre-processor B → calls 0x426d33 → handler 'i'
+  - Handler 'c' (3) @ 0x00431881: Images variant → calls 0x42703A (Images func) → handler 'i'
+  - Handler 'd' (4) @ 0x00431A53: Pre-processor D → calls 0x4275f6 → handler 'i'
+  - Pattern commun: Tous pré-processent puis délèguent à handler 'i'
 
 - [x] **Handler 'e' (5)** @ 0x004318EE - ANALYSÉ
   - Fonction: Handler combiné Audio+Image
@@ -229,15 +242,15 @@
 | Catégorie | Progression | Détails |
 |-----------|-------------|---------|
 | **Format VND** | ████████░░ 80% | Header/variables OK, Type 0 partiel |
-| **Opcodes** | ███████░░░ 70% | Système compris, 9/43 analysés |
-| **Handlers** | ██░░░░░░░░ 21% | 9 analysés, 34 restants |
+| **Opcodes** | ███████░░░ 70% | Système compris, 13/43 analysés |
+| **Handlers** | ███░░░░░░░ 30% | 13 analysés, 30 restants |
 | **Records** | ██████░░░░ 60% | Types documentés, parsing partiel |
 | **Navigation** | █████████░ 90% | Système géographique compris |
 | **Médias** | ████████░░ 80% | Images/audio/vidéo bien compris |
 | **Logic** | ███████░░░ 70% | if/then compris, handler analysé |
 | **Tools** | ████████░░ 80% | Parsers OK, batch OK, amélioration possible |
 
-**Global**: ████████░░ 72%
+**Global**: ████████░░ 75%
 
 ---
 

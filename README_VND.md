@@ -1,7 +1,7 @@
 # VND Reverse Engineering - Documentation Centralisée
 
 **Projet**: Analyse format VND (Visual Novel Europeo)
-**Status**: 72% complété
+**Status**: 75% complété
 **Date**: 2026-01-16
 
 ---
@@ -13,7 +13,7 @@
 **Référence technique complète**:
 - Format VND (header, variables, records)
 - Système d'opcodes (a-z)
-- Handlers analysés (8/43)
+- Handlers analysés (13/43)
 - Patterns d'usage
 - Fichiers analysés (19 VND)
 - Références techniques
@@ -38,7 +38,7 @@
 ### 3. [VND_PROGRESS.md](./VND_PROGRESS.md) 📊
 
 **État de la recherche**:
-- Handlers analysés vs restants (8/43)
+- Handlers analysés vs restants (13/43)
 - TODO actif (priorités)
 - Blocages actuels
 - Métriques progression
@@ -121,7 +121,7 @@ python3 analyze_handler_X.py
 - ✅ Format VND compris (header, variables, records)
 - ✅ Système opcodes décodé (atol parsing, dispatcher)
 - ✅ 19 fichiers analysés (1.2MB, 1461 opcodes)
-- ✅ 9 handlers analysés (e, f, g, h, i, j, k, l, u)
+- ✅ 13 handlers analysés (a, b, c, d, e, f, g, h, i, j, k, l, u)
 - ✅ Navigation géographique identifiée
 - ✅ Patterns validés sur dataset complet
 - ✅ Tools créés (parsers, extracteurs, analyseurs)
@@ -130,7 +130,7 @@ python3 analyze_handler_X.py
 ### En Cours ⏳
 
 - ⏳ Type 0 parsing complet (structure complexe)
-- ⏳ 34 handlers restants (1-4, 13-20, 22-42)
+- ⏳ 30 handlers restants (13-20, 22-42)
 
 ### Blocages ⚠️
 
@@ -199,11 +199,11 @@ Système éducatif sur géographie européenne
 | **Fichiers VND** | 19 (1.2 MB) |
 | **Opcodes extraits** | 1461 total |
 | **Opcodes uniques** | 11 |
-| **Handlers analysés** | 9/43 (20.9%) |
-| **Formats compris** | 72% |
+| **Handlers analysés** | 13/43 (30.2%) |
+| **Formats compris** | 75% |
 | **Tools créés** | 20+ scripts |
 | **Documentation** | 3 docs centraux |
-| **Complétion globale** | 72% |
+| **Complétion globale** | 75% |
 
 ---
 

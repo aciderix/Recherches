@@ -86,7 +86,7 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 | Opcode | Idx | Handler @ | Fonction | Count | % | Status |
 |--------|-----|-----------|----------|-------|---|--------|
 | **'i'** | 9 | 0x004321B6 | Images/INDEX | 603 | 41.3% | ✓ |
-| **'d'** | 4 | ? | DIRECT suffix | 434 | 29.7% | Suffixe |
+| **'d'** | 4 | 0x00431A53 | Pre-proc D / DIRECT suffix | 434 | 29.7% | ✓ |
 | **'l'** | 12 | 0x00432297 | MIDI Music | 94 | 6.4% | ✓ |
 | **'h'** | 8 | 0x00431B70 | Tooltip | 50 | 3.4% | ✓ |
 | **'g'** | 7 | 0x00431B2B | Tooltip variant | 44 | 3.0% | ✓ |
@@ -94,8 +94,10 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 | **'j'** | 10 | 0x00432201 | Bitmaps | 34 | 2.3% | ✓ |
 | **'k'** | 11 | 0x0043224C | Audio WAV | 11 | 0.8% | ✓ |
 | **'f'** | 6 | 0x0043198B | Navigation | 11 | 0.8% | ✓ |
+| **'c'** | 3 | 0x00431881 | Images variant | 0 | 0% | ✓ |
+| **'b'** | 2 | 0x00431A39 | Pre-proc B | 0 | 0% | ✓ |
 | **'u'** | 21 | 0x00431A7C | Logic if/then | 0 | 0% | ✓ |
-| **'a'** | 1 | ? | Unknown | 1 | 0.1% | Rare |
+| **'a'** | 1 | 0x00431A20 | Pre-proc A | 1 | 0.1% | ✓ |
 
 **Note**: 'n' (144 occ.) = FAUX POSITIF (noms fichiers: "5n1.bmp")
 
@@ -103,7 +105,7 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 
 ## Handlers Analysés
 
-### Handlers Analysés (9 sur 43 - 20.9%)
+### Handlers Analysés (13 sur 43 - 30.2%)
 
 #### 'f' (6) - Navigation @ 0x0043198B
 
@@ -264,19 +266,108 @@ jmp  0x4321b6           ; ← Handler 'i' (Images)
 
 ---
 
-### Handlers À Analyser
+#### 'a' (1) - Pre-processor A @ 0x00431A20 ✅ ANALYSÉ
 
-**TODO**: Désassembler et identifier fonction
+**Fonction**: Pré-processeur inconnu → Images
+
+**Mécanisme**:
+```asm
+test esi, esi
+je   0x4321b6           ; Jump to handler 'i' if no params
+push [esi+4]
+push ebx
+call 0x426b62           ; ← Fonction inconnue A
+jmp  0x4321b6           ; → Handler 'i' (Images)
+```
+
+**Usage**: 1 occurrence (rare, 0.1%)
 
 ---
 
-### Handlers Inconnus (35 restants)
+#### 'b' (2) - Pre-processor B @ 0x00431A39 ✅ ANALYSÉ
+
+**Fonction**: Pré-processeur inconnu → Images
+
+**Mécanisme**:
+```asm
+test esi, esi
+je   0x4321b6
+push esi
+push ebx
+call 0x426d33           ; ← Fonction inconnue B
+jmp  0x4321b6           ; → Handler 'i' (Images)
+```
+
+**Usage**: 0 occurrences détectées
+
+---
+
+#### 'c' (3) - Images Variant @ 0x00431881 ✅ ANALYSÉ
+
+**Fonction**: Variante chargement images
+
+**Mécanisme**:
+```asm
+test esi, esi
+je   skip
+push [esi+0xc]
+push [esi+8]
+push [esi+4]
+push ebx
+call 0x42703A           ; ← sub_42703A = Images loading function!
+jmp  0x4321b6           ; → Handler 'i' (Images)
+```
+
+**Usage**: 0 occurrences détectées
+
+**Note**: Appelle directement la fonction Images (0x42703A)
+
+---
+
+#### 'd' (4) - Pre-processor D @ 0x00431A53 ✅ ANALYSÉ
+
+**Fonction**: Pré-processeur inconnu → Images
+
+**Mécanisme**:
+```asm
+test esi, esi
+je   0x4321b6
+push [esi+0x1c]
+push [esi+0xc]
+push [esi+8]
+push [esi+4]
+push ebx
+call 0x4275f6           ; ← Fonction inconnue D
+jmp  0x4321b6           ; → Handler 'i' (Images)
+```
+
+**Usage**: 434 occurrences (29.7%) mais probablement suffixe 'd' (DIRECT), pas handler
+
+**Note**: Le 'd' observé est le suffixe de navigation DIRECT, pas ce handler
+
+---
+
+### Pattern Commun Handlers a,b,c,d
+
+**Tous suivent le même modèle**:
+1. Test paramètres (esi)
+2. Appel fonction spécifique
+3. Jump vers handler 'i' (Images) @ 0x4321b6
+
+**Rôle**: Pré-processeurs qui effectuent des actions avant de déléguer à handler 'i'
+
+---
+
+### Handlers À Analyser
+
+**TODO**: Désassembler handlers 13-20 (m-t) et 22-42
+
+---
+
+### Handlers Inconnus (30 restants)
 
 **Avec occurrences**:
-- 'a' (1) @ ? - 1 occurrence (rare)
-- 'b' (2) @ ?
-- 'c' (3) @ ?
-- 'm' (13-20) @ ?
+- 'm' (13-20) @ ? - À vérifier
 - Autres (22-26, 27+)
 
 **Sans occurrences détectées**: À investiguer dans switch table
