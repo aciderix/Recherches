@@ -43,7 +43,7 @@ TVN_STRUCTURES = {
     "TVNFileNameParms": None,
     "TVNEventCommand": None,
     "TVNVariable": None,
-    "TVNScene": None,
+    "TVNScene": 0x00417B52,  # Found by TYPEINFO search (420 bytes after)
     "TVNToolBar": None,
     "TVNWindow": None,
     "TVNApplication": None,
