@@ -1,0 +1,25 @@
+La structure fondamentale des données au sein d'un fichier **VND** repose sur l'organisation en **enregistrements** (ou *records*), qui constituent la grande majorité du contenu après l'en-tête et la table des variables,,.
+
+### **2.3. Schéma Binaire d'un Enregistrement**
+
+Chaque enregistrement suit un modèle binaire standardisé, encodé en **Little Endian (petit-boutiste)** pour toutes les valeurs numériques de 32 bits (uint32),,.
+
+| Champ | Taille (octets) | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **SÉPARATEUR** | 4 | uint32 | Marqueur de début de bloc. Toujours égal à `01 00 00 00` (valeur 1),,. |
+| **LONGUEUR** | 4 | uint32 | Taille totale en octets des **données** qui suivent l'identifiant de type,. |
+| **TYPE** | 4 | uint32 | Identifiant numérique unique (Type ID) définissant la nature des données,. |
+| **DONNÉES** | variable | variable | Contenu de l'enregistrement, pouvant être du texte ou des structures binaires complexes,. |
+
+### **Détails des Champs**
+
+*   **Séparateur** : Ce champ agit comme une sentinelle pour le parseur de flux. Bien qu'il soit quasiment systématiquement égal à 1, certaines analyses statistiques montrent des séquences `1 0 0` (uint32) comme marqueurs de records suivis de zéros de remplissage,.
+*   **Longueur** : Elle est cruciale pour le moteur afin de savoir combien d'octets doivent être consommés avant d'interpréter le prochain séparateur. Une erreur de calcul dans la longueur entraîne généralement une désynchronisation du parseur,.
+*   **Type (Type ID)** : Ce code détermine comment le moteur Europea (via la fonction `sub_43177D`) doit traiter les données qui suivent,. Les types vont de **0** (métadonnées ou enregistrements vides) à plus de **105** (zones interactives polygonales),.
+*   **Données** : La nature des données varie selon le type :
+    *   **Texte** : Chemins de fichiers (ex: `euroland\face.bmp`), commandes scriptées ou définitions de polices,,.
+    *   **Binaire pur** : Listes de coordonnées pour les polygones (Type 105) ou coordonnées rectangulaires (Type 2),,.
+
+### **Mécanisme d'Interprétation**
+
+Le moteur lit ces enregistrements séquentiellement. Le **répartiteur de commandes** (`sub_43177D`) utilise souvent les données textuelles contenues dans ces blocs pour extraire des paramètres numériques via la fonction `atol()`,. Ce parseur s'arrête dès qu'il rencontre un caractère non numérique (souvent un suffixe comme 'f', 'h' ou 'i'), ce qui lui permet d'enchaîner immédiatement sur l'exécution d'un **opcode** correspondant,.

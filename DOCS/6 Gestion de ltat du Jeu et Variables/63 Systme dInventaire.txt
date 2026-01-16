@@ -1,0 +1,42 @@
+Le système d'inventaire du moteur Europeo est géré de manière centralisée à travers un **tableau global de variables** situé en mémoire à l'adresse **`dword_44ECCE`**. Ce système repose sur une logique d'états normalisée et une interaction étroite entre les scripts binaires (fichiers VND) et des modules externes (DLL).
+
+### **1. La Logique des Trois États (0–1–2)**
+
+Pour la quasi-totalité des objets collectables dans le jeu, le moteur utilise un système de progression à trois paliers qui détermine l'affichage et l'interactivité de l'objet dans le monde :
+
+*   **État 0 (Non découvert)** : L'objet n'existe pas encore pour le joueur ; il est invisible dans la scène et absent de l'inventaire.
+*   **État 1 (Découvert / Visible)** : L'objet a été activé par une action ou une entrée de scène. Il est affiché dans le décor via une commande **`addbmp`**, mais le joueur ne le possède pas encore.
+*   **État 2 (Dans l'inventaire)** : L'objet a été ramassé. Il disparaît généralement de la scène principale (souvent remplacé par un sprite "absent") et devient accessible via l'interface du sac à dos.
+
+### **2. Le "Sac à dos" et l'Interface d'Inventaire**
+
+L'accès aux objets collectés est régi par la variable système **`SACADOS`**.
+*   **Activation** : Si `SACADOS = 0`, l'inventaire est inaccessible. Lorsqu'il passe à **1**, l'icône du sac devient active dans la barre d'outils.
+*   **Emplacement** : L'inventaire est visuellement situé dans la **barre d'outils**, une zone fixe occupant le bas de l'écran (coordonnées **Y >= 400 pixels**).
+*   **Gestion technique** : Alors que la logique d'état est gérée par le moteur principal, les fonctions avancées de manipulation des objets sont déléguées à une bibliothèque spécifique, **`inv.dll`**, appelée via la commande `rundll`.
+
+### **3. Mécanisme de Ramassage (Pickup Logic)**
+
+Le passage d'un objet du décor vers l'inventaire suit une séquence de scripts (Records Type 21 ou 25+) très précise dans le fichier VND :
+1.  **Vérification de condition** : Le script vérifie d'abord si le joueur possède le sac à dos (ex: `if sacados = 1 then...`).
+2.  **Changement d'état** : La variable de l'objet est mise à jour avec la commande **`set_var`** pour passer à l'état **2** (ex: `set_var clejaune 2`).
+3.  **Mise à jour visuelle** : L'objet est retiré de la scène courante avec la commande **`delbmp`**.
+4.  **Retour sonore** : Un effet sonore de type WAV (souvent `cling.wav` ou `unplus.wav`) est généralement joué pour confirmer l'action.
+
+### **4. Ressources Graphiques et Rollovers**
+
+Les objets de l'inventaire utilisent des sprites au format **BMP Windows 24-bit**. L'interactivité visuelle est gérée par des préfixes de fichiers spécifiques, appelés **images rollover** :
+*   **`det*` (Détail)** : L'image de l'objet lorsqu'il est visible dans la scène.
+*   **`abs*` (Absent)** : Une image de remplacement (souvent transparente ou montrant le décor vide) utilisée quand l'objet est ramassé.
+*   **`roll*` (Rollover)** : L'image affichée lorsque la souris survole l'objet.
+
+Pour assurer une intégration parfaite dans les décors, le moteur utilise le **Color Keying** : la couleur **magenta (#FF00FF)** est traitée comme transparente, permettant de détourer les objets de l'inventaire sans cadre rectangulaire visible.
+
+### **5. Liste des Catégories d'Objets identifiées**
+
+L'analyse des variables du projet révèle une grande diversité d'items classés par types de quêtes :
+*   **Instruments** : GUITARE, VIOLON, CORNEMUSE, PARTITION.
+*   **Alimentation** : PIZZA, FROMAGE, FARINE, HUILE, ORGE, HOUBLON.
+*   **Clés** : CLEJAUNE, CLEROUGE, CLEVERTE.
+*   **Outils techniques** : LOUPE, TOURNEVIS, PINCE, BURETTE, ALLUMETTE.
+*   **Items spéciaux** : PHOTO, TICKET, FIOLE (indicateur de progression globale évoluant de 0 à 12).

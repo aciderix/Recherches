@@ -1,0 +1,32 @@
+Dans le moteur Europeo, les **états du monde** sont gérés de manière centralisée par un tableau global de variables situé à l'adresse mémoire **`dword_44ECCE`**,,. Ces états ne sont pas de simples indicateurs binaires, mais suivent des systèmes de valeurs normalisés qui déterminent dynamiquement l'interactivité, l'affichage des objets et la progression narrative à travers les fichiers VND,,.
+
+Voici une analyse détaillée des différents systèmes d'états identifiés :
+
+### **1. Le Système d'États des Objets (0–1–2)**
+La majorité des objets collectables (inventaire) suit une logique de progression à trois paliers, essentielle pour la gestion des interactions dans les scènes, :
+*   **État 0 (Non découvert)** : L'objet est totalement absent de la scène et de l'inventaire.
+*   **État 1 (Découvert/Visible)** : L'objet a été "activé" (souvent par une condition ou une entrée de scène). Il apparaît dans le décor via une commande `addbmp`, mais n'est pas encore possédé.
+*   **État 2 (Dans l'inventaire)** : L'objet a été ramassé. Il disparaît généralement du décor (préfixe `abs*` sur le bitmap) et devient disponible dans le sac à dos (`SACADOS`),,.
+
+### **2. États de Progression Globale**
+Ces variables quantifient la réussite du joueur et modifient radicalement l'environnement de jeu :
+*   **Variable `SCORE`** : Cet état est numérique et peut varier de **-∞ à +∞**. Le moteur utilise cet état pour des branchements conditionnels critiques (ex: `score < 0 then runprj ...`),.
+*   **Variable `FIOLE`** : C'est l'indicateur principal de complétion. Elle comporte **13 états (de 0 à 12)**,. Chaque incrémentation correspond souvent à la validation d'une fiole spécifique dans un pays (ex: `FIOLEGRECE`, `FIOLEITALIE`). Arrivé à l'état 12, le moteur peut déclencher la scène finale (scène 42).
+*   **Variable `JEU`** : Un drapeau binaire (0 ou 1) qui définit si l'utilisateur est en mode "Consultation" ou en mode "Jeu interactif".
+
+### **3. États de Navigation et de Localisation**
+Le moteur suit en permanence la position du joueur via des index de pays et de zones :
+*   **`CPAYS`** : Index numérique du pays actuel.
+*   **Drapeaux de Pays** : Chaque pays possède son propre état binaire (ex: `FRANCE`, `ESPAGNE`). L'état **0** signifie "non visité" et l'état **1** signifie "visité/actif",.
+*   **`LOC`** : Stocke un sous-index de localisation au sein d'un même projet VND.
+
+### **4. États de l'Interface et de la Barre d'Outils**
+La barre d'outils (située à Y >= 400 pixels) réagit à des variables d'état spécifiques qui activent ou désactivent les fonctionnalités système, :
+*   **Outils individuels (`CALC`, `TELEPHONE`, `SACADOS`, `TRANS`)** : Ces variables basculent entre **0 (inactif/invisible)** et **1 (actif/visible)**.
+*   **Mode Monétaire (`FRANCS`)** : État binaire crucial pour le logiciel éducatif. L'état **0** affiche les prix en **Euros**, tandis que l'état **1** les bascule en **Francs**,.
+*   **États d'Occupation (`OCCUPE1` à `OCCUPE12`)** : Utilisés pour suivre l'état de remplissage des slots de l'interface ou des éléments de mini-jeux,.
+
+### **5. États Logiques et Conditionnels**
+Le moteur utilise ces différents états pour évaluer des scripts binaires (Records Type 21 ou 25+),,. Les conditions de type `variable opérateur valeur` permettent de modifier l'état du monde en temps réel, par exemple en utilisant les commandes **`set_var`**, **`inc_var`** ou **`dec_var`** suite à un clic sur un hotspot,,.
+
+**Note technique** : La persistance de ces états est assurée par la structure des fichiers de sauvegarde **.sav (VNSAVFILE)**, qui permettent d'écrire et de relire l'intégralité du tableau des variables en mémoire lors du changement de pays ou de la fermeture du programme,,.

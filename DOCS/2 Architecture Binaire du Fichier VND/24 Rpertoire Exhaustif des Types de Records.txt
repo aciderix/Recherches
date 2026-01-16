@@ -1,0 +1,38 @@
+Les enregistrements (records) constituent le cœur de la structure binaire des fichiers **VND**. Chaque bloc suit un schéma standard : un **séparateur** (`01 00 00 00`), une **longueur** de données, un **Type ID** (identifiant numérique) et les **données** proprement dites. 
+
+Voici le répertoire exhaustif des types d'enregistrements identifiés par l'analyse binaire et le reverse engineering :
+
+### **1. Identification et Structure de Base**
+*   **Type 0 (0x00) : Métadonnées et Scènes** : Utilisé pour les enregistrements vides, le rembourrage (padding), les chemins vers les DLL de ressources et les noms de variables. Il définit également l'unité logique d'une **scène** en contenant le fichier BMP de fond.
+*   **Type 1 (0x01) : Référence de Scène Primaire / Action** : Contient des numéros de scène courts ou l'ID de destination (Target ID) d'un hotspot.
+*   **Type 2 (0x02) : Zones Cliquables Rectangulaires** : Initialement documenté comme une référence de scène secondaire, ce type est en réalité utilisé pour définir des **hotspots rectangulaires** simples, comme des boutons de sortie.
+*   **Type 3 (0x03) : Valeurs et Scripts** : Contient des valeurs numériques (souvent des scores) ou des **scripts conditionnels** associés à un hotspot.
+*   **Type 5 (0x05) : État du Jeu** : Référence les variables d'état global du moteur.
+
+### **2. Zones Interactives (Hotspots)**
+Les zones interactives sont souvent constituées de plusieurs records séquentiels.
+*   **Type 38 (0x26) : Texte de Hotspot** : Définit la boîte englobante et le texte affiché au survol d'une zone interactive. Le format est généralement `"X Y W H 0 Nom"`.
+*   **Type 105 (0x69) : Polygones Cliquables** : Ce type binaire définit des zones de formes complexes. Il contient le **Point Count** (nombre de sommets) suivi d'un tableau de coordonnées (x, y) pour chaque point.
+
+### **3. Médias et Ressources**
+*   **Type 8, 11, 12 (0x08, 0x0B, 0x0C) : Audio WAV** : Références aux fichiers sonores et effets secondaires.
+*   **Type 17 (0x11) : Chemins Audio** : Chemins complets vers les dossiers d'effets sonores.
+*   **Type 20 à 24 (0x14 à 0x18) : Vidéos AVI** : Chemins vers les cinématiques ou animations. Les types varient selon le contexte (départ, bibliothèque, musée ou scène spécifique).
+*   **Type 26, 39 (0x1A, 0x27) : Définitions de Police** : Contient les paramètres de style sous la forme `"TAILLE STYLE #COULEUR NOM_POLICE"`.
+
+### **4. Logique et Commandes Scriptées**
+*   **Type 21 (0x15) : Instructions Conditionnelles / Actions** : Utilisé pour les commandes de type `set_var` ou des embranchements logiques.
+*   **Types 25 à 90+ : Logique Avancée** : Gèrent les structures `"if variable operateur valeur then commande"`.
+*   **Types 27 à 31 : Actions Spécifiques** :
+    *   **Type 27** : Ajout de bitmap (`addbmp`).
+    *   **Type 28** : Suppression de bitmap (`delbmp`) ou décrémentation de variable.
+    *   **Type 31** : Lancement de projet (`runprj`) ou exécution de DLL (`rundll`).
+
+### **5. Artefacts de Parsing (Type IDs erronés)**
+Certains identifiants apparaissent dans les outils de décodage mais résultent d'une mauvaise interprétation des structures fixes du fichier :
+*   **Type 257** : Mauvaise lecture de la signature ASCII **"VNFILE"** du header.
+*   **Type 1634296933** : Mauvaise lecture du **Checksum** binaire.
+*   **Type 280** : Mauvaise lecture du premier nom de variable (**"SACADOS"**) dans la table des variables.
+*   **Types 620, 1397563507** : Erreurs de parsing rencontrées sur des caractères isolés comme `{` ou `&`.
+
+**Note sur les suffixes** : Les lettres rencontrées en fin de données (comme `54h` ou `13d`) ne sont pas des types de records mais des **opcodes séparés** lus par le répartiteur de commandes (`sub_43177D`) après la consommation d'un argument numérique par la fonction `atol()`.

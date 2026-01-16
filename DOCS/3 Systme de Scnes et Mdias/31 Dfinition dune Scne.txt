@@ -1,0 +1,26 @@
+### **3. Système de Scènes et Médias**
+
+#### **3.1. Définition d'une Scène**
+
+Une **scène** constitue l'**unité logique fondamentale** du moteur Europeo, regroupant l'ensemble des éléments visuels, sonores et interactifs nécessaires à une étape précise du jeu. Techniquement, chaque scène est identifiée dans le fichier binaire par un enregistrement de **Type 0x00**, lequel contient impérativement le fichier de l'**image de fond (background)** au format BMP. Dans la structure globale d'un projet, ces unités sont répertoriées dans le fichier de configuration INI sous des sections nommées **`[AREA_n]`**, où `n` correspond à l'identifiant de la scène.
+
+Une scène se définit par la combinaison de quatre composantes majeures :
+
+*   **Composante Visuelle (Background et Vidéo)** :
+    *   L'élément central est une image **BMP Windows 24-bit** d'une résolution plein écran de **640x400 pixels** (occupant la zone de jeu au-dessus de la barre d'outils).
+    *   L'affichage de cette image est régi par les clés `IMG` et `SETIMG` du fichier INI.
+    *   Une scène peut également intégrer une **vidéo d'introduction** au format **AVI** (utilisant les codecs Indeo ou Cinepak), définie par les clés `AVI` et `SETAVI`.
+
+*   **Environnement Sonore (Audio)** :
+    *   Chaque scène peut comporter des références à des sons ambiants au format **WAV PCM** et à des musiques de fond au format **MIDI**.
+    *   Le moteur gère différents modes de lecture, notamment le déclenchement unique, la lecture en boucle ou le mode ambiance.
+
+*   **Interactivité (Hotspots)** :
+    *   Les scènes contiennent des **hotspots**, des zones interactives positionnées dynamiquement sur le décor.
+    *   Ces zones cliquables sont définies soit par des coordonnées rectangulaires simples (**Type 2**), soit par des formes complexes définies par des points de sommets (**Type 105 : Polygones**).
+
+*   **Logique et Conditions** :
+    *   La scène intègre des **scripts et des conditions** (Type 21/0x15) qui sont évalués lors de l'entrée dans la zone ou au moment d'un clic.
+    *   Ces instructions permettent de modifier l'état du jeu via le **tableau global des variables** (ex: `SCORE`, `FIOLE`, ou l'état de l'inventaire).
+
+Au niveau de l'architecture logicielle, le moteur utilise la classe **`TVNScene`** pour instancier ces unités et la fonction **`sub_410AF6`** pour valider leur existence lors d'une transition. Le passage d'une scène à une autre est géré par le répartiteur de commandes via l'**opcode 'f'** (Opcode 6).

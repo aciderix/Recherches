@@ -1,0 +1,32 @@
+Dans le moteur Europeo, la gestion des objets interactifs qui ne nécessitent pas de détourage complexe repose sur l'utilisation de la commande **`addbmp`** et d'un système de **suffixes de fichiers (rollovers)** pour définir les états visuels et la zone de clic.
+
+### **1. La Commande `addbmp`**
+La commande `addbmp` est l'instruction graphique principale permettant d'ajouter dynamiquement une image ou un hotspot à une scène. Elle est répertoriée sous l'**Opcode 27** dans la table de dispatch du moteur (Case 27).
+
+*   **Syntaxe standard** : `addbmp id fichier layer x y`.
+*   **Identifiant (id)** : Un nom unique attribué à l'élément (ex: "laphoto" ou "clejaune").
+*   **Fichier** : Le chemin vers le fichier **BMP Windows 24-bit**.
+*   **Layer (Couche)** : Définit la profondeur de rendu. La couche **0** correspond à la zone de jeu normale, tandis que la couche **6** est réservée à l'interface utilisateur et à la barre d'outils.
+*   **Coordonnées (x, y)** : Position du coin supérieur gauche de l'image sur une grille de 640x480 pixels.
+
+### **2. Mécanisme des Images Rollover**
+Pour les quelque 1 400 hotspots du jeu n'utilisant pas de polygones (Type 105), le moteur utilise des **images rollover** pour définir l'interactivité. Le comportement visuel au survol de la souris est géré par des conventions de nommage spécifiques basées sur des préfixes :
+
+| Préfixe | État visuel | Description technique |
+| :--- | :--- | :--- |
+| **`det*`** | **Détail visible** | L'image de l'objet telle qu'elle apparaît par défaut dans la scène (ex: `detcal.bmp`). |
+| **`abs*`** | **Absent/Caché** | État où l'objet est masqué, souvent après avoir été ramassé par le joueur (ex: `abscal.bmp`). |
+| **`roll*`** | **Survol (Hover)** | Image spécifique chargée lorsque le curseur de la souris passe sur la zone, créant un effet de surbrillance ou de retour visuel. |
+
+### **3. Définition de la Zone Cliquable (Hitbox)**
+Pour ces objets, il n'est pas nécessaire de définir des coordonnées rectangulaires (Type 2) ou polygonales (Type 105) dans le fichier VND. **Les dimensions intrinsèques du fichier BMP définissent la zone de clic**. Le moteur détecte automatiquement la collision avec la souris sur toute la surface de l'image chargée par `addbmp`. 
+
+### **4. Intégration Technique et Transparence**
+La gestion technique de ces bitmaps est assurée par le répartiteur de commandes (**sub_43177D**) via deux opcodes clés :
+*   **Opcode 'i' (Index 9)** : Gère le chargement, les attributs et les coordonnées de positionnement des images.
+*   **Opcode 'j' (Index 10)** : Déclenche la fonction **`sub_4275F6`** (playbmp), responsable du traitement des couleurs, des palettes et de la transparence.
+
+Le moteur utilise la technique du **Color Keying** pour la transparence : la couleur **magenta (#FF00FF)** est traitée comme transparente, permettant d'afficher des objets aux formes irrégulières sur le décor de fond sans cadre rectangulaire visible.
+
+### **5. Usage Logique et Variables**
+L'affichage de ces bitmaps est souvent conditionné par l'état des variables globales stockées à l'adresse **`dword_44ECCE`**. Un pattern récurrent dans les scripts VND (Type 21) consiste à vérifier si un objet est possédé (état 2) avant d'utiliser `addbmp` pour l'afficher ou `delbmp` pour le supprimer. Par exemple, si la variable `SACADOS` est à 1 (actif), le moteur ajoute l'image `sac.bmp` sur la barre d'outils à la position Y >= 400.

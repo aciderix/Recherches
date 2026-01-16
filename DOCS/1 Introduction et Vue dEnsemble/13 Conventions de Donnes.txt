@@ -1,0 +1,30 @@
+Les fichiers **VND** (Virtual Navigator Data) reposent sur un format **hybride texte/binaire** complexe qui nécessite le respect de conventions strictes pour une interprétation correcte par le moteur Europeo. Voici les spécifications techniques fondamentales régissant le stockage et le traitement des données au sein de ces fichiers.
+
+### **1. Encodage Numérique et Endianness**
+La quasi-totalité des données numériques présentes dans l'en-tête et les enregistrements (records) suit des règles binaires précises :
+*   **Format des entiers** : Toutes les valeurs numériques binaires sont encodées sous forme d'**entiers non signés de 32 bits (uint32)**.
+*   **Ordre des octets** : Le moteur utilise exclusivement l'ordre **petit-boutiste (Little Endian)**. Par exemple, une largeur d'écran de 640 pixels est stockée sous la forme hexadécimale `80 02 00 00`.
+*   **Séparateurs de blocs** : La structure fondamentale d'un enregistrement commence systématiquement par un séparateur uint32 de valeur `01 00 00 00`.
+
+### **2. Encodage et Formatage du Texte**
+Bien que le fichier soit binaire, il contient de nombreuses chaînes de caractères (noms de variables, chemins de fichiers, scripts) :
+*   **Standard d'encodage** : Le texte est encodé en **Latin-1 (ISO-8859-1)**. Ce choix permet la gestion des caractères accentués français (comme dans "La bibliothèque"), essentiels pour le contenu éducatif du jeu.
+*   **Terminaison et casse** : Les chaînes de caractères sont généralement **terminées par un caractère nul (\0)**. Pour la table des variables, les noms sont impérativement écrits en **lettres majuscules** (ex: `SACADOS`, `JEU`).
+*   **Structure textuelle interne** : Certains enregistrements (Type 38 ou 39) utilisent des chaînes formatées où les paramètres sont séparés par des espaces, comme pour les polices : `"TAILLE STYLE #COULEUR NOM_POLICE"`.
+
+### **3. Système de Coordonnées**
+Le positionnement des éléments visuels (images, textes, hotspots) sur le plan de jeu suit une convention cartésienne fixe :
+*   **Origine** : Le point **(0,0)** se situe dans le **coin supérieur gauche** de l'écran.
+*   **Résolution cible** : Les coordonnées sont calculées sur une base de **640x480 pixels**.
+*   **Segmentation Y** : Une convention interne sépare la zone de jeu de l'interface ; toute coordonnée **Y supérieure ou égale à 400** est considérée comme appartenant à la barre d'outils (toolbar).
+
+### **4. Mécanisme de Parsing des Opcodes**
+Le répartiteur de commandes (**sub_43177D**) utilise une méthode de lecture séquentielle pour interpréter le flux de données :
+*   **Consommation des arguments** : Le moteur utilise la fonction `atol()` pour extraire les paramètres numériques. Cette fonction consomme les chiffres et **s'arrête net** dès qu'elle rencontre un caractère non numérique (souvent une lettre).
+*   **Conversion des Opcodes** : Les lettres (a–z) situées immédiatement après un nombre sont interprétées comme des **opcodes séparés**. La conversion suit la règle : **index = caractère - 'a' + 1**. Par exemple, la lettre 'f' correspond à l'index 6, déclenchant un saut de scène.
+
+### **5. Formats de Médias Associés**
+Le moteur impose des formats spécifiques pour les ressources appelées par le fichier .vnd :
+*   **Images** : Bitmaps Windows (**BMP**) au format **24-bit**. La transparence est gérée via la couleur **magenta (#FF00FF)**.
+*   **Vidéo** : Format **AVI** utilisant les codecs de l'époque tels qu'Indeo ou Cinepak.
+*   **Audio** : Sons au format **WAV PCM** et musiques au format **MIDI**.

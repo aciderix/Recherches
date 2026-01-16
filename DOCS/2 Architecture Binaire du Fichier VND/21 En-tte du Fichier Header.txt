@@ -1,0 +1,42 @@
+L'architecture binaire du fichier **VND** commence par une structure fixe appelée **en-tête** (ou *header*), qui constitue la première structure de données rencontrée à l'ouverture du fichier. Cet en-tête est crucial car il contient les **métadonnées essentielles** permettant au moteur Europeo d'interpréter correctement le reste du projet.
+
+Voici le détail de l'architecture de cette section, basée sur le reverse engineering du moteur et l'analyse binaire.
+
+### **2.1. Structure de l'En-tête (Header)**
+
+L'en-tête suit une organisation rigoureuse où les chaînes de caractères sont généralement précédées de leur longueur, stockée sous la forme d'un **entier de 32 bits (uint32)** en format **petit-boutiste (Little Endian)**.
+
+#### **Table des offsets et champs de l'en-tête**
+
+| Offset (Hex) | Taille (octets) | Champ | Description |
+| :--- | :--- | :--- | :--- |
+| **0x00** | 9 | **Magic Number** | Séquence d'identification (ex: `3a 01 01 00 00 06 00 00 00`). |
+| **0x09** | 6 | **Signature** | Toujours la chaîne ASCII **"VNFILE"**. |
+| **0x0F** | 4 | Longueur Version | Taille de la chaîne de version qui suit. |
+| **0x13** | variable | **Version** | Version du format (ex: "2.136"), souvent suivie de zéros de remplissage. |
+| **...** | 4 | Longueur Projet | Taille du nom du projet. |
+| **...** | variable | **Nom Projet** | Identifiant du projet (ex: "Europeo"). |
+| **...** | 4 | Longueur Créateur | Taille du nom du créateur. |
+| **...** | variable | **Créateur** | Généralement **"Sopra Multimedia"**. |
+| **0x48** | 4 | Longueur Checksum | Taille de la signature de vérification. |
+| **0x4C** | 8 | **Checksum** | Valeur hexadécimale en texte (ex: "5D51F233") servant à valider l'intégrité. |
+| **...** | 8 | Padding | Octets de remplissage (zéros). |
+| **0x5C** | 4 | **Largeur Écran** | Valeur uint32 (généralement **640**). |
+| **0x60** | 4 | **Hauteur Écran** | Valeur uint32 (généralement **480**). |
+| **0x64** | 4 | **Profondeur Couleur**| Valeur uint32 (généralement **16** bits). |
+| **...** | 12 | Flags (1, 2, 3) | Indicateurs binaires internes (3 x uint32). |
+| **...** | 4 | Réservé | Champ inutilisé pour compatibilité future. |
+| **0x7C** | 4 | Longueur DLL | Taille du chemin vers la DLL de ressources. |
+| **0x80** | variable | **Chemin DLL** | Chemin vers la DLL (ex: `..\VnStudio\vnresmod.dll`). |
+
+---
+
+### **Détails techniques sur les champs clés**
+
+*   **Signature "VNFILE"** : Ce marqueur ASCII est utilisé par la fonction de chargement `sub_41721D` pour valider que le fichier est bien un conteneur de données Visual Novel valide. Une mauvaise interprétation de cette signature par certains scripts de décodage peut l'identifier à tort comme un enregistrement de type 257.
+*   **Dimensions de l'écran** : Bien que la résolution totale soit fixée à **640x480**, les offsets 0x5C et 0x60 confirment ces paramètres au moteur pour l'initialisation du contexte graphique.
+*   **Système de Flags** : Situés après les dimensions de l'écran, ces trois blocs de 32 bits règlent des paramètres de comportement globaux du moteur Europeo.
+*   **Checksum** : Le checksum est stocké sous forme de texte. Dans certains outils d'analyse binaire, il apparaît comme un "Type 1634296933" en raison d'une collision entre sa valeur ASCII et la structure attendue des enregistrements standards.
+*   **Référence à la DLL (`vnresmod.dll`)** : L'en-tête spécifie explicitement quel module de ressources doit être utilisé pour analyser les données du fichier VND. Ce module est responsable de la logique de chargement et de la gestion de la mémoire.
+
+**Note importante sur la navigation** : Bien que l'en-tête contienne des informations structurelles, les valeurs cruciales pour la navigation comme l'**INDEX_ID** (offset de base pour le calcul des scènes) et l'**EXIT_ID** sont souvent lues juste après la signature ou extraites du fichier de projet INI associé. Chaque enregistrement binaire au sein du fichier VND qui suit cet en-tête utilisera ensuite ces métadonnées pour fonctionner.

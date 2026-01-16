@@ -1,0 +1,35 @@
+Le mécanisme de **parsing** (analyse syntaxique) du moteur Europeo est le processus par lequel le répartiteur de commandes (**`sub_43177D`**) interprète les flux de données contenus dans les fichiers **.vnd**. Ce système repose sur une lecture séquentielle du flux binaire, où les données elles-mêmes "poussent" les instructions à exécuter.
+
+### **1. La Consommation Séquentielle des Données**
+
+Le point central du parsing réside dans la séparation entre les **arguments numériques** et les **instructions (opcodes)**. Le moteur utilise la fonction **`sub_407FE5`**, laquelle s'appuie sur la commande C standard **`atol()`** pour extraire les paramètres.
+
+*   **Extraction des paramètres** : La fonction `atol()` lit les chiffres un par un dans le flux.
+*   **Point de rupture du parseur** : `atol()` s'arrête de consommer des données dès qu'elle rencontre un caractère non numérique.
+*   **Exécution immédiate** : Dès que le nombre est extrait, le pointeur de lecture se trouve précisément sur l'octet suivant, qui est alors immédiatement interprété par le répartiteur comme un **Opcode**.
+
+### **2. Interprétation des Suffixes comme Opcodes Séparés**
+
+Une analyse approfondie a permis de corriger une méprise majeure : les lettres situées après les nombres (comme dans `54h` ou `13d`) ne sont **pas des modificateurs** de transition, mais des **opcodes séparés** qui s'exécutent dès que le nombre précédent a été consommé comme paramètre.
+
+*   **Le cas des suffixes alphabétiques** : Dans une séquence telle que **`54h`**, le paramètre `54` est d'abord chargé pour l'action en cours (par exemple, un changement de projet), puis l'Opcode **'h'** (Opcode 8 : Tooltip) est exécuté instantanément pour afficher une bulle d'aide.
+*   **Calcul de l'index** : Le répartiteur convertit les caractères 'a' à 'z' en indices numériques (1 à 26) selon la formule **`index = caractère - 'a' + 1`**.
+
+### **3. Analyse de la Structure Binaire (Exemple "euroj")**
+
+L'analyse des séquences binaires, comme celle de l'identifiant **`euroj`** (`65 75 72 6f 6a`), illustre parfaitement ce mécanisme de parsing :
+1.  **Lecture du Label** : Le moteur consomme la chaîne ASCII "euro".
+2.  **Rencontre de l'Opcode** : L'octet suivant est `6a`, soit la lettre **"j"**.
+3.  **Déclenchement** : "j" correspond à l'**Opcode 10**, qui appelle la fonction **`playbmp`** (**`sub_4275F6`**).
+4.  **Consommation des paramètres techniques** : Les octets qui suivent immédiatement le "j" sont alors lus non plus comme du texte, mais comme les paramètres de rendu du bitmap (coordonnées, transparence magenta, palettes).
+
+### **4. Logique de Navigation et Suffixes Spécifiques**
+
+Pour la commande de navigation **`scene` (Opcode 6)**, le parseur utilise des suffixes spécifiques pour calculer la destination :
+*   **Suffixe 'i' (Index)** : La cible est calculée en ajoutant la valeur `N` à la variable **`INDEX_ID`** (lue à l'offset 65 du projet dans le fichier INI).
+*   **Suffixe 'd' (Direct)** : La valeur numérique est traitée comme l'identifiant absolu de la scène cible.
+*   **Signes '+' ou '-' (Relatif)** : Le parseur identifie ces signes en début de chaîne pour calculer un saut relatif par rapport à la scène actuelle.
+
+### **5. Parsing des Conditions et Variables**
+
+Pour les instructions complexes liées à l'**Opcode 21 ('u')**, le parseur interagit avec le **tableau global des variables** (**`dword_44ECCE`**). Il évalue des structures de type `variable opérateur valeur then commande`. La fonction **`sub_40A5CA`** fragmente ces chaînes pour identifier les opérateurs de comparaison (codes 1 à 6, comme `==`, `!=`, `>`, etc.) avant de diriger le flux vers la commande suivante si la condition est remplie.

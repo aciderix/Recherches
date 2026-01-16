@@ -1,0 +1,34 @@
+Dans l'architecture du moteur Europeo, un hotspot n'est pas un bloc de données unique, mais une unité logique composée de plusieurs enregistrements (records) séquentiels dans le fichier binaire VND. Cette structure permet de dissocier l'affichage textuel, la géométrie de la zone de clic et la logique d'action associée.
+4.1. Structure d'un Hotspot Complet
+Un hotspot complet est généralement défini par l'enchaînement de quatre composants majeurs :
+1. Définition Textuelle et Affichage (Type 38 / 0x26)
+C'est le record initial qui identifie le hotspot. Contrairement à une idée reçue, les coordonnées X et Y présentes dans ce bloc ne définissent pas la zone sensible au clic, mais la position d'affichage du texte (souvent une info-bulle ou un label).
+• Format des données : Une chaîne de caractères de type "X Y W H 0 Nom".
+• Paramètres techniques : Les constantes 125 et 365 souvent observées dans ce record correspondent probablement à des paramètres de formatage (largeur maximale et hauteur de ligne).
+2. Définition de la Zone Cliquable (Géométrie)
+Le moteur Europeo utilise deux méthodes pour définir la "hitbox" interactive :
+• Record POLYGON (Type 105 / 0x69) : Utilisé pour les formes complexes (bâtiments sur une carte, personnages). Il contient le Point Count (nombre de sommets) suivi d'un tableau de coordonnées binaires (x, y) pour chaque point.
+• Record RECTANGLE (Type 2 / 0x02) : Utilisé pour des zones simples comme des boutons de sortie ou des cadres d'information. Sa structure binaire est fixe : [X1][Y1][X2][Y2] définissant les coins supérieur gauche et inférieur droit.
+• Hotspots sans record géométrique : Pour les objets simples dans une scène, la zone de clic est définie par les dimensions intrinsèques de l'image BMP (sprite) chargée via la commande addbmp.
+3. Destination et Action (Type 1 / 0x01)
+Ce record contient l'identifiant de la cible (Target ID) déclenchée par le clic.
+• Il peut s'agir d'un numéro de scène (navigation) ou d'un identifiant de ressource (vidéo ou image en surimpression).
+• Exemples : Le hotspot "La banque" pointe vers un ID qui déclenche la lecture de bankbis.avi avant de changer de scène.
+4. Logique et Scripts (Type 3 / 0x03 ou Type 21 / 0x15)
+Le hotspot peut intégrer une couche logique pour gérer les conditions ou les changements d'état du jeu :
+• Scripts de conditions (Type 3) : Permettent de vérifier des variables avant d'autoriser l'action (ex: vérifier si un objet est possédé).
+• Commandes d'action (Type 21) : Utilisées pour modifier des variables suite au clic, comme incrémenter le score (inc_var) ou ramasser un objet (set_var).
+Résumé des Types de Hotspots
+Caractéristique
+Hotspot Polygonal (Type 1)
+Hotspot de Sprite (Type 2)
+Usage
+Cartes, bâtiments, personnages complexes
+Objets, inventaire, interface
+Zone de clic
+Définie par le record Type 105
+Dimensions du fichier BMP
+Records
+Texte (38) + Polygone (105) + Action
+Texte (38) + Image Rollover (det/abs/roll)
+Note technique : Toutes les coordonnées sont calculées sur une base de 640x480 pixels, avec l'origine (0,0) située dans le coin supérieur gauche. Pour les sprites, la couleur magenta (#FF00FF) sert de masque de transparence, permettant de définir des zones cliquables visuellement détourées.

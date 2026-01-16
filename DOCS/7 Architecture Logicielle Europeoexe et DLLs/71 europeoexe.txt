@@ -1,0 +1,38 @@
+L'exécutable **`europeo.exe`** constitue le cœur du moteur **Virtual Navigator** (VnStudio) développé par Sopra Multimedia. Il assure la gestion de la logique globale du jeu, le rendu graphique à une résolution de **640x480 pixels** et la coordination avec les différentes bibliothèques dynamiques (DLL).
+
+Voici une analyse détaillée de l'architecture et du rôle de cet exécutable :
+
+### 1. Le Répartiteur de Commandes (Command Dispatcher)
+La fonction principale de `europeo.exe` est d'agir comme un **répartiteur de commandes centralisé**. Il interprète les flux de données provenant des fichiers **.vnd** via une boucle de traitement logique identifiée sous la fonction **`sub_43177D`**.
+
+*   **Mécanisme de Dispatch** : L'exécutable contient une **table de commandes complète de 49 entrées**. Chaque entrée (Case) correspond à une action spécifique :
+    *   **Case 6 (`scene`)** : Navigation vers une autre scène du projet actuel.
+    *   **Case 10 (`playbmp`)** : Gestion technique de l'affichage des bitmaps et des palettes.
+    *   **Case 21 (`if`)** : Évaluation des conditions logiques basées sur les variables globales.
+    *   **Case 31 (`runprj`)** : Chargement d'un nouveau fichier projet (**vnp**), par exemple lors d'un voyage entre deux pays.
+*   **Système d'Opcodes** : Le dispatcher convertit les caractères alphabétiques ('a' à 'z') rencontrés dans le flux binaire en indices numériques (1 à 26). Par exemple, la lettre **'f'** déclenche un saut de scène (`sub_4268F8`) et la lettre **'h'** l'affichage d'un tooltip (`sub_426D33`).
+
+### 2. Framework et Bibliothèques Utilisées
+L'exécutable a été compilé avec **Borland C++ 1996** et repose sur des technologies spécifiques à cette époque.
+*   **ObjectWindows Library (OWL)** : `europeo.exe` utilise la bibliothèque **OWL52t.dll** pour la gestion de l'interface utilisateur graphique (fenêtres, boutons, boîtes de dialogue).
+*   **DirectDraw** : Le moteur intègre l'API **DirectDraw** pour optimiser le rendu graphique, notamment via l'interface `lpDD` et les fonctions de manipulation de surfaces.
+*   **Gestion des Ressources** : Il délègue l'analyse profonde et le chargement des ressources à **vnresmod.dll**.
+
+### 3. Architecture des Classes C++
+Le reverse engineering a permis d'identifier plusieurs classes fondamentales au sein de l'exécutable :
+*   **`TVNApplication`** : La classe principale gérant le cycle de vie de l'application et la pompe à messages.
+*   **`TVNScene`** : Gère les paramètres d'une scène individuelle (image de fond, sons, hotspots).
+*   **`TVNVariableArray`** : Gère le tableau global des variables en mémoire, situé à l'adresse **`dword_44ECCE`**, qui maintient l'état du monde et de l'inventaire.
+*   **`TVNIndexDependant`** : Utilisée pour les calculs de navigation basés sur des index relatifs (`INDEX_ID`) définis dans les fichiers INI.
+
+### 4. Flux d'Exécution et Initialisation
+Le démarrage du programme suit une séquence précise :
+1.  **Point d'entrée** : La fonction **`WinMain`** initialise l'instance de l'application et définit les paramètres de la ligne de commande.
+2.  **Lancement du Moteur** : La fonction **`sub_43891A`** est appelée pour démarrer la boucle principale du jeu.
+3.  **Initialisation des Commandes** : L'exécutable appelle **`InitVNCommandMessage()`** (via `vndllapi.dll`) pour enregistrer les messages Windows personnalisés utilisés par le moteur (ex: `wm_vncommand`, `wm_scroll`).
+4.  **Chargement du Projet** : Le moteur charge le fichier de configuration et le projet de départ (généralement `start.vnd` dans le dossier `frontal`) via `sub_41721D`.
+
+### 5. Gestion de l'Interface Utilisateur
+`europeo.exe` gère deux zones distinctes à l'écran :
+*   **Zone de Jeu (640x400 pixels)** : Affiche les décors, les vidéos AVI et les interactions avec les objets.
+*   **Barre d'Outils (Y >= 400)** : Une zone fixe gérée par l'exécutable qui affiche les outils système (Calculatrice, Sac à dos, Fiole, etc.) et le score. L'exécutable assure la mise à jour visuelle de cette barre en fonction de l'état des variables système comme `SCORE` ou `ACTIVE`.

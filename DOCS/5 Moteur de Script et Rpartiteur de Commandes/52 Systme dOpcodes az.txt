@@ -1,0 +1,40 @@
+Le **système d'opcodes alphabétiques (a–z)** est une extension du jeu de commandes du moteur Europeo, permettant d'intégrer des instructions directement à la suite de valeurs numériques dans le flux de données des fichiers **.vnd**. Ce mécanisme est géré par le répartiteur de commandes (**sub_43177D**), qui fait office de boucle de traitement logique pour l'ensemble de l'application.
+
+### 1. Mécanisme de Conversion et de Parsing
+Le moteur utilise une logique de **consommation séquentielle** pour interpréter ces opcodes :
+*   **Calcul de l'index** : Les caractères alphabétiques rencontrés sont convertis en indices numériques selon la formule : **`index = caractère - 'a' + 1`**. Ainsi, les lettres 'a' à 'z' correspondent aux indices 1 à 26 de la table de dispatch, tandis que les codes purement numériques commencent à partir de 27.
+*   **Rôle de `atol()`** : Lors de la lecture du flux, la fonction **sub_407FE5** utilise la commande C standard **`atol()`** pour extraire les arguments numériques. Cette fonction consomme les chiffres et **s'arrête net dès qu'elle rencontre un caractère non numérique** (la lettre de l'opcode).
+*   **Opcodes, pas modificateurs** : Une découverte majeure du reverse engineering est que ces lettres ne sont pas des modificateurs de transition (comme on pourrait le croire pour la navigation), mais bien des **opcodes séparés** qui s'exécutent immédiatement après que le nombre a été utilisé comme paramètre.
+
+### 2. Répertoire des Opcodes Alphabétiques (a–z)
+Voici la table des opcodes identifiés et leurs fonctions associées dans l'exécutable `europeo.exe` :
+
+| Lettre | Index | Fonction | Description Technique |
+| :--- | :--- | :--- | :--- |
+| **a–d** | 1–4 | UI Système | Gestion des messages de fenêtre (**PostMessageA**). |
+| **e** | 5 | UI Interne | Mise à jour de l'interface utilisateur (Message 0x9C). |
+| **f** | **6** | `sub_4268F8` | **Saut de scène** (Navigation interne au projet). |
+| **g** | 7 | `sub_426B62` | Exécution de scripts avec arguments. |
+| **h** | 8 | `sub_426D33` | **Tooltips** (Affichage des bulles d'aide/infobulles). |
+| **i** | 9 | `sub_42703A` | **Images** (Chargement des ressources AVI ou BMP, attributs et coordonnées). |
+| **j** | 10 | `sub_4275F6` | **Bitmaps** (Gestion technique : transparence magenta, palettes de couleurs). |
+| **k** | 11 | `sub_427B56` | **Audio WAV** (Lecture des effets sonores et dialogues). |
+| **l** | 12 | `sub_427C42` | **Musique MIDI** (Gestion de la bande-son mélodique). |
+| **m** | 13 | `sub_427D34` | Chargement de texte ou de segments de script. |
+| **p** | 16 | `sub_405010` | Pause (instruction **Sleep** en millisecondes). |
+| **q, r** | 17–18 | `sub_427FAE` | Fichiers externes (exécution via **ShellExecuteA**). |
+| **s** | 19 | `sub_427EFF` | Pilotage du **CD-Audio**. |
+| **u** | 21 | `sub_431721` | **Logic/Callback** (Vérification des conditions et gestion des fenêtres). |
+| **v, w, x**| 22–24 | Variables | Manipulation directe du tableau des variables (**dword_44ECCE**). |
+| **y** | 25 | Invalidate | Rafraîchissement forcé de l'écran (**InvalidateRect**). |
+| **z** | 26 | `sub_428154` | Chargement des curseurs personnalisés (fichiers **.cur**). |
+
+### 3. Applications Spécifiques et Suffixes
+Certains opcodes sont particulièrement visibles dans l'analyse des fichiers binaires (comme `couleurs1.vnd`) :
+
+*   **Le suffixe "j" (ex: "euroj")** : Dans la séquence binaire `65 75 72 6f 6a`, le moteur lit "euro" puis rencontre `6a` ("j"). Cela déclenche l'Opcode 10 (**playbmp**), ordonnant au moteur de traiter les données suivantes comme des paramètres graphiques (transparence, palette) pour l'objet "euro".
+*   **La Navigation (Suffixes i, d, +, -)** : Bien que traités par le dispatcher, ces suffixes au sein de la commande `scene` (Opcode 6) dictent le mode de calcul de la cible :
+    *   **i (Index)** : La cible est `INDEX_ID` (défini dans l'INI) + N.
+    *   **d (Direct)** : La valeur N est l'identifiant absolu de la scène.
+    *   **+/- (Relatif)** : La cible est la scène actuelle +/- N.
+*   **Le suffixe "h" (ex: "54h")** : Utilisé pour lier un paramètre numérique à l'affichage immédiat d'un texte d'info-bulle (Tooltip).

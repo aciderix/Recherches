@@ -1,0 +1,32 @@
+L'analyse technique du moteur Europea et de ses fichiers de données **VND** a permis d'identifier plusieurs **patterns de code récurrents**, allant de la structure binaire de bas niveau aux séquences logiques de haut niveau qui régissent l'interactivité du jeu.
+
+### **1. Patterns de Structure Binaire de Bas Niveau**
+L'analyse statistique des fichiers, notamment `couleurs1.vnd`, révèle des séquences d'octets systématiques utilisées pour l'organisation des données :
+*   **Padding et Terminaison** : La séquence **(0, 0, 0)** en format `uint32` est extrêmement fréquente (identifiée près de 800 fois dans certains fichiers), servant de padding ou de terminateur nul pour les chaînes de caractères.
+*   **Séparateurs de Records** : Les enregistrements de données commencent presque systématiquement par le séparateur **01 00 00 00**.
+*   **Séquences Typées** : Certaines combinaisons de Type ID et de longueur sont récurrentes, comme **(0, 39, 26)** pour les définitions de polices de caractères (Type 39, longueur 26) ou **(1, 21, 32)** pour les commandes conditionnelles de type `set_var`.
+
+### **2. Le Pattern "Valeur + Opcode" (Anciennement Suffixes)**
+Une découverte technique majeure a permis de corriger l'interprétation des lettres situées après les nombres dans les scripts (ex: `54f`, `54h`). Ce n'est pas un modificateur de transition, mais un **pattern d'exécution en chaîne** :
+*   **Mécanisme de Parsing** : La fonction **`sub_407FE5`** utilise `atol()` pour extraire un nombre. Dès qu'une lettre est rencontrée, `atol()` s'arrête, et le pointeur de lecture du flux se trouve sur cette lettre.
+*   **Exécution Immédiate** : Le répartiteur de commandes (**`sub_43177D`**) interprète alors cette lettre comme l'instruction suivante à exécuter.
+*   **Exemples types** : 
+    *   **`54h`** : Charge le paramètre 54 pour l'action en cours, puis exécute l'opcode **'h'** (Opcode 8 : Tooltip/Bulle d'aide).
+    *   **`54f`** : Charge 54, puis exécute l'opcode **'f'** (Opcode 6 : Saut de scène).
+    *   **`51j`** ou **`1e`** : Patterns observés dans les zones cliquables rectangulaires (Type 2), où la lettre déclenche respectivement une gestion de bitmap (Opcode 10) ou une mise à jour de l'interface utilisateur (Opcode 5).
+
+### **3. Patterns de Hotspots et d'Interactivité**
+La définition d'un élément interactif suit un schéma séquentiel strict de records dans le fichier binaire :
+*   **Record de Texte (Type 0x26)** : Définit les coordonnées d'affichage du texte d'aide et l'identifiant du hotspot.
+*   **Record de Zone (Type 0x69 ou 0x02)** : Définit la hitbox physique. Les polygones complexes utilisent le **Type 105 (0x69)**, tandis que les zones simples utilisent le **Type 2** pour des rectangles.
+*   **Pattern Rollover** : Pour les objets sans polygones, la zone de clic est définie par les dimensions d'un sprite BMP ajouté via **`addbmp`**. Le moteur utilise un système de préfixes de fichiers : **`det*`** pour l'objet visible, **`abs*`** pour l'état ramassé, et **`roll*`** pour l'image de survol.
+
+### **4. Patterns de Logique de Jeu et Conditions**
+*   **Logique des Trois États** : Pour la gestion de l'inventaire, le jeu utilise systématiquement le pattern de variables à trois valeurs : **0** (non découvert), **1** (visible dans la scène) et **2** (possédé dans le sac à dos).
+*   **Séquence de Ramassage (Pickup)** : 
+    1.  Condition `if sacados = 1`.
+    2.  Mise à jour `set_var objet 2`.
+    3.  Suppression visuelle via `delbmp objet`.
+    4.  Feedback sonore via `playwav cling.wav`.
+*   **Pattern de Transition Multimédia** : De nombreuses scènes commencent par la lecture d'une vidéo de transition (ex: `bankbis.avi` ou `depart.avi`) suivie d'un **timer automatique** défini dans le fichier de configuration (`TIMER=délai,cible`) qui déclenche le saut vers la scène suivante une fois le média terminé.
+*   **Comptage d'Inventaire** : Le moteur utilise des structures conditionnelles récurrentes de type "si variable X = valeur alors commande" pour valider la progression, comme le remplissage de la **fiole** (variable évoluant de 0 à 12).

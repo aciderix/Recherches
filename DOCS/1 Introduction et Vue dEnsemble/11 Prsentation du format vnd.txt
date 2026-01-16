@@ -1,0 +1,11 @@
+Le format **.vnd** (**Virtual Navigator Data**) est un format de fichier binaire propriétaire conçu par **Sopra Multimedia** en **1999** pour le développement du jeu éducatif interactif **Europeo**. 
+
+Ce format sert de structure centrale pour stocker l'intégralité de la **logique du jeu**, notamment :
+*   La définition des **scènes** et de leurs images de fond (backgrounds).
+*   Les **hotspots** ou zones interactives permettant l'engagement du joueur.
+*   Le système complexe de **variables et de conditions** qui régissent la progression.
+*   La **navigation** fluide entre les scènes et les différents pays du projet.
+
+D'un point de vue technique, le format .vnd est qualifié d'**hybride texte/binaire**. Les valeurs numériques y sont encodées en **entiers de 32 bits (uint32)** selon l'ordre des octets **petit-boutiste (Little Endian)**, tandis que les chaînes de caractères utilisent l'encodage **Latin-1 (ISO-8859-1)**. 
+
+Le moteur associé, **europeo.exe** (partie de la suite logicielle VnStudio), exploite ces fichiers pour générer une interface de jeu d'une résolution de **640x480 pixels**. Cette surface d'affichage est divisée en deux parties : une zone de jeu principale de 640x400 pixels et une **barre d'outils** (toolbar) de 80 pixels de hauteur située systématiquement en bas de l'écran pour l'accès à l'inventaire et aux scores. Chaque pays ou module du jeu dispose généralement de son propre fichier .vnd, permettant une structure de projet segmentée et cohérente.

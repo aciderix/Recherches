@@ -1,0 +1,31 @@
+L'interface du moteur Europeo et le format VND reposent sur des standards d'affichage précis et une segmentation stricte de l'écran pour séparer la narration de l'interactivité.
+
+### **1. Résolution Standard et Métadonnées**
+Le moteur Europeo utilise une **résolution d'affichage fixe de 640x480 pixels**,,. Cette configuration est inscrite de manière native dans l'**en-tête (header) de chaque fichier .vnd** :
+*   La **largeur de l'écran** (640) est stockée à l'offset **0x5c** sous la forme hexadécimale `80 02 00 00`,.
+*   La **hauteur de l'écran** (480) est stockée à l'offset **0x60** sous la forme hexadécimale `e0 01 00 00`,.
+*   La **profondeur de couleur** standard est généralement de **16 bits**, définie à l'offset 0x64,.
+
+Toutes ces valeurs numériques respectent la convention **petit-boutiste (Little Endian)** pour les entiers de 32 bits,.
+
+### **2. Segmentation de l'Interface**
+L'écran de 640x480 pixels est divisé en deux zones fonctionnelles distinctes, :
+
+*   **La Zone de Jeu (640x400 pixels)** : Elle occupe la partie supérieure de l'écran. C'est ici que sont affichées les **images de fond (backgrounds)** des scènes, qui doivent impérativement respecter cette dimension de 640x400 pour un affichage plein écran correct,. Cette zone accueille également les vidéos AVI de personnages ou de transitions cinématographiques,.
+*   **La Barre d'Outils ou Toolbar (640x80 pixels)** : Elle est située tout en bas de l'interface, couvrant la zone où la coordonnée **Y est supérieure ou égale à 400** (de Y=400 à Y=480),,. Cette barre est persistante et contient les éléments interactifs de progression et d'aide.
+
+### **3. Éléments de la Barre d'Outils (Toolbar)**
+La toolbar est le centre de contrôle pour le joueur. Les éléments y sont positionnés selon des coordonnées X/Y précises à l'intérieur du cadre 640x80 :
+*   **Score** : Affiché à gauche (X: 15-160, Y: 410-470).
+*   **Fiole de progression** : Située à côté du score (X: 141-197, Y: 451-461), elle utilise des variantes d'images (f1.bmp à f12.bmp) pour indiquer l'avancement.
+*   **Transport (Carte)** : Permet de voyager entre les pays (X: 122-163, Y: 400).
+*   **Téléphone (Aide)** : Accès aux indices (X: 179-316, Y: 400).
+*   **Calculatrice Euro** : (X: 246-281, Y: 400-403).
+*   **Inventaire (Sac à dos)** : Accès aux objets possédés (X: 338-384, Y: 400).
+*   **Drapeau du pays** : Indique la localisation actuelle (X: 400-452, Y: 400-407).
+*   **Ordinateur (Options)** : Accès aux réglages (X: 553-564, Y: 408).
+
+### **4. Gestion Graphique et Transparence**
+Pour garantir la cohérence visuelle de l'interface, le moteur utilise des fichiers **BMP Windows 24-bit**. Une particularité essentielle du moteur est la gestion de la transparence : la couleur **magenta (#FF00FF)** est traitée comme transparente. Cela permet de superposer des objets, des personnages animés ou des éléments d'interface (sprites) sur le décor de fond sans bordures visibles,.
+
+Les coordonnées utilisées pour les **hotspots** (zones cliquables) se réfèrent toujours à ce plan de 640x480 pixels,. L'origine (0,0) se situe systématiquement dans le **coin supérieur gauche** de l'écran,.

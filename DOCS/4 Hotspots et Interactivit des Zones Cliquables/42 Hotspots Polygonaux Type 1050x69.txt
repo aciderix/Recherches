@@ -1,0 +1,43 @@
+Les hotspots polygonaux, identifiés par le **Type 105 (0x69)** dans le format binaire VND, représentent la méthode la plus avancée du moteur Europea pour définir des zones d'interactivité. Contrairement aux zones rectangulaires simples (Type 2) ou aux hitboxes basées sur la taille des images BMP, les polygones permettent de détourer des formes arbitraires et complexes, telles que des bâtiments sur une carte ou des personnages spécifiques dans un décor.
+
+Voici une analyse détaillée de leur structure et de leur fonctionnement.
+
+### **1. Structure Binaire de l'Enregistrement Type 105**
+L'enregistrement suit le schéma standard Little Endian des fichiers VND, mais contient une séquence de données géométriques spécifiques :
+
+| Champ | Taille (octets) | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **SÉPARATEUR** | 4 | uint32 | Toujours `01 00 00 00`. |
+| **LONGUEUR** | 4 | uint32 | Taille totale des données du bloc. |
+| **TYPE ID** | 4 | uint32 | `69 00 00 00` (valeur décimale 105). |
+| **POINT COUNT** | 4 | uint32 | Nombre de sommets (points) définissant le polygone. |
+| **COORDONNÉES** | Variable | int32 array | Liste de paires `(x, y)` pour chaque sommet. |
+
+Chaque coordonnée est stockée sur 4 octets. Ainsi, un polygone de **$n$** points occupera **$n \times 8$** octets dans la section des coordonnées.
+
+### **2. Intégration Logique dans le Hotspot**
+Dans le flux binaire, un hotspot polygonal est une unité composite. Il ne se limite pas au record 105, mais résulte d'un enchaînement précis d'enregistrements :
+1.  **Record Type 38 (0x26)** : Définit le texte de l'info-bulle (tooltip) et les coordonnées de la boîte englobante pour l'affichage de ce texte. **Attention** : les coordonnées X/Y du Type 38 ne correspondent pas à la zone de clic.
+2.  **Record Type 105 (0x69)** : Fournit la géométrie réelle de la zone cliquable.
+3.  **Record Type 1 (0x01)** : Définit l'action ou la cible (Target ID) déclenchée lors du clic (une navigation vers une autre scène ou l'appel d'une ressource multimédia).
+4.  **Records Optionnels (Type 3 ou 21)** : Contiennent les scripts conditionnels ou les modifications de variables liées au clic.
+
+### **3. Système de Coordonnées et Résolution**
+Le moteur calcule la détection de collision sur une grille fixe :
+*   **Résolution cible** : Les coordonnées sont basées sur un écran de **640x480 pixels**.
+*   **Origine** : Le point **(0,0)** se situe dans le coin supérieur gauche de l'écran.
+*   **Algorithme de détection** : L'analyse du code décompilé montre que le moteur utilise la fonction système Windows `PtInRegion` après avoir créé une région GDI à partir de la liste de points (via la classe `TRegion`) pour valider si le curseur de la souris se trouve à l'intérieur du polygone.
+
+### **4. Exemple Concret : "La Banque" (Euroland)**
+L'analyse des données de la scène d'Euroland fournit un exemple précis de la mise en œuvre de ce type d'enregistrement :
+*   **Texte (Type 38)** : Positionné à (387, 351).
+*   **Zone cliquable (Type 105)** : Définit un polygone de **13 points**.
+*   **Bbox calculée** : La boîte englobante résultante s'étend de (389, 150) à (639, 374).
+*   **Action** : Le clic déclenche la lecture de la vidéo `bankbis.avi` avant de changer l'index de scène.
+
+### **5. Statistiques et Usage**
+L'analyse globale des fichiers VND révèle que les polygones sont minoritaires par rapport aux hotspots basés sur des images simples (sprites rollover) :
+*   **Euroland** : Sur 144 hotspots, seuls **36** utilisent des polygones (principalement pour les bâtiments du hub central).
+*   **Total du projet** : Environ **134** polygones identifiés sur un total de 1 500 hotspots.
+
+**Note sur les divergences documentaires** : Il est important de noter que certaines spécifications initiales du format VND omettaient le Type 105. Sa découverte et sa validation ont été réalisées par l'analyse des scripts de décodage récents (comme `decode_vnd_final.py`) et la confirmation statistique de sa présence massive dans les fichiers complexes comme `couleurs1.vnd`.

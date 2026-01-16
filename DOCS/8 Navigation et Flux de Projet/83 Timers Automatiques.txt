@@ -1,0 +1,24 @@
+### **8.3. Timers Automatiques**
+
+Le moteur Europeo intègre un système de **timers automatiques** permettant de déclencher des transitions entre les scènes sans intervention directe du joueur. Ce mécanisme est principalement utilisé pour gérer le flux narratif, notamment après la lecture de séquences multimédias ou lors de transitions temporelles au sein d'une zone,.
+
+#### **Configuration et Format des Données**
+Les paramètres des timers sont définis au niveau de chaque scène (section `[AREA_n]` dans les fichiers de configuration ou records spécifiques dans le VND),.
+*   **Syntaxe INI** : Le format utilisé est `TIMER=delay,scene_target`,.
+*   **Paramètre `delay`** : Représente le délai d'attente exprimé en **millisecondes**,. Pour être valide, cette valeur doit être supérieure ou égale à 0.
+*   **Paramètre `scene_target`** : Indique l'identifiant numérique de la scène vers laquelle le joueur sera redirigé une fois le délai écoulé,. Cet identifiant doit être supérieur à 0 pour être activé par le moteur.
+
+#### **Mécanisme de Parsing Technique**
+Lors du chargement d'une scène via la fonction **`sub_415A75`**, le moteur extrait la chaîne de caractères associée à la clé "TIMER" via l'utilitaire `TProfile::GetString`. 
+1.  **Extraction** : Le moteur utilise la fonction standard **`sscanf`** avec le format `"%i,%i"` pour convertir la chaîne de caractères en deux entiers distincts (`delay` et `scene`),.
+2.  **Validation** : Une vérification logique est effectuée : si la cible est valide (`scene > 0`) et que le délai est cohérent (`delay >= 0`), le moteur alloue une structure de données spécifique pour le timer.
+3.  **Instanciation** : Cette structure est initialisée par la fonction **`sub_414E00`**, qui prépare l'objet interne nécessaire au suivi du temps.
+
+#### **Gestion de l'Exécution (API Windows)**
+Le fonctionnement du timer repose sur les services natifs du système d'exploitation Windows :
+*   **Déclenchement** : Une fois la scène active, si un timer est détecté, le moteur appelle la fonction système **`SetTimer`**. Le handle résultant est stocké dans la classe de la fenêtre (souvent à l'offset 94) pour un suivi en temps réel. L'implémentation typique identifiée est `SetTimer(hwnd, 1, delay, NULL)`.
+*   **Navigation** : Lorsque le délai expire, le message système est intercepté et déclenche une commande de navigation automatique vers la cible définie.
+*   **Nettoyage et Sécurité** : Pour éviter des sauts de scène inattendus après que le joueur a déjà quitté la zone manuellement, le moteur appelle systématiquement **`KillTimer`** via la fonction **`sub_42E2B9`**. Cela garantit que le timer est détruit et que son identifiant est réinitialisé à zéro dès que la scène change ou que l'application est mise en pause,.
+
+#### **Rôle dans le Flux du Projet**
+Les timers sont cruciaux pour synchroniser les **vidéos AVI** de transition (comme `bankbis.avi` ou `depart.avi`) avec le changement effectif de décor,. Ils permettent d'assurer que le moteur attend la fin d'une animation ou d'un son d'ambiance avant de charger les nouvelles ressources de la scène suivante,. Pour le portage vers des technologies modernes comme React, la gestion de ces timers est considérée comme une **priorité d'implémentation** pour maintenir la fidélité du flux original.

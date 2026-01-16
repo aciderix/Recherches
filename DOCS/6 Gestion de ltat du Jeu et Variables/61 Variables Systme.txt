@@ -1,0 +1,36 @@
+### **6. Gestion de l'État du Jeu et Variables**
+
+La gestion de l'état interne dans le moteur Europeo repose sur un système centralisé de variables globales qui orchestrent la progression du joueur, l'interactivité des scènes et l'affichage de l'interface utilisateur,. Ces variables sont initialisées à partir du fichier binaire **VND**, manipulées en mémoire durant la session de jeu, et peuvent être sauvegardées pour permettre une reprise ultérieure,,.
+
+#### **Architecture Technique et Stockage**
+Le moteur maintient l'ensemble des variables dans un **tableau global en mémoire** situé à l'adresse **`dword_44ECCE`**,. Ce tableau est le point de référence unique pour toutes les opérations logiques du jeu,. 
+
+1.  **Structure dans le fichier VND** : La table des variables suit immédiatement l'en-tête (header) du fichier VND,. Chaque entrée de cette table est structurée de manière binaire : elle commence par la **longueur du nom** de la variable (uint32), suivie du **nom en texte ASCII** (terminé par un caractère nul et généralement en majuscules), puis de sa **valeur initiale** encodée sur 32 bits en petit-boutiste (Little Endian),,.
+2.  **Manipulation par scripts** : Le répartiteur de commandes (**sub_43177D**) utilise des opcodes spécifiques pour modifier ces valeurs en temps réel,. Les commandes principales sont **`set_var`** (Type 22) pour l'assignation, **`inc_var`** (Type 23) pour l'incrémentation et **`dec_var`** (Type 24) pour la décrémentation,.
+3.  **Persistance** : L'état complet du tableau des variables peut être écrit dans un fichier de sauvegarde au format **.sav (VNSAVFILE)** via la fonction `sub_40650B` ou rechargé via `sub_406345`, garantissant la persistance des choix et de la progression du joueur,.
+
+---
+
+### **6.1. Variables Système**
+
+Les variables système sont des indicateurs globaux qui ne sont pas liés à un objet spécifique de l'inventaire mais au fonctionnement structurel et à la progression générale du projet,.
+
+#### **Variables de Navigation et de Localisation**
+Ces variables permettent au moteur de savoir où se trouve le joueur et comment gérer les menus :
+*   **`CPAYS`** : Stocke l'index numérique du pays actuellement visité par le joueur.
+*   **`LOC`** : Définit la localisation ou le sous-secteur courant au sein d'un projet.
+*   **`CMENU1`, `CMENU2`, `CMENU3`** : Gèrent l'état d'activation et d'affichage des différents niveaux de menus de l'interface.
+*   **`NON`** : Utilisée comme variable de comptage temporaire pour certaines boucles logiques internes.
+
+#### **Variables de Progression Générale**
+Le suivi de la réussite du joueur est assuré par trois variables majeures :
+*   **`SCORE`** : Représente les points accumulés. Fait notable, cette variable peut accepter des valeurs allant de **-∞ à +∞**, permettant au joueur d'avoir un score négatif en cas d'erreurs répétées.
+*   **`FIOLE`** : Un indicateur visuel de complétion du jeu,. Sa valeur évolue de **0 à 12**, chaque unité correspondant souvent à la résolution d'une énigme majeure dans l'un des pays de l'Union Européenne,. L'affichage est lié aux fichiers graphiques `f1.bmp` à `f12.bmp` dans la barre d'outils,.
+*   **`JEU`** : Un drapeau (flag) binaire (0 ou 1) qui détermine si le mode de jeu interactif est actif ou si le moteur est dans un état de consultation passive.
+
+#### **Variables de Contrôle de l'Interface (Toolbar)**
+Le moteur utilise des variables pour activer ou masquer les outils disponibles dans la barre inférieure (Y >= 400 pixels),, :
+*   **`ACTIVE`** : État général d'activité des interactions de l'interface.
+*   **`FRANCS`** : Bascule le mode d'affichage monétaire entre l'**Euro (0)** et le **Franc (1)**, une fonctionnalité centrale du logiciel éducatif en 1999.
+*   **`SACADOS`** : Contrôle l'accès à l'inventaire,. Si `SACADOS = 1`, l'icône du sac est cliquable et le joueur peut gérer ses objets,.
+*   **`CALC`, `TELEPHONE`, `TRANS`** : Gèrent respectivement l'accès à la calculatrice de conversion, au système d'aide (téléphone) et à la carte de transport pour voyager entre les pays,.

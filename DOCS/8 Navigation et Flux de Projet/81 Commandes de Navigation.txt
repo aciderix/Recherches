@@ -1,0 +1,32 @@
+### **8. Navigation et Flux de Projet**
+
+La navigation au sein du moteur Europeo est pilotée par le répartiteur de commandes central (**`sub_43177D`**), qui interprète les instructions de mouvement contenues dans les fichiers **VND**. Ce système permet de passer d'une scène à l'autre au sein d'un même pays ou de basculer vers un projet entièrement différent lors de voyages entre les nations de l'Union Européenne.
+
+---
+
+### **8.1. Commandes de Navigation**
+
+Deux commandes fondamentales régissent le flux du jeu : **`scene`** (Opcode 6) pour la navigation interne et **`runprj`** (Opcode 31) pour le chargement de nouveaux fichiers projets.
+
+#### **1. La Commande `scene` (Opcode 6)**
+Cette instruction est utilisée pour déplacer le joueur entre les différentes zones ou vues d'un même fichier **VND**. L'analyse technique du dispatcher révèle que cette commande accepte des paramètres numériques souvent suivis de suffixes alphabétiques qui déterminent la méthode de calcul de la destination.
+
+*   **Saut Direct (Suffixe 'd' ou absence de suffixe)** : La valeur numérique est traitée comme l'identifiant absolu de la scène cible dans le projet actuel. Par exemple, `13d` pointe directement vers la scène 13.
+*   **Navigation par Index (Suffixe 'i')** : C'est le mode le plus fréquent pour la logique modulaire. Le moteur calcule la cible en ajoutant la valeur `N` à la variable **`INDEX_ID`**, une valeur de base lue à l'offset 65 du fichier projet ou dans la section `[MAIN]` du fichier INI. Ainsi, `5i` dirigera le joueur vers la scène correspondant à `INDEX_ID + 5`.
+*   **Sauts Relatifs (Signes '+' ou '-')** : Le parseur identifie ces signes en début de chaîne pour calculer un déplacement par rapport à la scène actuelle. `+1` permet ainsi de passer à la scène suivante, tandis que `-1` revient à la précédente.
+
+#### **2. La Commande `runprj` (Opcode 31)**
+Cette commande est cruciale pour la structure globale du jeu, car elle gère la transition entre les différents fichiers **.vnp** (projets). 
+*   **Usage narratif** : Elle est systématiquement appelée lors des séquences de transport (par exemple, via `depart.avi`) pour décharger le pays actuel et charger les ressources du pays de destination.
+*   **Syntaxe** : La commande suit généralement le format `runprj chemin.vnp N`, où `N` indique la scène de départ dans le nouveau projet.
+
+#### **3. Mécanisme de Parsing et Déclenchement**
+Une découverte technique majeure a corrigé l'interprétation des "suffixes" : les lettres situées après les nombres (comme le 'f' dans `54f`) ne sont **pas des modificateurs de transition**, mais des **opcodes séparés**. 
+
+*   **Consommation des données** : La fonction **`sub_407FE5`** utilise `atol()` pour extraire le nombre. Dès que `atol()` rencontre une lettre, elle s'arrête, laissant le pointeur de lecture sur ce caractère.
+*   **Exécution en chaîne** : Le répartiteur lit alors cette lettre comme l'instruction suivante à exécuter immédiatement. Dans la séquence `54f`, le moteur charge d'abord le paramètre 54, puis exécute l'opcode **'f'** (index 6), qui correspond à la fonction de saut de scène **`sub_4268F8`**.
+
+#### **4. Navigation Assistée par Hotspots et Vidéos**
+La navigation est rarement abrupte ; elle est souvent liée à des zones cliquables ou des assets multimédias.
+*   **Records Type 0x01** : Ces enregistrements binaires dans les hotspots contiennent l'ID de la cible (scène ou ressource en surimpression).
+*   **Transitions AVI** : De nombreuses navigations sont précédées par la lecture d'une vidéo de transition (ex: `bankbis.avi` avant d'entrer dans la scène de la banque). Le moteur utilise un **Timer automatique** (défini dans l'INI ou le VND) pour déclencher le saut de scène une fois le délai ou le média terminé.

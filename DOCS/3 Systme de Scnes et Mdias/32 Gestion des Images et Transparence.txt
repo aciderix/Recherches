@@ -1,0 +1,31 @@
+### **3.2. Gestion des Images et Transparence**
+
+Le moteur Europeo repose sur une gestion rigoureuse des ressources graphiques pour assurer la superposition des éléments interactifs (sprites) sur les décors fixes.
+
+#### **1. Formats et Résolutions Standards**
+*   **Format de fichier** : Toutes les images utilisées par le moteur sont des fichiers **BMP Windows 24-bit**.
+*   **Images de fond (Backgrounds)** : Les décors de scènes doivent impérativement respecter une résolution de **640x400 pixels** pour occuper l'intégralité de la zone de jeu située au-dessus de la barre d'outils.
+*   **Sprites et Objets** : Les dimensions des images pour les objets et hotspots sont variables ; ce sont d'ailleurs les dimensions intrinsèques du fichier BMP qui définissent la zone de clic (hitbox) de l'élément.
+
+#### **2. Mécanisme de Transparence**
+La transparence est gérée de manière simple mais efficace via une couleur de masquage (Color Keying) :
+*   **Couleur Magique** : La couleur **magenta (#FF00FF)** est traitée comme transparente par le moteur de rendu.
+*   **Application** : Lors du rendu, la fonction interne **`sub_41DB36`** génère un masque permettant d'afficher uniquement l'objet, facilitant ainsi l'intégration de personnages animés ou d'objets détourés sur le décor de fond.
+
+#### **3. Commande et Opcodes de Gestion Graphique**
+La manipulation des images dans le flux binaire VND et le fichier de configuration INI s'appuie sur des instructions spécifiques :
+*   **Commande `addbmp`** : Utilisée pour ajouter dynamiquement un sprite. Sa syntaxe est `addbmp id fichier layer x y`. Le paramètre `layer` définit l'ordre d'affichage (0 pour le jeu, 6 pour l'interface).
+*   **Opcode 'i' (Index 9)** : Correspond à la fonction **`sub_42703A`**. Il gère le chargement général des images, leurs attributs et leurs coordonnées de positionnement.
+*   **Opcode 'j' (Index 10)** : Correspond à la fonction **`sub_4275F6`**. Cet opcode est spécialisé dans le traitement technique des bitmaps, incluant la gestion de la transparence et l'application des palettes de couleurs.
+*   **Commande `delbmp`** : Permet de supprimer une image de la mémoire vidéo en utilisant son identifiant unique.
+
+#### **4. Conventions de Nommage et États (Images Rollover)**
+Le moteur utilise un système de préfixes pour gérer les différents états visuels d'un objet dans une scène :
+*   **`det*` (Détail)** : L'image est visible par défaut dans la scène (ex: `detcal.bmp`).
+*   **`abs*` (Absent)** : L'image de l'objet est cachée ou retirée (ex: `abscal.bmp`).
+*   **`roll*` (Rollover)** : Image spécifique affichée uniquement lorsque le curseur de la souris survole la zone (effet de surbrillance ou changement d'état).
+
+#### **5. Gestion des Palettes**
+Pour assurer la fidélité des couleurs, le moteur peut charger des fichiers de palette spécifiques :
+*   **Format VNPALETTE** : Un format binaire propre au moteur identifié par la signature `VNPALETTE`.
+*   **Chargement** : La fonction **`sub_41CCDD`** est responsable de la lecture et de l'application de ces palettes pour synchroniser les couleurs des sprites avec celles du décor.

@@ -1,0 +1,16 @@
+La bibliothèque **`vnresmod.dll`** est un composant essentiel de l'architecture logicielle du moteur Europeo, agissant comme le **Module de Ressources** principal. Sa responsabilité centrale est de gérer toute la **logique de chargement et d'analyse des fichiers VND** (Virtual Navigator Data), qui constituent la base de données binaire contenant l'intégralité des scènes, des hotspots et de la logique interactive.
+
+### **1. Intégration et Architecture Technique**
+Le moteur est conçu pour être modulaire, et le chemin d'accès spécifique vers `vnresmod.dll` est d'ailleurs encodé directement dans l'**en-tête (header)** de chaque fichier VND. Cela permet à l'exécutable principal, `europeo.exe`, de charger dynamiquement le module correct pour interpréter les records binaires. Techniquement, cette DLL a été compilée avec **Borland C++ 1996** et s'appuie sur le mécanisme de **Thread Local Storage (TLS)** pour la gestion de ses données en mémoire.
+
+### **2. Fonctions Fondamentales de Ressources**
+La DLL contient les algorithmes nécessaires pour transformer les données brutes des fichiers VND en éléments utilisables par le moteur graphique. Parmi ses fonctions clés, on trouve :
+*   **Gestion des Bitmaps** : Elle expose la fonction **`VN_LoadBitmap`** et participe à l'exécution de la commande **`addbmp`**, permettant de charger les fichiers BMP 24-bit nécessaires aux décors et aux hotspots.
+*   **Résolution d'Identifiants** : Elle assure la conversion critique entre un **`resource_id`** numérique et le nom de fichier physique correspondant (par exemple, résoudre l'ID 2 en `table_m.bmp`).
+*   **Analyse des Patterns** : Elle intègre un parseur capable de décoder les séquences de données complexes, comme les motifs **"1e"** ou **"51j"**, qui sont souvent associés à des zones cliquables rectangulaires (Type 0x02).
+
+### **3. Pilotage de la Navigation**
+Bien que le répartiteur de commandes réside dans l'exécutable, `vnresmod.dll` fournit les services de bas niveau pour la navigation. La fonction **`VN_NavigateToScene`** réside dans ce module et permet de valider les cibles de saut avant leur exécution. Elle intervient également dans le calcul des index de scènes, en s'assurant que les destinations demandées par les scripts (via les suffixes `i`, `d`, `+` ou `-`) correspondent à des entrées valides dans la structure du projet.
+
+### **4. Diagnostics et Messages d'Erreur**
+La DLL joue un rôle actif dans la robustesse du système en gérant les exceptions liées aux ressources manquantes ou corrompues. Elle contient des chaînes de caractères spécifiques utilisées pour le débogage et l'information utilisateur, notamment le message **« Aucune scene %i n'existe »**, qui est envoyé au moteur si une instruction de navigation pointe vers un index hors limites. Cette validation est cruciale pour la stabilité du moteur, car elle empêche les plantages lors de l'exécution de scripts conditionnels complexes (Type 0x03) ou de transitions multimédias.

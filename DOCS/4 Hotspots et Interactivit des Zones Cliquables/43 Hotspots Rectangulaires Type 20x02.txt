@@ -1,0 +1,24 @@
+Les **hotspots rectangulaires**, identifiés par le **Type 2 (0x02)** dans l'architecture binaire du fichier VND, constituent la méthode la plus simple et la plus fréquente pour définir des zones d'interactivité ne nécessitant pas de détourage complexe,. Contrairement aux polygones (Type 105), ces zones sont idéales pour des éléments d'interface standardisés, tels que des **boutons de sortie**, des flèches de navigation ou des zones de détection de texte informatif,.
+
+### **Structure Binaire de l'Enregistrement Type 2**
+
+L'enregistrement suit le schéma petit-boutiste (**Little Endian**) commun au format VND, où les données décrivent les deux points opposés d'un rectangle,.
+
+| Champ | Taille (octets) | Valeur / Type | Description |
+| :--- | :--- | :--- | :--- |
+| **Type ID** | 4 | `02 00 00 00` | Identifiant de zone cliquable rectangulaire. |
+| **X1** | 4 | uint32 | Coordonnée X du coin supérieur gauche,. |
+| **Y1** | 4 | uint32 | Coordonnée Y du coin supérieur gauche,. |
+| **X2** | 4 | uint32 | Coordonnée X du coin inférieur droit,. |
+| **Y2** | 4 | uint32 | Coordonnée Y du coin inférieur droit,. |
+
+### **Rôle et Mise en Œuvre dans le Moteur**
+
+1.  **Hotspots de Navigation et d'Interface** : Ces enregistrements sont massivement utilisés pour les boutons système, comme le hotspot **"SORTIE"** souvent associé à des patterns de données spécifiques tels que **"1e"** rencontrés lors de l'analyse binaire. Ils définissent une boîte englobante stricte sur l'écran de **640x480 pixels**.
+2.  **Lien avec les Images Rollover** : Bien que le Type 2 définisse une zone géométrique, l'interactivité visuelle repose souvent sur des sprites chargés via la commande **`addbmp`**,. Ces objets utilisent des préfixes d'état (**`det*`** pour visible, **`abs*`** pour caché, **`roll*`** pour le survol) dont les dimensions intrinsèques correspondent généralement à la zone de clic définie dans le record Type 2,.
+3.  **Séquence de Records** : Dans le flux binaire, la définition d'un hotspot complet est séquentielle. Un enregistrement de **Type 38 (0x26)** définit d'abord le texte de l'info-bulle (tooltip), suivi immédiatement par la géométrie (Type 2 pour un rectangle ou Type 105 pour un polygone), puis par l'action de destination (**Type 1**),.
+4.  **Divergence Documentaire** : L'analyse technique a permis de corriger une omission dans les spécifications initiales du format, qui confondaient parfois le Type 2 avec une simple référence de scène secondaire alors qu'il définit explicitement les **coordonnées de la hitbox** rectangulaire,.
+
+### **Exemples et Patterns Observés**
+
+L'analyse des fichiers, notamment `couleurs1.vnd`, montre que le moteur associe des identifiants textuels interpretés comme des **opcodes** (par exemple le suffixe 'j' pour l'Opcode 10 gérant les bitmaps) à ces zones de clic,. Un hotspot rectangulaire peut ainsi être couplé à une instruction complexe comme **"51j"**, où le nombre est un paramètre et 'j' l'action technique de rendu des couleurs ou de transparence pour la zone concernée,.

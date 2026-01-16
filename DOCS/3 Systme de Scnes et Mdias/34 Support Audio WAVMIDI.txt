@@ -1,0 +1,40 @@
+Le moteur Europeo s'appuie sur une architecture multimédia hybride pour la gestion sonore, traitant différemment les effets ponctuels, les musiques d'ambiance et les supports externes. Le format .vnd intègre ces ressources via des types de records spécifiques et des instructions pilotées par le répartiteur de commandes (sub_43177D).
+1. Formats Audio Supportés
+Le moteur prend en charge trois vecteurs sonores principaux :
+• WAV (Waveform Audio File Format) : Utilisé exclusivement au format PCM pour les effets sonores, les dialogues et les boucles d'ambiance.
+• MIDI (Musical Instrument Digital Interface) : Utilisé pour les musiques de fond, permettant un stockage compact des compositions mélodiques.
+• CD-Audio : Le moteur inclut des instructions héritées pour piloter la lecture de pistes audio directement depuis un CD, bien que cet usage soit secondaire dans les fichiers de données analysés.
+2. Mécanisme de Dispatch et Opcodes
+Le répartiteur de commandes identifie les actions audio grâce à des lettres (opcodes) ou des codes numériques :
+• Opcode 'k' (Index 11) : Déclenche la fonction sub_427B56, responsable de la gestion des fichiers WAV.
+• Opcode 'l' (Index 12) : Déclenche la fonction sub_427C42, dédiée à la musique MIDI.
+• Opcode 's' (Index 19) : Correspond à la fonction sub_427EFF pour le pilotage du CD-Audio.
+Lors du parsing du flux VND, si le moteur rencontre une valeur numérique suivie de l'une de ces lettres (ex: 12k), il consomme le nombre comme identifiant de ressource avant d'exécuter l'instruction audio correspondante.
+3. Configuration Audio des Scènes (Fichier INI)
+Chaque unité logique ou scène (section [AREA_n]) peut définir son propre environnement sonore via des clés spécifiques :
+• SND / SETSND : La clé SND spécifie le chemin du fichier .wav (ex: bruit\foret.wav), tandis que SETSND est un drapeau binaire (0 ou 1) activant ou non la lecture automatique à l'entrée dans la scène.
+• MID / SETMID : De la même manière, MID définit le fichier .mid et SETMID gère son activation.
+4. Syntaxe des Commandes de Script
+Le système de scripts permet de déclencher ou d'arrêter le son de manière dynamique lors d'interactions avec des hotspots :
+Commande
+Syntaxe
+Description
+playwav
+playwav fichier.wav mode
+Joue un son. Modes : 1 (une fois), 2 (boucle), 6 (ambiance).
+closewav
+closewav
+Arrête immédiatement la lecture du son WAV en cours.
+playmid
+playmid fichier.mid
+Déclenche la musique MIDI.
+closemid
+closemid
+Coupe la musique MIDI.
+5. Structure Binaire dans le Fichier VND
+Les données audio sont organisées en plusieurs types d'enregistrements (records) pour structurer les ressources :
+• Type 11 (0x0B) : Référence directe aux fichiers audio WAV.
+• Type 12 (0x0C) : Utilisé pour les effets sonores secondaires.
+• Type 17 (0x11) : Stocke les chemins vers les dossiers de ressources sonores (ex: bruit\).
+• Types Composites (35, 37, 39, 41) : Ces enregistrements combinent l'audio avec d'autres actions, comme le changement de variable (set_var) ou le chargement de projet (runprj), permettant par exemple de jouer un son de validation lors du ramassage d'un objet.
+Enfin, le moteur utilise la variable système MUSIC pour suivre ou modifier l'état global de la lecture musicale au sein du tableau des variables. Pour le rendu technique, le moteur fait appel aux capacités multimédias de Windows, notamment via des commandes MCI (Media Control Interface) comme mciSendCommandA pour les flux plus complexes comme la vidéo et potentiellement certains types de sons.

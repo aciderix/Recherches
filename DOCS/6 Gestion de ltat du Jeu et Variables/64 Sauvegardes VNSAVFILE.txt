@@ -1,0 +1,25 @@
+Le système de sauvegarde du moteur Europea repose sur l'utilisation de fichiers propriétaires identifiés par la signature binaire **"VNSAVFILE"**. Ces fichiers, portant généralement l'extension **.sav**, servent de clichés instantanés de l'état du jeu, permettant au joueur de reprendre sa progression exactement là où il l'avait laissée.
+
+### **1. Structure et Signature Binaire**
+Chaque fichier de sauvegarde commence par la chaîne de caractères ASCII **"VNSAVFILE"**, qui sert de "Magic Number" pour valider l'intégrité du fichier lors de l'ouverture. Les données sont ensuite organisées selon le format standard du moteur : des entiers de 32 bits (**uint32**) encodés en **petit-boutiste** (Little Endian). Le fichier contient non seulement les données de progression, mais aussi les informations contextuelles nécessaires pour que le moteur puisse recharger le bon projet (**VNP**) et la bonne scène au démarrage.
+
+### **2. Le Cœur de la Sauvegarde : Le Tableau des Variables**
+La fonction principale d'un fichier **VNSAVFILE** est de stocker l'état actuel du **tableau global des variables** résidant en mémoire à l'adresse **`dword_44ECCE`**. Ce tableau contient toutes les informations critiques de la session :
+*   **La progression générale** : Valeurs des variables comme `SCORE` (points du joueur) et `FIOLE` (remplissage de la fiole de 0 à 12).
+*   **L'état du monde** : Les indicateurs de visite des pays (ex: `FRANCE`, `ESPAGNE`).
+*   **Le système d'inventaire** : L'état de possession de chaque objet (0 = non découvert, 1 = visible, 2 = dans le sac à dos).
+*   **L'interface utilisateur** : L'activation des outils de la barre inférieure comme `SACADOS` ou `CALC`.
+
+### **3. Opcodes et Fonctions de Gestion**
+Le moteur dédie deux instructions spécifiques dans sa table de dispatch pour manipuler ces fichiers :
+*   **Opcode 45 (Chargement)** : Déclenche la fonction **`sub_42999A`**, qui lit le fichier, valide la signature et restaure les variables.
+*   **Opcode 46 (Sauvegarde)** : Déclenche la fonction **`sub_429F02`**, qui écrit les données actuelles dans le fichier.
+
+### **4. Mécanismes Techniques de Sérialisation**
+Le processus de sauvegarde et de chargement est orchestré par des flux de données spécialisés (`ipstream` pour l'entrée et `opstream` pour la sortie) :
+
+*   **Processus de Sauvegarde (`sub_40650B`)** : Cette fonction parcourt le tableau `dword_44ECCE` et écrit chaque couple "Nom de Variable / Valeur" dans le flux binaire. Elle sauvegarde également l'historique de navigation via **`sub_436271`**, permettant au moteur de reconstituer la pile des scènes précédentes.
+*   **Processus de Chargement (`sub_406345`)** : À l'inverse, cette fonction réinitialise le tableau mémoire et y injecte les valeurs lues depuis le fichier de sauvegarde. Si le projet sauvegardé diffère du projet actuel, le moteur utilise la commande **`runprj`** (Opcode 31) pour charger automatiquement le bon fichier **.vnp** avant de restaurer les variables.
+
+### **5. Persistance et Contexte du Projet**
+Contrairement aux fichiers **VND** qui sont en lecture seule et contiennent la logique immuable du jeu, le fichier **VNSAVFILE** est dynamique et spécifique à l'utilisateur. Il capture également l'état de la fenêtre et les paramètres d'affichage pour assurer une transition visuelle fluide lors de la reprise. L'analyse montre que le système est capable de gérer des sauvegardes entre différents pays, car le chemin relatif du projet est inscrit en clair dans l'en-tête de la sauvegarde.

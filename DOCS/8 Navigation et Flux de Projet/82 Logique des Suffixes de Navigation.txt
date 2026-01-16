@@ -1,0 +1,35 @@
+La logique des suffixes dans le moteur Europeo, initialement perçue comme un simple modificateur de paramètres, est en réalité un mécanisme fondamental du **répartiteur de commandes (`sub_43177D`)** pour enchaîner les instructions binaires.
+
+### 1. Nature technique : Des Opcodes séparés
+L'analyse approfondie du code révèle une correction majeure : les lettres situées après les nombres (comme le « f » dans `54f`) ne sont **pas des modificateurs de transition**, mais des **opcodes distincts** qui s'exécutent immédiatement après que le nombre a été consommé comme paramètre.
+
+Le mécanisme de parsing repose sur la fonction **`sub_407FE5`** qui utilise la commande C standard **`atol()`**. Cette fonction extrait les chiffres d'une chaîne et **s'arrête net dès qu'elle rencontre un caractère non numérique**. Le pointeur de lecture du flux binaire se retrouve alors exactement sur la lettre suivante, que le répartiteur interprète comme la prochaine instruction à exécuter.
+
+### 2. Suffixes de calcul de destination
+Bien que beaucoup de lettres soient des opcodes, certains suffixes sont spécifiquement utilisés par la commande `scene` (Opcode 6) pour calculer la cible de navigation :
+
+*   **`i` (Index)** : C'est le mode le plus courant. La destination est calculée en ajoutant le nombre `n` à la variable **`INDEX_ID`** (lue à l'offset 65 du fichier VND ou dans le fichier INI). Exemple : `5i` cible la scène `INDEX_ID + 5`.
+*   **`d` (Direct)** : Le nombre est traité comme l'identifiant **absolu** de la scène dans le projet. Exemple : `13d` mène directement à la scène 13.
+*   **`+` / `-` (Relatif)** : Ces signes en début de chaîne indiquent un déplacement par rapport à la scène actuelle. Exemple : `+1` passe à la scène suivante.
+*   **(Sans suffixe)** : Par défaut, le moteur traite généralement le nombre comme un identifiant direct.
+
+### 3. Suffixes alphabétiques (Opcodes de flux)
+De nombreuses séquences observées dans les dumps binaires (comme `couleurs1.vnd`) montrent des lettres utilisées comme instructions immédiates après un paramètre :
+
+| Suffixe | Opcode (Index) | Fonction | Rôle |
+| :--- | :--- | :--- | :--- |
+| **`f`** | 6 | `sub_4268F8` | **Saut/changement de scène** (Navigation). |
+| **`h`** | 8 | `sub_426D33` | **Tooltip** (Affichage d'une bulle d'aide/info-bulle). |
+| **`i`** | 9 | `sub_42703A` | **Images** (Chargement d'images AVI ou BMP). |
+| **`j`** | 10 | `sub_4275F6` | **Bitmaps** (Gestion technique des couleurs, transparence et palettes). |
+| **`l`** | 12 | `sub_427C42` | **Musique MIDI**. |
+| **`k`** | 11 | `sub_427B56` | **Audio WAV**. |
+
+**Exemple d'analyse de flux :**
+Dans une séquence comme **`54h`**, le moteur charge le paramètre **54**, puis exécute l'opcode **h** (Tooltip). De même, pour **`euroj`**, le moteur lit la chaîne "euro", puis l'octet suivant **`j`** (Opcode 10) déclenche la fonction de rendu bitmap `playbmp`.
+
+### 4. Patterns spécifiques et mystérieux
+Certains patterns combinant chiffres et lettres apparaissent dans les enregistrements de Type 0x02 (zones cliquables) :
+*   **"51j"** : Associé au hotspot "Une table avec plein de choses dessus".
+*   **"1e"** : Associé à un hotspot proche de la "SORTIE".
+L'analyse suggère que ces suffixes (`j`, `e`) pilotent respectivement la gestion des bitmaps (Opcode 10) et la mise à jour de l'interface utilisateur (Opcode 5) suite à l'interaction avec la zone.

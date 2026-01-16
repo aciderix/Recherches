@@ -1,0 +1,31 @@
+Dans le moteur Europeo, la gestion de la logique interactive repose sur un système de **conditions logiques** intégrées directement dans les fichiers binaires VND sous forme d'enregistrements (records) spécifiques, principalement les **Types 21 (0x15)** et les **Types 25 et supérieurs (0x19+)**. Ce système permet de lier le déclenchement d'actions (sons, vidéos, navigation) à l'état des variables globales du jeu.
+
+### **1. Syntaxe et Structure des Conditions**
+Le moteur utilise une structure textuelle au sein des records binaires pour définir les branchements conditionnels. La syntaxe standard suit le modèle suivant :
+**`variable opérateur valeur then commande1 [else commande2]`**.
+
+*   **Variables** : Les conditions interrogent le **tableau global des variables** situé en mémoire à l'adresse `dword_44ECCE`. Ces variables suivent souvent un système d'états (ex: pour un objet, 0 = non découvert, 1 = visible, 2 = dans l'inventaire).
+*   **Opérateurs** : L'analyse du code interne (fonction **`sub_40A479`**) révèle six opérateurs de comparaison fondamentaux :
+    1.  **`==`** (Égal).
+    2.  **`!=`** (Différent).
+    3.  **`>`** (Supérieur).
+    4.  **`<`** (Inférieur).
+    5.  **`>=`** (Supérieur ou égal).
+    6.  **`<=`** (Inférieur ou égal).
+
+### **2. Mécanismes de Parsing et d'Exécution**
+Le traitement de ces conditions est assuré par deux fonctions clés du répartiteur de commandes :
+
+*   **La fonction `sub_40A5CA`** : Elle agit comme un analyseur syntaxique qui fragmente la chaîne de caractères du record. Elle localise spécifiquement les mots-clés **`then`** et **`else`** pour diviser le flux d'exécution.
+*   **La fonction `sub_40A479`** : Elle effectue la comparaison logique réelle entre la valeur actuelle de la variable en mémoire et la valeur cible définie dans le script. Si la condition est remplie, le répartiteur exécute la commande suivant le `then` ; dans le cas contraire, il bascule sur la branche `else` si elle existe.
+
+### **3. Exemples et Patterns Récurrents**
+L'examen des fichiers de données comme `couleurs1.vnd` montre que les conditions sont massivement utilisées pour la progression et l'inventaire :
+
+*   **Vérification de score** : `score < 0 then runprj ..\couleurs1\couleurs1.vnp 54` (déclenche un saut de projet si le score est négatif).
+*   **Logique d'inventaire imbriquée** : Le moteur supporte une forme d'imbrication, comme illustré par ce pattern : `sacados = 1 then if clejaune = 0 then set_var clejaune 1`. Ici, l'action n'est effectuée que si le joueur possède le sac à dos ET n'a pas encore la clé jaune.
+*   **Actions multimédias conditionnelles** : Un hotspot peut déclencher une vidéo différente selon l'état d'une variable, par exemple : `milleeuro = 0 then playavi euroland\banq41.avi ...`.
+*   **Navigation bloquée** : Dans certains cas, une condition peut empêcher un changement de scène si un objet est manquant, comme le montre le pattern de "L'armoire" qui n'autorise la navigation que via un script de condition interne (Type 0x03) au lieu d'une cible directe.
+
+### **4. Branchement "Else"**
+Bien que moins fréquent dans les exemples de données brutes, la structure **`else`** est explicitement gérée par le code du moteur. Elle permet de définir une action de repli, souvent utilisée pour afficher un message d'erreur ou un indice lorsque le joueur tente une interaction sans posséder l'objet requis. Par exemple, une condition peut vérifier si une porte est déverrouillée ; si oui (`then`), elle change de scène, sinon (`else`), elle joue un son de verrou fermé ou affiche un texte explicatif.

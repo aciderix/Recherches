@@ -1,0 +1,43 @@
+La **Table des Variables** est une structure de données cruciale située immédiatement après l'en-tête (header) du fichier VND. Elle définit l'état initial de tous les paramètres logiques nécessaires au moteur Europeo pour gérer la progression du joueur, l'inventaire et la navigation.
+
+### **1. Structure Binaire de la Table**
+Bien que contenant du texte, cette section suit une organisation binaire rigoureuse en **Little Endian** :
+*   **Taille globale** : La section débute par un entier de 32 bits (uint32) indiquant la taille totale de la table des variables.
+*   **Structure d'une entrée** : Chaque variable est définie par un bloc séquentiel composé de trois champs :
+    1.  **Longueur du nom** (uint32) : Nombre de caractères composant le nom.
+    2.  **Nom de la variable** (char*) : Chaîne de caractères obligatoirement en **lettres majuscules**, terminée par un caractère nul (`\0`).
+    3.  **Valeur initiale** (uint32) : La valeur attribuée à la variable lors du chargement de la scène ou du projet.
+
+Il est à noter que certains décodeurs automatiques identifient à tort le premier nom de variable (souvent `SACADOS`) comme un enregistrement de "Type 280" en raison d'artefacts de parsing.
+
+### **2. Catégories de Variables et États**
+Les variables extraites des fichiers VND se répartissent en plusieurs groupes fonctionnels :
+
+#### **A. Variables Système et Navigation**
+Elles régissent l'emplacement du joueur et l'état des menus :
+*   **`CPAYS`** : Index du pays actuel.
+*   **`LOC`** : Localisation précise à l'intérieur d'un module.
+*   **`SCORE`** : Score global du joueur, pouvant être négatif.
+*   **`FIOLE`** : Niveau de remplissage (de 0 à 12) de la fiole de progression.
+
+#### **B. Variables de l'Interface (Toolbar)**
+Ces variables activent ou désactivent les outils disponibles dans la barre d'outils (0 = inactif, 1 = actif) :
+*   **`SACADOS`** : Accès à l'inventaire.
+*   **`TELEPHONE`** : Système d'aide et d'indices.
+*   **`CALC`** : Calculatrice de conversion Euro/Francs.
+*   **`TRANS`** : Accès à la carte de transport pour voyager entre les pays.
+
+#### **C. Variables d'Objets (Inventaire)**
+Le moteur utilise un système d'états standardisé pour tous les objets collectables :
+*   **0** : Objet non découvert.
+*   **1** : Objet découvert ou visible dans la scène.
+*   **2** : Objet possédé (présent dans le sac à dos).
+
+#### **D. Variables de Pays (Monde)**
+Chaque pays possède sa propre variable (ex: `FRANCE`, `ALLEMAGNE`, `GRECE`) pour suivre le statut de visite : **0** pour non visité, **1** pour visité ou actif.
+
+### **3. Gestion en Mémoire et Persistance**
+Une fois le fichier chargé par la DLL de ressources (`vnresmod.dll`), les variables sont gérées dynamiquement :
+*   **Tableau Global** : En cours d'exécution, les variables sont stockées dans un tableau global en mémoire à l'adresse **`dword_44ECCE`**.
+*   **API de Gestion** : La bibliothèque **`vndllapi.dll`** fournit les fonctions nécessaires pour rechercher (`VNDLLVarFind`) ou modifier (`VNDLLVarAddModify`) ces valeurs durant le jeu.
+*   **Sauvegardes** : L'état complet de ce tableau de variables est écrit dans les fichiers de sauvegarde **`.sav`** (format `VNSAVFILE`) via les fonctions `sub_406345` (chargement) et `sub_40650B` (écriture).

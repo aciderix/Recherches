@@ -1,0 +1,58 @@
+### 9. Annexes Techniques
+
+Cette section fournit une référence détaillée des commandes graphiques interprétées par le moteur Europeo. La logique visuelle repose sur un système de **répartiteur de commandes** (`sub_43177D`) qui traite les instructions binaires et textuelles provenant des fichiers VND pour manipuler l'affichage sur une résolution standard de **640x480 pixels**.
+
+---
+
+### 9.1. Référence des Commandes Graphiques
+
+Le moteur distingue les commandes par des identifiants numériques (Opcodes) ou des caractères alphabétiques qui sont convertis en indices internes.
+
+#### **1. Gestion des Objets et Sprites (Bitmaps)**
+
+Ces commandes gèrent l'apparition et la suppression dynamique d'éléments visuels (objets d'inventaire, personnages, éléments de décor interactifs).
+
+*   **`addbmp` (Opcode 27 / `sub_428373`)** :
+    *   **Rôle** : Ajoute une image bitmap ou un hotspot à la scène.
+    *   **Syntaxe** : `addbmp id fichier layer x y`.
+    *   **Détails** : L'ID est un identifiant unique. Le `layer` définit l'ordre d'affichage (0 pour le décor, 6 pour l'interface utilisateur). La **hitbox (zone de clic)** est automatiquement définie par les dimensions intrinsèques du fichier BMP.
+*   **`delbmp` (Opcode 28 / `sub_428E06`)** :
+    *   **Rôle** : Supprime un objet précédemment ajouté par `addbmp`.
+    *   **Usage type** : Utilisé lors du ramassage d'un objet pour le faire disparaître du décor avant de l'ajouter à l'inventaire.
+*   **`showbmp` (Opcode 29) / `hidebmp` (Opcode 30)** :
+    *   **Rôle** : Modifie la visibilité d'un bitmap sans le décharger de la mémoire.
+
+#### **2. Fonctions de Rendu Technique (Opcode 'j')**
+
+L'analyse binaire a révélé que la lettre **'j'** à la fin d'une chaîne de données n'est pas un suffixe, mais l'instruction graphique **`playbmp`** (`sub_4275F6`).
+
+*   **Gestion des Palettes** : Le moteur Europeo fonctionne principalement en 16-bit ou 8-bit indexé. La commande associée à l'Opcode 'j' gère le chargement des fichiers de palettes (**`.pal`**) via la fonction `sub_41CCDD`.
+*   **Transparence (Color Keying)** : Le moteur utilise une couleur de transparence normalisée. Le **Magenta (#FF00FF)** est traité comme transparent, permettant d'afficher des objets non rectangulaires sur le décor de fond.
+
+#### **3. Affichage de Texte et Polices**
+
+Le moteur dispose d'un système de rendu de texte capable de gérer des info-bulles (tooltips) et des zones de dialogue riche.
+
+*   **`playtext` (Opcode 38 / `sub_4274B0`)** :
+    *   **Rôle** : Affiche une chaîne de caractères à des coordonnées spécifiques.
+    *   **Formatage** : Utilise souvent des paramètres de largeur maximale (souvent **125**) et de hauteur de ligne (**365**) pour le rendu.
+*   **`font` (Opcode 39 / `sub_428154`)** :
+    *   **Rôle** : Définit les attributs de la police actuelle.
+    *   **Paramètres** : "TAILLE STYLE #COULEUR NOM_POLICE" (ex: `18 0 #0000ff Comic sans MS`).
+*   **`addtext` (Opcode 41)** :
+    *   **Rôle** : Permet l'ajout de texte riche ou d'hypertexte déclenchant des commandes VND via des liens cliquables.
+
+#### **4. Multimédia et Transitions**
+
+*   **`playavi` (Opcode 9 / `sub_42703A`)** :
+    *   **Rôle** : Déclenche la lecture d'une vidéo plein écran ou fenêtrée.
+    *   **Usage** : Les vidéos AVI (souvent encodées en Indeo ou Cinepak) servent de transitions entre les pays ou d'animations pour les personnages.
+    *   **Syntaxe** : `playavi fichier 1 x y w h`.
+
+#### **5. Maintenance de l'Affichage**
+
+*   **`invalidate` (Opcode 25 / `sub_428373`)** :
+    *   **Rôle** : Force le rafraîchissement d'une zone de l'écran ou de l'intégralité de la fenêtre.
+    *   **Mécanisme** : Appelle la fonction système Windows `InvalidateRect`. C'est une commande critique après une modification de variable qui affecte le rendu visuel (comme le changement d'état d'une fiole de progression).
+
+**Note sur le Parsing** : Il est impératif de noter que dans le flux de données VND, les lettres telles que **'f', 'h', 'i', 'j', 'k', 'l'** situées après un nombre sont des opcodes enchaînés par le parseur `sub_407FE5` (utilisant `atol()`), et non des modificateurs de la valeur numérique précédente.

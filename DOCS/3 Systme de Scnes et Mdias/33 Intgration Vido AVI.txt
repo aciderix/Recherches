@@ -1,0 +1,28 @@
+### **3.3. Intégration Vidéo (AVI)**
+
+L'intégration des vidéos au format **AVI** est un élément fondamental du moteur Europeo, utilisé pour enrichir la narration par des cinématiques, des transitions fluides ou des animations de personnages interactifs. 
+
+#### **1. Spécifications Techniques et Codecs**
+Le moteur repose sur le standard **AVI (Video for Windows)**, une technologie typique de l'époque de création du jeu (1999). Pour assurer la compatibilité avec le matériel de l'époque, les fichiers vidéo utilisent majoritairement les codecs **Indeo** ou **Cinepak**. Ces vidéos sont conçues pour s'intégrer dans la résolution globale du jeu de **640x480 pixels**, bien qu'elles puissent être confinées à la zone de jeu supérieure (640x400) ou à des fenêtres plus petites.
+
+#### **2. Méthodes d'Intégration dans les Scènes**
+Le moteur propose deux manières principales d'intégrer une vidéo AVI :
+
+*   **Vidéo d'Introduction de Scène** : Chaque scène (section `[AREA_n]` du fichier INI) peut être configurée pour jouer une vidéo automatiquement à l'entrée du joueur. La clé **`AVI`** spécifie le chemin du fichier, tandis que la clé **`SETAVI`** agit comme un drapeau (flag) activant la lecture. Ces vidéos servent souvent de "ponts" visuels ; par exemple, le fichier `bankbis.avi` est joué systématiquement avant d'accéder à l'intérieur de la banque.
+*   **Vidéo liée à un Hotspot** : Les zones cliquables peuvent déclencher des vidéos de manière réactive. Les propriétés sont alors définies par les clés **`HSVIDEO_n`** (fichier), **`HSVIDEOFLAGS_n`** (comportement de lecture) et **`HSVIDEORECT_n`** (coordonnées x, y, w, h de la fenêtre de rendu). Un exemple notable est l'activation de la vidéo `femme.avi` lors d'un clic sur le personnage de "Madame Euro".
+
+#### **3. Commandes de Script et Opcodes**
+La gestion des vidéos dans le flux binaire VND et via le moteur de dispatch s'appuie sur des instructions précises :
+*   **Commande `playavi`** : C'est l'instruction principale dont la syntaxe standard est `playavi fichier mode x y w h`. Le paramètre `mode` définit généralement une lecture unique ou en boucle.
+*   **Opcode 'i' (Index 9)** : Le répartiteur de commandes (**sub_43177D**) utilise cet opcode pour le chargement général des ressources multimédias, incluant les attributs et coordonnées des vidéos.
+*   **Commande `closeavi`** : Identifiée comme le Type de commande **47**, elle permet de forcer l'arrêt et la fermeture du flux vidéo en cours.
+
+#### **4. Structure Binaire dans le Fichier VND**
+Le format VND classe les références vidéo selon plusieurs **Type IDs** spécifiques afin de structurer les ressources du projet :
+*   **Types 20 à 24 (0x14 à 0x18)** : Ces enregistrements stockent les chemins des fichiers AVI selon leur catégorie fonctionnelle (vidéos de départ, de bibliothèque, de musée ou liées à une scène spécifique).
+*   **Type 35 (0x23)** : Enregistrement déclenchant l'action de lecture simple.
+*   **Type 36 (0x24)** : Variante de l'enregistrement `playavi` incluant les données de positionnement spatial (coordonnées).
+*   **Types 50 et 51 (0x32, 0x33)** : Autres identifiants observés pour le déclenchement de séquences AVI.
+
+#### **5. Logique Interne du Moteur**
+Lorsqu'une vidéo est appelée, l'exécutable `europeo.exe` sollicite la fonction **`sub_41BA57`** pour initialiser les paramètres de rendu et créer la fenêtre système nécessaire à l'affichage. Le moteur peut également gérer des liens hypertextes dans des fenêtres HTML capables de déclencher des commandes VND, y compris la lecture de vidéos, via le paramètre `TXTHREFOFFSET`.

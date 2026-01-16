@@ -1,0 +1,41 @@
+Le répartiteur de commandes, identifié par la fonction sub_43177D, constitue le cœur logique et le moteur d'exécution du système Europea. Il agit comme une boucle de traitement de flux (stream) qui interprète les données contenues dans les fichiers VND octet par octet pour orchestrer les transitions entre les données brutes et les fonctions internes du programme (affichage, son, navigation).
+5.1. Logique du Répartiteur (sub_43177D)
+Mécanisme de Consommation et de Chaînage
+L'originalité du répartiteur repose sur un système de consommation séquentielle où les données "poussent" les instructions. Le processus suit une logique rigoureuse :
+• Extraction des arguments : Le moteur utilise la fonction sub_407FE5 qui s'appuie sur la commande C standard atol() pour lire les paramètres numériques.
+• Point d'arrêt du parseur : La fonction atol() consomme les chiffres un par un et s'arrête net dès qu'elle rencontre un caractère non numérique.
+• Exécution immédiate : Une fois la valeur numérique extraite, le pointeur de lecture se trouve précisément sur l'octet suivant, lequel est immédiatement interprété comme un Opcode.
+Le Système d'Opcodes Alphabétiques
+Le répartiteur convertit les caractères alphabétiques rencontrés en indices numériques selon la formule index = caractère - 'a' + 1. Ainsi, les lettres 'a' à 'z' correspondent aux indices 1 à 26, tandis que les codes de commandes purement numériques débutent à partir de 27.
+Lettre
+Index
+Fonction
+Rôle
+f
+6
+sub_4268F8
+Saut de scène (Navigation interne).
+h
+8
+sub_426D33
+Tooltip (Affichage d'une bulle d'aide).
+i
+9
+sub_42703A
+Images (Chargement des ressources AVI ou BMP).
+j
+10
+sub_4275F6
+Bitmaps (Gestion technique des couleurs, palettes et transparence).
+k
+11
+sub_427B56
+Audio (Lecture des fichiers WAV).
+u
+21
+sub_431721
+Logic (Vérification des conditions et rappels/callbacks).
+Interprétation des Suffixes (Exemple du pattern "euroj")
+L'analyse des séquences binaires comme 65 75 72 6f 6a (euroj) illustre parfaitement ce fonctionnement. Le moteur lit d'abord la chaîne ASCII "euro", puis rencontre l'octet 6a correspondant à la lettre "j". Ce "j" déclenche instantanément l'Opcode 10 (playbmp), ordonnant au moteur de traiter les octets suivants comme les paramètres graphiques (coordonnées, palette) du bitmap associé à ce label. De la même manière, une séquence comme 54h n'est pas une instruction unique, mais l'enchaînement d'un paramètre (54) pour l'action en cours suivi de l'exécution immédiate d'une bulle d'aide (Opcode h).
+Architecture Interne et Table de Commandes
+Le répartiteur s'appuie sur une table de commandes complète de 49 entrées intégrée à l'exécutable europeo.exe. Cette structure utilise un switch case géant pour aiguiller les instructions vers les gestionnaires spécifiques, tels que scene, playavi, set_var, ou runprj. Pour les instructions complexes, notamment celles liées à l'Opcode 21 ('u'), le répartiteur interagit directement avec le tableau global des variables stocké en mémoire à l'adresse dword_44ECCE. Cela lui permet d'évaluer des structures de type if variable opérateur valeur then commande en utilisant des opérateurs de comparaison (égal, différent, supérieur, etc.) avant de valider le saut vers l'instruction suivante.

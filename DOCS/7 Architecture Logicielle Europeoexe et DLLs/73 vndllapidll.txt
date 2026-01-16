@@ -1,0 +1,24 @@
+La bibliothèque **`vndllapi.dll`** constitue l'interface de programmation (API) spécialisée dans la **gestion des variables** et la communication par messages système au sein du moteur Europeo. Elle sert de pont technique entre l'exécutable principal et la structure de données qui maintient l'état du jeu.
+
+### **1. Rôle Central : Gestion des Variables du Jeu**
+La fonction primaire de cette DLL est de manipuler le **tableau global des variables** résidant en mémoire (à l'adresse `dword_44ECCE`). Ce tableau est crucial car il stocke toute la progression du joueur, notamment :
+*   Les scores et niveaux de complétion (ex: `SCORE`, `FIOLE`).
+*   L'état de l'inventaire et des objets (ex: `SACADOS`, `CLEJAUNE`).
+*   Les drapeaux de navigation et de localisation (ex: `CPAYS`, `LOC`).
+
+Pour ce faire, la DLL exporte des fonctions de bas niveau telles que **`VNDLLVarFind()`** pour la recherche de variables existantes et **`VNDLLVarAddModify()`** pour la création ou la mise à jour des valeurs.
+
+### **2. Initialisation des Messages Système**
+Un autre rôle critique de `vndllapi.dll` est l'enregistrement des **messages Windows personnalisés** utilisés par le moteur pour coordonner les actions multimédias et l'interface utilisateur. 
+
+Via la fonction **`InitVNCommandMessage()`**, elle enregistre auprès du système d'exploitation les messages suivants :
+*   **`wm_vncommand`** : Utilisé par le répartiteur pour déclencher des instructions de script.
+*   **`wm_scroll`** : Gère les déplacements de vue dans les scènes.
+*   **`wm_zoom`** : Contrôle les fonctions d'agrandissement de l'image.
+*   **`wm_fullscreen`** : Bascule entre le mode fenêtré et le plein écran.
+
+### **3. Fonctions Techniques et Hardware**
+La DLL expose également des services liés aux capacités matérielles de la machine, notamment la fonction **`DirectDrawEnabled()`**. Cette fonction permet au moteur de vérifier si l'accélération graphique **DirectDraw** est disponible et active, ce qui conditionne le mode de rendu utilisé par `europeo.exe` pour l'affichage des backgrounds et des vidéos AVI.
+
+### **4. Intégration dans le Cycle de Vie du Programme**
+L'interaction avec `vndllapi.dll` commence dès le démarrage de l'application. Lors de l'exécution de la boucle principale dans `sub_43891A`, le programme fait appel à cette DLL pour initialiser le système de messages avant de charger les variables initiales du projet depuis le fichier **VND**. Elle définit également la structure **`VNDLLVar`**, qui sert de modèle pour l'organisation binaire des données de variables en mémoire.

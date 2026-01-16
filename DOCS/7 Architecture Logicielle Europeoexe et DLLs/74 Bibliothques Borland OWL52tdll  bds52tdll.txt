@@ -1,0 +1,20 @@
+Les bibliothèques **OWL52t.dll** et **bds52t.dll** sont des composants fondamentaux de l'infrastructure logicielle du moteur Europeo, car elles fournissent les briques technologiques standard de l'environnement **Borland C++ 1996** sur lequel repose l'ensemble de l'application.
+
+### **1. OWL52t.dll : L'Interface Graphique (ObjectWindows Library)**
+Cette bibliothèque est responsable de la gestion de l'interface utilisateur graphique (GUI). Elle implémente le framework **ObjectWindows Library (OWL)**, qui permet au moteur de manipuler des objets C++ pour représenter les fenêtres et les contrôles du système.
+
+*   **Gestion des fenêtres et des dialogues** : L'exécutable `europeo.exe` utilise OWL pour définir et gérer les classes de fenêtres principales et les boîtes de dialogue. Le reverse engineering a permis d'identifier plusieurs classes héritant directement de ce framework, notamment **`TVNApplication`** (l'application principale), **`TFrameWindow`** (la fenêtre cadre), et **`TDialog`** (utilisée pour les boîtes de message ou les options).
+*   **Pompe à messages et Dispatch** : OWL gère la boucle de messages Windows et facilite la communication entre les différents modules via des fonctions comme `TWindow::HandleMessage` ou `PostMessageA`. C'est grâce à ce système que le répartiteur de commandes (**sub_43177D**) peut envoyer des instructions de mise à jour de l'UI (Opcode 5) ou des messages système (Opcodes 1 à 4).
+*   **Initialisation** : Lors du démarrage (fonction `WinMain`), le moteur initialise une instance de `TApplication` (classe OWL), qui devient le point d'ancrage de toute la session de jeu.
+
+### **2. bds52t.dll : Entrée/Sortie et Flux de Données (Data Streaming)**
+Alors que OWL s'occupe de l'aspect visuel, la bibliothèque **bds52t.dll** est dédiée à la gestion technique des données binaires. Son rôle est crucial pour la manipulation des fichiers propriétaires du moteur.
+
+*   **Data Streaming** : Cette DLL gère l'entrée et la sortie des données binaires (Data Streaming), permettant au moteur de lire et d'écrire des structures complexes dans un flux séquentiel. 
+*   **Lecture des fichiers VND/VNP** : Elle est utilisée par les fonctions de chargement (comme **`sub_41721D`**) pour analyser l'en-tête "VNFILE" et extraire les records typés des scènes et des hotspots.
+*   **Sérialisation des Sauvegardes** : Le système de sauvegarde au format **.sav (VNSAVFILE)** s'appuie sur ces mécanismes de flux pour écrire l'intégralité du tableau global des variables (**`dword_44ECCE`**) sur le disque et le recharger ultérieurement.
+
+### **3. Importance de l'écosystème Borland C++ 1996**
+L'utilisation de ces deux DLLs marque l'appartenance technologique du moteur Virtual Navigator à l'époque de sa création (1999). La bibliothèque **vnresmod.dll** (le module de ressources) est elle aussi étroitement liée à cet écosystème Borland, utilisant notamment le mécanisme de **Thread Local Storage (TLS)** pour isoler les données de rendu graphique. 
+
+**En résumé**, sans **OWL52t.dll**, le moteur ne pourrait pas afficher de fenêtres ni traiter les clics utilisateur, et sans **bds52t.dll**, il serait incapable d'interpréter la logique complexe et les données de progression stockées dans les fichiers binaires VND.
