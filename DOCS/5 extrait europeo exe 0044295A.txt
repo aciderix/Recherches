@@ -1,0 +1,238 @@
+DATA:0044295A ; char byte_44295A
+DATA:0044295A byte_44295A     db 0                    ; DATA XREF: sub_414A70+1A↑o
+DATA:0044295B                 db  41h ; A
+DATA:0044295C                 db  52h ; R
+DATA:0044295D                 db  45h ; E
+DATA:0044295E                 db  41h ; A
+DATA:0044295F                 db  5Fh ; _
+DATA:00442960                 db  25h ; %
+DATA:00442961                 db  75h ; u
+DATA:00442962                 db    0
+DATA:00442963                 db  4Eh ; N
+DATA:00442964                 db  41h ; A
+DATA:00442965                 db  4Dh ; M
+DATA:00442966                 db  45h ; E
+DATA:00442967                 db    0
+DATA:00442968                 db    0
+DATA:00442969                 db  42h ; B
+DATA:0044296A                 db  4Bh ; K
+DATA:0044296B                 db  43h ; C
+DATA:0044296C                 db  4Fh ; O
+DATA:0044296D                 db  4Ch ; L
+DATA:0044296E                 db  4Fh ; O
+DATA:0044296F                 db  52h ; R
+DATA:00442970                 db    0
+DATA:00442971                 db  30h ; 0
+DATA:00442972                 db  2Ch ; ,
+DATA:00442973                 db  30h ; 0
+DATA:00442974                 db  2Ch ; ,
+DATA:00442975                 db  30h ; 0
+DATA:00442976                 db    0
+DATA:00442977                 db  25h ; %
+DATA:00442978                 db  75h ; u
+DATA:00442979                 db  2Ch ; ,
+DATA:0044297A                 db  25h ; %
+DATA:0044297B                 db  75h ; u
+DATA:0044297C                 db  2Ch ; ,
+DATA:0044297D                 db  25h ; %
+DATA:0044297E                 db  75h ; u
+DATA:0044297F                 db    0
+DATA:00442980                 db  42h ; B
+DATA:00442981                 db  4Bh ; K
+DATA:00442982                 db  54h ; T
+DATA:00442983                 db  45h ; E
+DATA:00442984                 db  58h ; X
+DATA:00442985                 db  54h ; T
+DATA:00442986                 db  55h ; U
+DATA:00442987                 db  52h ; R
+DATA:00442988                 db  45h ; E
+DATA:00442989                 db    0
+DATA:0044298A                 db  44h ; D
+DATA:0044298B                 db  45h ; E
+DATA:0044298C                 db  46h ; F
+DATA:0044298D                 db  43h ; C
+DATA:0044298E                 db  55h ; U
+DATA:0044298F                 db  52h ; R
+DATA:00442990                 db  53h ; S
+DATA:00442991                 db  4Fh ; O
+DATA:00442992                 db  52h ; R
+DATA:00442993                 db    0
+DATA:00442994                 db  43h ; C
+DATA:00442995                 db  41h ; A
+DATA:00442996                 db  50h ; P
+DATA:00442997                 db  53h ; S
+DATA:00442998                 db    0
+DATA:00442999 ; char byte_442999
+DATA:00442999 byte_442999     db 0                    ; DATA XREF: sub_414E00+175↑o
+DATA:0044299A ; char aI_4[3]
+DATA:0044299A aI_4            db '%i',0               ; DATA XREF: sub_414E00+1C7↑o
+DATA:0044299D ; char byte_44299D
+DATA:0044299D byte_44299D     db 0                    ; DATA XREF: sub_415560+44↑o
+DATA:0044299E                 db  41h ; A
+DATA:0044299F                 db  52h ; R
+DATA:004429A0                 db  45h ; E
+DATA:004429A1                 db  41h ; A
+DATA:004429A2                 db  5Fh ; _
+DATA:004429A3                 db  25h ; %
+DATA:004429A4                 db  75h ; u
+DATA:004429A5                 db    0
+DATA:004429A6                 db  41h ; A
+DATA:004429A7                 db  56h ; V
+DATA:004429A8                 db  49h ; I
+DATA:004429A9                 db    0
+DATA:004429AA                 db    0
+DATA:004429AB                 db  53h ; S
+DATA:004429AC                 db  45h ; E
+DATA:004429AD                 db  54h ; T
+DATA:004429AE                 db  41h ; A
+DATA:004429AF                 db  56h ; V
+DATA:004429B0                 db  49h ; I
+DATA:004429B1                 db    0
+DATA:004429B2                 db  50h ; P
+DATA:004429B3                 db  41h ; A
+DATA:004429B4                 db  4Ch ; L
+DATA:004429B5                 db  45h ; E
+DATA:004429B6                 db  54h ; T
+DATA:004429B7                 db  54h ; T
+DATA:004429B8                 db  45h ; E
+DATA:004429B9                 db    0
+DATA:004429BA                 db    0
+DATA:004429BB                 db  53h ; S
+DATA:004429BC                 db  4Eh ; N
+DATA:004429BD                 db  44h ; D
+DATA:004429BE                 db    0
+DATA:004429BF                 db    0
+DATA:004429C0                 db  53h ; S
+DATA:004429C1                 db  45h ; E
+DATA:004429C2                 db  54h ; T
+DATA:004429C3                 db  53h ; S
+DATA:004429C4                 db  4Eh ; N
+DATA:004429C5                 db  44h ; D
+DATA:004429C6                 db    0
+DATA:004429C7                 db  4Dh ; M
+DATA:004429C8                 db  49h ; I
+DATA:004429C9                 db  44h ; D
+DATA:004429CA                 db    0
+DATA:004429CB                 db    0
+DATA:004429CC                 db  53h ; S
+DATA:004429CD                 db  45h ; E
+DATA:004429CE                 db  54h ; T
+DATA:004429CF                 db  4Dh ; M
+DATA:004429D0                 db  49h ; I
+DATA:004429D1                 db  44h ; D
+DATA:004429D2                 db    0
+DATA:004429D3                 db  49h ; I
+DATA:004429D4                 db  4Dh ; M
+DATA:004429D5                 db  47h ; G
+DATA:004429D6                 db    0
+DATA:004429D7                 db    0
+DATA:004429D8                 db  53h ; S
+DATA:004429D9                 db  45h ; E
+DATA:004429DA                 db  54h ; T
+DATA:004429DB                 db  49h ; I
+DATA:004429DC                 db  4Dh ; M
+DATA:004429DD                 db  47h ; G
+DATA:004429DE                 db    0
+DATA:004429DF                 db  54h ; T
+DATA:004429E0                 db  58h ; X
+DATA:004429E1                 db  54h ; T
+DATA:004429E2                 db    0
+DATA:004429E3                 db    0
+DATA:004429E4                 db  54h ; T
+DATA:004429E5                 db  58h ; X
+DATA:004429E6                 db  54h ; T
+DATA:004429E7                 db  52h ; R
+DATA:004429E8                 db  45h ; E
+DATA:004429E9                 db  43h ; C
+DATA:004429EA                 db  54h ; T
+DATA:004429EB                 db    0
+DATA:004429EC                 db  30h ; 0
+DATA:004429ED                 db  2Ch ; ,
+DATA:004429EE                 db  30h ; 0
+DATA:004429EF                 db  2Ch ; ,
+DATA:004429F0                 db  30h ; 0
+DATA:004429F1                 db  2Ch ; ,
+DATA:004429F2                 db  30h ; 0
+DATA:004429F3                 db    0
+DATA:004429F4                 db  25h ; %
+DATA:004429F5                 db  69h ; i
+DATA:004429F6                 db  2Ch ; ,
+DATA:004429F7                 db  25h ; %
+DATA:004429F8                 db  69h ; i
+DATA:004429F9                 db  2Ch ; ,
+DATA:004429FA                 db  25h ; %
+DATA:004429FB                 db  69h ; i
+DATA:004429FC                 db  2Ch ; ,
+DATA:004429FD                 db  25h ; %
+DATA:004429FE                 db  69h ; i
+DATA:004429FF                 db    0
+DATA:00442A00                 db  53h ; S
+DATA:00442A01                 db  45h ; E
+DATA:00442A02                 db  54h ; T
+DATA:00442A03                 db  54h ; T
+DATA:00442A04                 db  58h ; X
+DATA:00442A05                 db  54h ; T
+DATA:00442A06                 db    0
+DATA:00442A07                 db  54h ; T
+DATA:00442A08                 db  58h ; X
+DATA:00442A09                 db  54h ; T
+DATA:00442A0A                 db  48h ; H
+DATA:00442A0B                 db  52h ; R
+DATA:00442A0C                 db  45h ; E
+DATA:00442A0D                 db  46h ; F
+DATA:00442A0E                 db  4Fh ; O
+DATA:00442A0F                 db  46h ; F
+DATA:00442A10                 db  46h ; F
+DATA:00442A11                 db  53h ; S
+DATA:00442A12                 db  45h ; E
+DATA:00442A13                 db  54h ; T
+DATA:00442A14                 db    0
+DATA:00442A15                 db  54h ; T
+DATA:00442A16                 db  49h ; I
+DATA:00442A17                 db  4Dh ; M
+DATA:00442A18                 db  45h ; E
+DATA:00442A19                 db  52h ; R
+DATA:00442A1A                 db    0
+DATA:00442A1B                 db  30h ; 0
+DATA:00442A1C                 db  2Ch ; ,
+DATA:00442A1D                 db  30h ; 0
+DATA:00442A1E                 db    0
+DATA:00442A1F                 db  25h ; %
+DATA:00442A20                 db  69h ; i
+DATA:00442A21                 db  2Ch ; ,
+DATA:00442A22                 db  25h ; %
+DATA:00442A23                 db  69h ; i
+DATA:00442A24                 db    0
+DATA:00442A25                 db  54h ; T
+DATA:00442A26                 db  4Fh ; O
+DATA:00442A27                 db  4Fh ; O
+DATA:00442A28                 db  4Ch ; L
+DATA:00442A29                 db  42h ; B
+DATA:00442A2A                 db  41h ; A
+DATA:00442A2B                 db  52h ; R
+DATA:00442A2C                 db    0
+DATA:00442A2D                 db  30h ; 0
+DATA:00442A2E                 db  2Ch ; ,
+DATA:00442A2F                 db  30h ; 0
+DATA:00442A30                 db  2Ch ; ,
+DATA:00442A31                 db  30h ; 0
+DATA:00442A32                 db  2Ch ; ,
+DATA:00442A33                 db  30h ; 0
+DATA:00442A34                 db  2Ch ; ,
+DATA:00442A35                 db  30h ; 0
+DATA:00442A36                 db    0
+DATA:00442A37                 db  25h ; %
+DATA:00442A38                 db  69h ; i
+DATA:00442A39                 db  2Ch ; ,
+DATA:00442A3A                 db  25h ; %
+DATA:00442A3B                 db  69h ; i
+DATA:00442A3C                 db  2Ch ; ,
+DATA:00442A3D                 db  25h ; %
+DATA:00442A3E                 db  69h ; i
+DATA:00442A3F                 db  2Ch ; ,
+DATA:00442A40                 db  25h ; %
+DATA:00442A41                 db  69h ; i
+DATA:00442A42                 db  2Ch ; ,
+DATA:00442A43                 db  25h ; %
+DATA:00442A44                 db  69h ; i
+DATA:00442A45                 db    0

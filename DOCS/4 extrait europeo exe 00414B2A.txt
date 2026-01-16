@@ -1,0 +1,157 @@
+CODE:00414B2A
+CODE:00414B2A ; =============== S U B R O U T I N E =======================================
+CODE:00414B2A
+CODE:00414B2A ; Attributes: bp-based frame
+CODE:00414B2A
+CODE:00414B2A ; int __cdecl sub_414B2A(int, int, char *)
+CODE:00414B2A sub_414B2A      proc near               ; CODE XREF: sub_415A75+2F↓p
+CODE:00414B2A                                         ; DATA XREF: DATA:off_442DA4↓o
+CODE:00414B2A
+CODE:00414B2A var_23C         = byte ptr -23Ch
+CODE:00414B2A buffer          = byte ptr -13Ch
+CODE:00414B2A var_3C          = byte ptr -3Ch
+CODE:00414B2A var_38          = byte ptr -38h
+CODE:00414B2A var_34          = byte ptr -34h
+CODE:00414B2A var_30          = dword ptr -30h
+CODE:00414B2A var_20          = word ptr -20h
+CODE:00414B2A var_14          = dword ptr -14h
+CODE:00414B2A var_C           = byte ptr -0Ch
+CODE:00414B2A var_8           = byte ptr -8
+CODE:00414B2A arg_0           = dword ptr  8
+CODE:00414B2A arg_4           = dword ptr  0Ch
+CODE:00414B2A arg_8           = dword ptr  10h
+CODE:00414B2A
+CODE:00414B2A                 push    ebp
+CODE:00414B2B                 mov     ebp, esp
+CODE:00414B2D                 add     esp, 0FFFFFDC4h
+CODE:00414B33                 push    ebx
+CODE:00414B34                 push    esi
+CODE:00414B35                 mov     ebx, [ebp+arg_0]
+CODE:00414B38                 mov     esi, offset unk_442958
+CODE:00414B3D                 mov     eax, offset stru_4418A4
+CODE:00414B42                 call    @__InitExceptBlockLDTC
+CODE:00414B47                 push    [ebp+arg_4]
+CODE:00414B4A                 lea     edx, [esi+3]
+CODE:00414B4D                 push    edx             ; LPCSTR
+CODE:00414B4E                 lea     ecx, [ebp+var_23C]
+CODE:00414B54                 push    ecx             ; LPSTR
+CODE:00414B55                 call    wsprintfA
+CODE:00414B5A                 add     esp, 0Ch
+CODE:00414B5D                 mov     [ebp+var_20], 8
+CODE:00414B63                 push    [ebp+arg_8]     ; char *
+CODE:00414B66                 lea     eax, [ebp+var_23C]
+CODE:00414B6C                 push    eax             ; char *
+CODE:00414B6D                 lea     edx, [ebp+var_8]
+CODE:00414B70                 push    edx             ; this
+CODE:00414B71                 call    @TProfile@$bctr$qpxct1 ; TProfile::TProfile(char *,char *)
+CODE:00414B76                 add     esp, 0Ch
+CODE:00414B79                 inc     [ebp+var_14]
+CODE:00414B7C                 mov     [ebp+var_20], 14h
+CODE:00414B82                 lea     ecx, [esi+10h]
+CODE:00414B85                 push    ecx             ; char *
+CODE:00414B86                 push    100h            ; unsigned int
+CODE:00414B8B                 lea     eax, [ebp+buffer]
+CODE:00414B91                 push    eax             ; char *
+CODE:00414B92                 lea     edx, [esi+0Bh]
+CODE:00414B95                 push    edx             ; char *
+CODE:00414B96                 lea     ecx, [ebp+var_8]
+CODE:00414B99                 push    ecx             ; this
+CODE:00414B9A                 call    @TProfile@GetString$qpxcpcuit1 ; TProfile::GetString(char *,char *,uint,char *)
+CODE:00414B9F                 add     esp, 14h
+CODE:00414BA2                 mov     [ebp+var_20], 20h ; ' '
+CODE:00414BA8                 lea     eax, [ebp+buffer]
+CODE:00414BAE                 push    eax             ; char *
+CODE:00414BAF                 lea     edx, [ebp+var_C]
+CODE:00414BB2                 push    edx             ; this
+CODE:00414BB3                 call    @string@$bctr$qpxc ; string::string(char *)
+CODE:00414BB8                 add     esp, 8
+CODE:00414BBB                 inc     [ebp+var_14]
+CODE:00414BBE                 push    0FFFFFFFFh      ; unsigned int
+CODE:00414BC0                 push    0               ; unsigned int
+CODE:00414BC2                 lea     ecx, [ebp+var_C]
+CODE:00414BC5                 push    ecx             ; string *
+CODE:00414BC6                 lea     eax, [ebx+8]
+CODE:00414BC9                 push    eax             ; this
+CODE:00414BCA                 call    @string@assign$qrx6stringuiui ; string::assign(string &,uint,uint)
+CODE:00414BCF                 add     esp, 10h
+CODE:00414BD2                 dec     [ebp+var_14]
+CODE:00414BD5                 push    2
+CODE:00414BD7                 lea     edx, [ebp+var_C]
+CODE:00414BDA                 push    edx             ; this
+CODE:00414BDB                 call    @string@$bdtr$qv ; string::~string(void)
+CODE:00414BE0                 add     esp, 8
+CODE:00414BE3                 lea     ecx, [esi+19h]
+CODE:00414BE6                 push    ecx             ; char *
+CODE:00414BE7                 push    100h            ; unsigned int
+CODE:00414BEC                 lea     eax, [ebp+buffer]
+CODE:00414BF2                 push    eax             ; char *
+CODE:00414BF3                 lea     edx, [esi+11h]
+CODE:00414BF6                 push    edx             ; char *
+CODE:00414BF7                 lea     ecx, [ebp+var_8]
+CODE:00414BFA                 push    ecx             ; this
+CODE:00414BFB                 call    @TProfile@GetString$qpxcpcuit1 ; TProfile::GetString(char *,char *,uint,char *)
+CODE:00414C00                 add     esp, 14h
+CODE:00414C03                 lea     eax, [ebp+var_3C]
+CODE:00414C06                 push    eax
+CODE:00414C07                 lea     edx, [ebp+var_38]
+CODE:00414C0A                 push    edx
+CODE:00414C0B                 lea     ecx, [ebp+var_34]
+CODE:00414C0E                 push    ecx
+CODE:00414C0F                 lea     eax, [esi+1Fh]
+CODE:00414C12                 push    eax             ; format
+CODE:00414C13                 lea     edx, [ebp+buffer]
+CODE:00414C19                 push    edx             ; buffer
+CODE:00414C1A                 call    _sscanf
+CODE:00414C1F                 add     esp, 14h
+CODE:00414C22                 xor     ecx, ecx
+CODE:00414C24                 mov     cl, [ebp+var_34]
+CODE:00414C27                 xor     eax, eax
+CODE:00414C29                 mov     al, [ebp+var_38]
+CODE:00414C2C                 movzx   edx, ax
+CODE:00414C2F                 shl     edx, 8
+CODE:00414C32                 or      ecx, edx
+CODE:00414C34                 xor     eax, eax
+CODE:00414C36                 mov     al, [ebp+var_3C]
+CODE:00414C39                 shl     eax, 10h
+CODE:00414C3C                 or      ecx, eax
+CODE:00414C3E                 mov     [ebx+10h], ecx
+CODE:00414C41                 push    0               ; int
+CODE:00414C43                 lea     edx, [esi+28h]
+CODE:00414C46                 push    edx             ; char *
+CODE:00414C47                 lea     ecx, [ebp+var_8]
+CODE:00414C4A                 push    ecx             ; this
+CODE:00414C4B                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:00414C50                 add     esp, 0Ch
+CODE:00414C53                 mov     [ebx+14h], eax
+CODE:00414C56                 push    0               ; int
+CODE:00414C58                 lea     eax, [esi+32h]
+CODE:00414C5B                 push    eax             ; char *
+CODE:00414C5C                 lea     edx, [ebp+var_8]
+CODE:00414C5F                 push    edx             ; this
+CODE:00414C60                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:00414C65                 add     esp, 0Ch
+CODE:00414C68                 mov     [ebx+0Ch], eax
+CODE:00414C6B                 push    0               ; int
+CODE:00414C6D                 lea     ecx, [esi+3Ch]
+CODE:00414C70                 push    ecx             ; char *
+CODE:00414C71                 lea     eax, [ebp+var_8]
+CODE:00414C74                 push    eax             ; this
+CODE:00414C75                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:00414C7A                 add     esp, 0Ch
+CODE:00414C7D                 mov     [ebx+4], eax
+CODE:00414C80                 dec     [ebp+var_14]
+CODE:00414C83                 push    2
+CODE:00414C85                 lea     edx, [ebp+var_8]
+CODE:00414C88                 push    edx             ; this
+CODE:00414C89                 call    @TProfile@$bdtr$qv ; TProfile::~TProfile(void)
+CODE:00414C8E                 add     esp, 8
+CODE:00414C91                 mov     ecx, [ebp+var_30]
+CODE:00414C94                 mov     large fs:0, ecx
+CODE:00414C9B                 pop     esi
+CODE:00414C9C                 pop     ebx
+CODE:00414C9D                 mov     esp, ebp
+CODE:00414C9F                 pop     ebp
+CODE:00414CA0                 retn
+CODE:00414CA0 sub_414B2A      endp
+CODE:00414CA0
+CODE:00414CA1

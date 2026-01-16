@@ -1,0 +1,154 @@
+CODE:00415093
+CODE:00415093 ; =============== S U B R O U T I N E =======================================
+CODE:00415093
+CODE:00415093 ; Attributes: bp-based frame
+CODE:00415093
+CODE:00415093 sub_415093      proc near               ; CODE XREF: sub_417031+18F↓p
+CODE:00415093
+CODE:00415093 var_24          = byte ptr -24h
+CODE:00415093 arg_0           = dword ptr  8
+CODE:00415093 arg_4           = dword ptr  0Ch
+CODE:00415093 arg_8           = dword ptr  10h
+CODE:00415093
+CODE:00415093                 push    ebp
+CODE:00415094                 mov     ebp, esp
+CODE:00415096                 add     esp, 0FFFFFFDCh
+CODE:00415099                 push    ebx
+CODE:0041509A                 push    esi
+CODE:0041509B                 push    edi
+CODE:0041509C                 lea     edi, [ebp+var_24]
+CODE:0041509F                 mov     eax, offset stru_441994
+CODE:004150A4                 call    @__InitExceptBlockLDTC
+CODE:004150A9                 mov     word ptr [edi+10h], 8
+CODE:004150AF                 mov     edx, [ebp+arg_0]
+CODE:004150B2                 mov     dword ptr [edx], offset off_442DA4
+CODE:004150B8                 mov     ecx, [ebp+arg_0]
+CODE:004150BB                 add     ecx, 8
+CODE:004150BE                 push    ecx             ; this
+CODE:004150BF                 call    @string@$bctr$qv ; string::string(void)
+CODE:004150C4                 pop     ecx
+CODE:004150C5                 inc     dword ptr [edi+1Ch]
+CODE:004150C8                 push    [ebp+arg_0]
+CODE:004150CB                 call    sub_414A70
+CODE:004150D0                 pop     ecx
+CODE:004150D1                 add     dword ptr [edi+1Ch], 2
+CODE:004150D5                 mov     eax, [ebp+arg_0]
+CODE:004150D8                 add     eax, 18h
+CODE:004150DB                 mov     dword ptr [eax], offset off_4402D4
+CODE:004150E1                 inc     dword ptr [edi+1Ch]
+CODE:004150E4                 lea     edx, [eax+4]
+CODE:004150E7                 mov     dword ptr [edx], offset off_4402C0
+CODE:004150ED                 inc     dword ptr [edi+1Ch]
+CODE:004150F0                 mov     dword ptr [eax], offset off_4402E8
+CODE:004150F6                 mov     dword ptr [eax+4], offset off_4402F8
+CODE:004150FD                 add     dword ptr [edi+1Ch], 3
+CODE:00415101                 mov     ecx, [ebp+arg_0]
+CODE:00415104                 mov     dword ptr [ecx], offset off_442D64
+CODE:0041510A                 mov     eax, [ebp+arg_0]
+CODE:0041510D                 mov     dword ptr [eax+18h], offset off_442D80
+CODE:00415114                 mov     edx, [ebp+arg_0]
+CODE:00415117                 mov     dword ptr [edx+1Ch], offset off_442D90
+CODE:0041511E                 mov     ecx, [ebp+arg_0]
+CODE:00415121                 add     ecx, 20h ; ' '
+CODE:00415124                 push    ecx             ; this
+CODE:00415125                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041512A                 pop     ecx
+CODE:0041512B                 inc     dword ptr [edi+1Ch]
+CODE:0041512E                 mov     eax, [ebp+arg_0]
+CODE:00415131                 add     eax, 24h ; '$'
+CODE:00415134                 push    eax             ; this
+CODE:00415135                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041513A                 pop     ecx
+CODE:0041513B                 inc     dword ptr [edi+1Ch]
+CODE:0041513E                 mov     edx, [ebp+arg_0]
+CODE:00415141                 add     edx, 28h ; '('
+CODE:00415144                 push    edx             ; this
+CODE:00415145                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041514A                 pop     ecx
+CODE:0041514B                 inc     dword ptr [edi+1Ch]
+CODE:0041514E                 mov     ecx, [ebp+arg_0]
+CODE:00415151                 add     ecx, 2Ch ; ','
+CODE:00415154                 push    ecx             ; this
+CODE:00415155                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041515A                 pop     ecx
+CODE:0041515B                 inc     dword ptr [edi+1Ch]
+CODE:0041515E                 mov     eax, [ebp+arg_0]
+CODE:00415161                 add     eax, 30h ; '0'
+CODE:00415164                 push    eax             ; this
+CODE:00415165                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041516A                 pop     ecx
+CODE:0041516B                 inc     dword ptr [edi+1Ch]
+CODE:0041516E                 mov     edx, [ebp+arg_0]
+CODE:00415171                 add     edx, 34h ; '4'
+CODE:00415174                 push    edx             ; this
+CODE:00415175                 call    @string@$bctr$qv ; string::string(void)
+CODE:0041517A                 pop     ecx
+CODE:0041517B                 inc     dword ptr [edi+1Ch]
+CODE:0041517E                 mov     ebx, [ebp+arg_0]
+CODE:00415181                 add     ebx, 68h ; 'h'
+CODE:00415184                 mov     dword ptr [ebx], 1
+CODE:0041518A                 lea     esi, [ebx+4]
+CODE:0041518D                 mov     dword ptr [esi+1], offset off_43B500
+CODE:00415194                 push    0               ; void *
+CODE:00415196                 push    0               ; unsigned int
+CODE:00415198                 push    offset sub_417940 ; void *
+CODE:0041519D                 push    1               ; unsigned int
+CODE:0041519F                 push    1               ; unsigned int
+CODE:004151A1                 push    4               ; unsigned int
+CODE:004151A3                 push    4               ; unsigned int
+CODE:004151A5                 call    @$bnwa$qui      ; operator new[](uint)
+CODE:004151AA                 pop     ecx
+CODE:004151AB                 push    eax             ; void *
+CODE:004151AC                 call    @_vector_new_ldtc_$qpvuiuiuit1uit1 ; _vector_new_ldtc_(void *,uint,uint,uint,void *,uint,void *)
+CODE:004151B1                 add     esp, 1Ch
+CODE:004151B4                 mov     [esi+5], eax
+CODE:004151B7                 mov     dword ptr [esi+9], 1
+CODE:004151BE                 inc     dword ptr [edi+1Ch]
+CODE:004151C1                 mov     dword ptr [esi+1], offset off_4417E4
+CODE:004151C8                 add     dword ptr [edi+1Ch], 2
+CODE:004151CC                 mov     dword ptr [esi+1], offset off_441800
+CODE:004151D3                 xor     eax, eax
+CODE:004151D5                 mov     [esi+0Dh], eax
+CODE:004151D8                 mov     dword ptr [esi+11h], 2
+CODE:004151DF                 add     dword ptr [edi+1Ch], 3
+CODE:004151E3                 add     dword ptr [edi+1Ch], 4
+CODE:004151E7                 lea     eax, [ebx+19h]
+CODE:004151EA                 mov     dword ptr [eax], 2
+CODE:004151F0                 add     dword ptr [edi+1Ch], 5
+CODE:004151F4                 add     dword ptr [edi+1Ch], 6
+CODE:004151F8                 add     dword ptr [edi+1Ch], 7
+CODE:004151FC                 lea     eax, [ebx+1Dh]
+CODE:004151FF                 mov     dword ptr [eax], offset off_4402D4
+CODE:00415205                 inc     dword ptr [edi+1Ch]
+CODE:00415208                 lea     edx, [eax+4]
+CODE:0041520B                 mov     dword ptr [edx], offset off_4402C0
+CODE:00415211                 inc     dword ptr [edi+1Ch]
+CODE:00415214                 mov     dword ptr [eax], offset off_4402E8
+CODE:0041521A                 mov     dword ptr [eax+4], offset off_4402F8
+CODE:00415221                 add     dword ptr [edi+1Ch], 3
+CODE:00415225                 mov     dword ptr [ebx+25h], offset off_4417A0
+CODE:0041522C                 mov     dword ptr [ebx+1Dh], offset off_4417C0
+CODE:00415233                 mov     dword ptr [ebx+21h], offset off_4417D0
+CODE:0041523A                 add     dword ptr [edi+1Ch], 0Bh
+CODE:0041523E                 push    [ebp+arg_0]
+CODE:00415241                 call    sub_415560
+CODE:00415246                 pop     ecx
+CODE:00415247                 push    [ebp+arg_8]
+CODE:0041524A                 push    [ebp+arg_4]
+CODE:0041524D                 mov     ecx, [ebp+arg_0]
+CODE:00415250                 push    ecx
+CODE:00415251                 mov     eax, [ecx]
+CODE:00415253                 call    dword ptr [eax]
+CODE:00415255                 add     esp, 0Ch
+CODE:00415258                 mov     edx, [edi]
+CODE:0041525A                 mov     large fs:0, edx
+CODE:00415261                 mov     eax, [ebp+arg_0]
+CODE:00415264                 pop     edi
+CODE:00415265                 pop     esi
+CODE:00415266                 pop     ebx
+CODE:00415267                 mov     esp, ebp
+CODE:00415269                 pop     ebp
+CODE:0041526A                 retn
+CODE:0041526A sub_415093      endp
+CODE:0041526A
+CODE:0041526B

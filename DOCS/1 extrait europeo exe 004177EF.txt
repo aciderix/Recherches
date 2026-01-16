@@ -1,0 +1,146 @@
+004177EF
+CODE:004177EF ; =============== S U B R O U T I N E =======================================
+CODE:004177EF
+CODE:004177EF ; Attributes: bp-based frame
+CODE:004177EF
+CODE:004177EF ; int __cdecl sub_4177EF(int, int, int, TGauge *)
+CODE:004177EF sub_4177EF      proc near               ; CODE XREF: sub_4253C1+DF↓p
+CODE:004177EF
+CODE:004177EF var_34          = dword ptr -34h
+CODE:004177EF var_24          = word ptr -24h
+CODE:004177EF var_18          = dword ptr -18h
+CODE:004177EF var_10          = byte ptr -10h
+CODE:004177EF var_C           = byte ptr -0Ch
+CODE:004177EF var_8           = byte ptr -8
+CODE:004177EF var_4           = byte ptr -4
+CODE:004177EF arg_0           = dword ptr  8
+CODE:004177EF arg_4           = dword ptr  0Ch
+CODE:004177EF arg_8           = dword ptr  10h
+CODE:004177EF arg_C           = dword ptr  14h
+CODE:004177EF
+CODE:004177EF                 push    ebp
+CODE:004177F0                 mov     ebp, esp
+CODE:004177F2                 add     esp, 0FFFFFFCCh
+CODE:004177F5                 push    ebx
+CODE:004177F6                 push    esi
+CODE:004177F7                 push    edi
+CODE:004177F8                 mov     ebx, [ebp+arg_4]
+CODE:004177FB                 mov     esi, [ebp+arg_0]
+CODE:004177FE                 mov     eax, offset stru_442084
+CODE:00417803                 call    @__InitExceptBlockLDTC
+CODE:00417808                 mov     edx, [ebx]
+CODE:0041780A                 cmp     dword ptr [edx+6], 0
+CODE:0041780E                 jnz     loc_417899
+CODE:00417814                 lea     ecx, [ebp+var_34]
+CODE:00417817                 push    ecx             ; void *
+CODE:00417818                 push    0               ; unsigned __int8 *
+CODE:0041781A                 push    0               ; unsigned int
+CODE:0041781C                 push    0               ; unsigned int
+CODE:0041781E                 push    1               ; unsigned int
+CODE:00417820                 push    offset sub_403BE0 ; void *
+CODE:00417825                 push    0               ; void *
+CODE:00417827                 mov     [ebp+var_24], 8
+CODE:0041782D                 push    3D0h            ; unsigned int
+CODE:00417832                 push    offset aSceneCpp ; "scene.cpp"
+CODE:00417837                 push    offset aFnLength ; "fn.length()"
+CODE:0041783C                 push    offset aPrecondition_34 ; "Precondition"
+CODE:00417841                 lea     eax, [ebp+var_4]
+CODE:00417844                 push    eax             ; this
+CODE:00417845                 call    @xerror@MakeString$qpxct1t1ul ; xerror::MakeString(char *,char *,char *,ulong)
+CODE:0041784A                 add     esp, 14h
+CODE:0041784D                 lea     edx, [ebp+var_4]
+CODE:00417850                 push    edx             ; string *
+CODE:00417851                 inc     [ebp+var_18]
+CODE:00417854                 lea     ecx, [ebp+var_8]
+CODE:00417857                 push    ecx             ; this
+CODE:00417858                 call    @xmsg@$bctr$qrx6string ; xmsg::xmsg(string &)
+CODE:0041785D                 add     esp, 8
+CODE:00417860                 inc     [ebp+var_18]
+CODE:00417863                 mov     [ebp+var_24], 14h
+CODE:00417869                 dec     [ebp+var_18]
+CODE:0041786C                 push    2
+CODE:0041786E                 lea     eax, [ebp+var_4]
+CODE:00417871                 push    eax             ; this
+CODE:00417872                 call    @string@$bdtr$qv ; string::~string(void)
+CODE:00417877                 add     esp, 8
+CODE:0041787A                 mov     [ebp+var_24], 8
+CODE:00417880                 add     [ebp+var_18], 2
+CODE:00417884                 add     [ebp+var_18], 3
+CODE:00417888                 lea     edx, [ebp+var_8]
+CODE:0041788B                 push    edx             ; void *
+CODE:0041788C                 push    offset stru_403B88 ; void *
+CODE:00417891                 call    @_ThrowExceptionLDTC$qpvt1t1t1uiuiuipuct1 ; _ThrowExceptionLDTC(void *,void *,void *,void *,uint,uint,uint,uchar *,void *)
+CODE:00417896                 add     esp, 24h
+CODE:00417899
+CODE:00417899 loc_417899:                             ; CODE XREF: sub_4177EF+1F↑j
+CODE:00417899                 mov     [ebp+var_24], 20h ; ' '
+CODE:0041789F                 push    ebx             ; int
+CODE:004178A0                 lea     ecx, [ebp+var_C]
+CODE:004178A3                 push    ecx             ; string *
+CODE:004178A4                 call    sub_404711
+CODE:004178A9                 add     esp, 8
+CODE:004178AC                 lea     edi, [ebp+var_C]
+CODE:004178AF                 inc     [ebp+var_18]
+CODE:004178B2                 push    offset aIni     ; ".INI"
+CODE:004178B7                 lea     eax, [ebp+var_10]
+CODE:004178BA                 push    eax             ; this
+CODE:004178BB                 call    @string@$bctr$qpxc ; string::string(char *)
+CODE:004178C0                 add     esp, 8
+CODE:004178C3                 inc     [ebp+var_18]
+CODE:004178C6                 lea     edx, [ebp+var_10]
+CODE:004178C9                 push    edx             ; string *
+CODE:004178CA                 push    edi             ; this
+CODE:004178CB                 call    @string@compare$xqrx6string ; string::compare(string &)
+CODE:004178D0                 add     esp, 8
+CODE:004178D3                 test    eax, eax
+CODE:004178D5                 setz    cl
+CODE:004178D8                 and     ecx, 1
+CODE:004178DB                 push    ecx
+CODE:004178DC                 dec     [ebp+var_18]
+CODE:004178DF                 push    2
+CODE:004178E1                 lea     eax, [ebp+var_10]
+CODE:004178E4                 push    eax             ; this
+CODE:004178E5                 call    @string@$bdtr$qv ; string::~string(void)
+CODE:004178EA                 add     esp, 8
+CODE:004178ED                 pop     edx
+CODE:004178EE                 push    edx
+CODE:004178EF                 dec     [ebp+var_18]
+CODE:004178F2                 push    2
+CODE:004178F4                 lea     ecx, [ebp+var_C]
+CODE:004178F7                 push    ecx             ; this
+CODE:004178F8                 call    @string@$bdtr$qv ; string::~string(void)
+CODE:004178FD                 add     esp, 8
+CODE:00417900                 pop     eax
+CODE:00417901                 test    eax, eax
+CODE:00417903                 jz      short loc_41791B
+CODE:00417905                 push    [ebp+arg_C]     ; TGauge *
+CODE:00417908                 push    [ebp+arg_8]     ; int
+CODE:0041790B                 mov     edx, [ebx]
+CODE:0041790D                 push    dword ptr [edx+2] ; char *
+CODE:00417910                 push    esi             ; int
+CODE:00417911                 call    sub_417031
+CODE:00417916                 add     esp, 10h
+CODE:00417919                 jmp     short loc_41792F
+CODE:0041791B ; ---------------------------------------------------------------------------
+CODE:0041791B
+CODE:0041791B loc_41791B:                             ; CODE XREF: sub_4177EF+114↑j
+CODE:0041791B                 push    [ebp+arg_C]     ; TGauge *
+CODE:0041791E                 push    [ebp+arg_8]     ; int
+CODE:00417921                 mov     ecx, [ebx]
+CODE:00417923                 push    dword ptr [ecx+2] ; arglist
+CODE:00417926                 push    esi             ; int
+CODE:00417927                 call    sub_41721D
+CODE:0041792C                 add     esp, 10h
+CODE:0041792F
+CODE:0041792F loc_41792F:                             ; CODE XREF: sub_4177EF+12A↑j
+CODE:0041792F                 mov     edx, [ebp+var_34]
+CODE:00417932                 mov     large fs:0, edx
+CODE:00417939                 pop     edi
+CODE:0041793A                 pop     esi
+CODE:0041793B                 pop     ebx
+CODE:0041793C                 mov     esp, ebp
+CODE:0041793E                 pop     ebp
+CODE:0041793F                 retn
+CODE:0041793F sub_4177EF      endp
+CODE:0041793F
+CODE:00417940

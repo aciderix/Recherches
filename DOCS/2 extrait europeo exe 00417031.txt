@@ -1,0 +1,216 @@
+CODE:00417031
+CODE:00417031 ; =============== S U B R O U T I N E =======================================
+CODE:00417031
+CODE:00417031 ; Attributes: bp-based frame
+CODE:00417031
+CODE:00417031 ; int __cdecl sub_417031(int, char *, int, TGauge *)
+CODE:00417031 sub_417031      proc near               ; CODE XREF: sub_4177EF+122↓p
+CODE:00417031
+CODE:00417031 var_140         = byte ptr -140h
+CODE:00417031 var_40          = dword ptr -40h
+CODE:00417031 var_3C          = dword ptr -3Ch
+CODE:00417031 var_38          = dword ptr -38h
+CODE:00417031 var_34          = dword ptr -34h
+CODE:00417031 var_24          = word ptr -24h
+CODE:00417031 var_18          = dword ptr -18h
+CODE:00417031 var_10          = dword ptr -10h
+CODE:00417031 var_C           = byte ptr -0Ch
+CODE:00417031 var_8           = byte ptr -8
+CODE:00417031 arg_0           = dword ptr  8
+CODE:00417031 arg_4           = dword ptr  0Ch
+CODE:00417031 arg_8           = dword ptr  10h
+CODE:00417031 arg_C           = dword ptr  14h
+CODE:00417031
+CODE:00417031                 push    ebp
+CODE:00417032                 mov     ebp, esp
+CODE:00417034                 add     esp, 0FFFFFEC0h
+CODE:0041703A                 push    ebx
+CODE:0041703B                 push    esi
+CODE:0041703C                 push    edi
+CODE:0041703D                 mov     ebx, [ebp+arg_0]
+CODE:00417040                 mov     eax, offset stru_441F4C
+CODE:00417045                 call    @__InitExceptBlockLDTC
+CODE:0041704A                 push    ebx
+CODE:0041704B                 call    sub_416FCD
+CODE:00417050                 pop     ecx
+CODE:00417051                 mov     [ebp+var_24], 8
+CODE:00417057                 push    [ebp+arg_4]     ; char *
+CODE:0041705A                 push    offset aMain    ; "MAIN"
+CODE:0041705F                 lea     edx, [ebp+var_8]
+CODE:00417062                 push    edx             ; this
+CODE:00417063                 call    @TProfile@$bctr$qpxct1 ; TProfile::TProfile(char *,char *)
+CODE:00417068                 add     esp, 0Ch
+CODE:0041706B                 inc     [ebp+var_18]
+CODE:0041706E                 mov     [ebp+var_24], 14h
+CODE:00417074                 push    0               ; int
+CODE:00417076                 push    offset aAreas   ; "AREAS"
+CODE:0041707B                 lea     ecx, [ebp+var_8]
+CODE:0041707E                 push    ecx             ; this
+CODE:0041707F                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:00417084                 add     esp, 0Ch
+CODE:00417087                 mov     edi, eax
+CODE:00417089                 test    edi, edi
+CODE:0041708B                 jbe     loc_4171F7
+CODE:00417091                 push    offset byte_442AF4 ; char *
+CODE:00417096                 push    100h            ; unsigned int
+CODE:0041709B                 lea     eax, [ebp+var_140]
+CODE:004170A1                 push    eax             ; char *
+CODE:004170A2                 push    offset aTitle   ; "TITLE"
+CODE:004170A7                 lea     edx, [ebp+var_8]
+CODE:004170AA                 push    edx             ; this
+CODE:004170AB                 call    @TProfile@GetString$qpxcpcuit1 ; TProfile::GetString(char *,char *,uint,char *)
+CODE:004170B0                 add     esp, 14h
+CODE:004170B3                 mov     [ebp+var_24], 20h ; ' '
+CODE:004170B9                 lea     ecx, [ebp+var_140]
+CODE:004170BF                 push    ecx             ; char *
+CODE:004170C0                 lea     eax, [ebp+var_C]
+CODE:004170C3                 push    eax             ; this
+CODE:004170C4                 call    @string@$bctr$qpxc ; string::string(char *)
+CODE:004170C9                 add     esp, 8
+CODE:004170CC                 inc     [ebp+var_18]
+CODE:004170CF                 push    0FFFFFFFFh      ; unsigned int
+CODE:004170D1                 push    0               ; unsigned int
+CODE:004170D3                 lea     edx, [ebp+var_C]
+CODE:004170D6                 push    edx             ; string *
+CODE:004170D7                 lea     ecx, [ebx+31h]
+CODE:004170DA                 push    ecx             ; this
+CODE:004170DB                 call    @string@assign$qrx6stringuiui ; string::assign(string &,uint,uint)
+CODE:004170E0                 add     esp, 10h
+CODE:004170E3                 dec     [ebp+var_18]
+CODE:004170E6                 push    2
+CODE:004170E8                 lea     eax, [ebp+var_C]
+CODE:004170EB                 push    eax             ; this
+CODE:004170EC                 call    @string@$bdtr$qv ; string::~string(void)
+CODE:004170F1                 add     esp, 8
+CODE:004170F4                 mov     edx, [ebp+arg_8]
+CODE:004170F7                 mov     dword ptr [edx+4], 20000h
+CODE:004170FE                 push    0               ; int
+CODE:00417100                 push    offset aExitId  ; "EXIT_ID"
+CODE:00417105                 lea     ecx, [ebp+var_8]
+CODE:00417108                 push    ecx             ; this
+CODE:00417109                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:0041710E                 add     esp, 0Ch
+CODE:00417111                 mov     [ebx+3Dh], eax
+CODE:00417114                 push    0               ; int
+CODE:00417116                 push    offset aIndexId ; "INDEX_ID"
+CODE:0041711B                 lea     eax, [ebp+var_8]
+CODE:0041711E                 push    eax             ; this
+CODE:0041711F                 call    @TProfile@GetInt$qpxci ; TProfile::GetInt(char *,int)
+CODE:00417124                 add     esp, 0Ch
+CODE:00417127                 mov     [ebx+41h], eax
+CODE:0041712A                 lea     esi, [edi+1]
+CODE:0041712D                 cmp     esi, [ebx]
+CODE:0041712F                 jge     short loc_41714C
+CODE:00417131                 sub     esi, [ebx]
+CODE:00417133                 add     esi, [ebx+0Dh]
+CODE:00417136                 mov     [ebp+var_38], esi
+CODE:00417139                 push    0
+CODE:0041713B                 push    [ebp+var_38]
+CODE:0041713E                 lea     eax, [ebx+4]
+CODE:00417141                 push    eax
+CODE:00417142                 call    sub_406954
+CODE:00417147                 add     esp, 0Ch
+CODE:0041714A                 jmp     short loc_41717E
+CODE:0041714C ; ---------------------------------------------------------------------------
+CODE:0041714C
+CODE:0041714C loc_41714C:                             ; CODE XREF: sub_417031+FE↑j
+CODE:0041714C                 mov     edx, [ebx+0Dh]
+CODE:0041714F                 mov     [ebp+var_3C], edx
+CODE:00417152                 cmp     [ebp+var_3C], 0FFFFFFFFh
+CODE:00417156                 jnz     short loc_41715F
+CODE:00417158                 mov     ecx, 7FFFFFFFh
+CODE:0041715D                 jmp     short loc_417164
+CODE:0041715F ; ---------------------------------------------------------------------------
+CODE:0041715F
+CODE:0041715F loc_41715F:                             ; CODE XREF: sub_417031+125↑j
+CODE:0041715F                 mov     ecx, [ebp+var_3C]
+CODE:00417162                 add     ecx, [ebx]
+CODE:00417164
+CODE:00417164 loc_417164:                             ; CODE XREF: sub_417031+12C↑j
+CODE:00417164                 cmp     esi, ecx
+CODE:00417166                 jl      short loc_41717E
+CODE:00417168                 sub     esi, [ebx]
+CODE:0041716A                 mov     [ebp+var_40], esi
+CODE:0041716D                 push    0
+CODE:0041716F                 push    [ebp+var_40]
+CODE:00417172                 lea     eax, [ebx+4]
+CODE:00417175                 push    eax
+CODE:00417176                 call    sub_406954
+CODE:0041717B                 add     esp, 0Ch
+CODE:0041717E
+CODE:0041717E loc_41717E:                             ; CODE XREF: sub_417031+119↑j
+CODE:0041717E                                         ; sub_417031+135↑j
+CODE:0041717E                 cmp     [ebp+arg_C], 0
+CODE:00417182                 jz      short loc_417192
+CODE:00417184                 push    edi             ; int
+CODE:00417185                 push    0               ; int
+CODE:00417187                 push    [ebp+arg_C]     ; this
+CODE:0041718A                 call    @TGauge@SetRange$qii ; TGauge::SetRange(int,int)
+CODE:0041718F                 add     esp, 0Ch
+CODE:00417192
+CODE:00417192 loc_417192:                             ; CODE XREF: sub_417031+151↑j
+CODE:00417192                 mov     esi, 1
+CODE:00417197                 mov     [ebp+var_24], 14h
+CODE:0041719D                 cmp     edi, esi
+CODE:0041719F                 jb      short loc_4171F7
+CODE:004171A1
+CODE:004171A1 loc_4171A1:                             ; CODE XREF: sub_417031+1C4↓j
+CODE:004171A1                 push    99h             ; unsigned int
+CODE:004171A6                 call    @$bnew$qui      ; operator new(uint)
+CODE:004171AB                 pop     ecx
+CODE:004171AC                 mov     [ebp+var_10], eax
+CODE:004171AF                 test    eax, eax
+CODE:004171B1                 jz      short loc_4171D3
+CODE:004171B3                 mov     [ebp+var_24], 38h ; '8'
+CODE:004171B9                 push    [ebp+arg_4]
+CODE:004171BC                 push    esi
+CODE:004171BD                 push    [ebp+var_10]
+CODE:004171C0                 call    sub_415093
+CODE:004171C5                 add     esp, 0Ch
+CODE:004171C8                 mov     [ebp+var_24], 2Ch ; ','
+CODE:004171CE                 mov     eax, [ebp+var_10]
+CODE:004171D1                 jmp     short loc_4171D6
+CODE:004171D3 ; ---------------------------------------------------------------------------
+CODE:004171D3
+CODE:004171D3 loc_4171D3:                             ; CODE XREF: sub_417031+180↑j
+CODE:004171D3                 mov     eax, [ebp+var_10]
+CODE:004171D6
+CODE:004171D6 loc_4171D6:                             ; CODE XREF: sub_417031+1A0↑j
+CODE:004171D6                 push    eax
+CODE:004171D7                 lea     edx, [ebx+4]
+CODE:004171DA                 push    edx
+CODE:004171DB                 call    sub_426399
+CODE:004171E0                 add     esp, 8
+CODE:004171E3                 cmp     [ebp+arg_C], 0
+CODE:004171E7                 jz      short loc_4171F2
+CODE:004171E9                 push    [ebp+arg_C]     ; this
+CODE:004171EC                 call    @TGauge@StepIt$qv ; TGauge::StepIt(void)
+CODE:004171F1                 pop     ecx
+CODE:004171F2
+CODE:004171F2 loc_4171F2:                             ; CODE XREF: sub_417031+1B6↑j
+CODE:004171F2                 inc     esi
+CODE:004171F3                 cmp     edi, esi
+CODE:004171F5                 jnb     short loc_4171A1
+CODE:004171F7
+CODE:004171F7 loc_4171F7:                             ; CODE XREF: sub_417031+5A↑j
+CODE:004171F7                                         ; sub_417031+16E↑j
+CODE:004171F7                 mov     al, 1
+CODE:004171F9                 push    eax
+CODE:004171FA                 dec     [ebp+var_18]
+CODE:004171FD                 push    2
+CODE:004171FF                 lea     edx, [ebp+var_8]
+CODE:00417202                 push    edx             ; this
+CODE:00417203                 call    @TProfile@$bdtr$qv ; TProfile::~TProfile(void)
+CODE:00417208                 add     esp, 8
+CODE:0041720B                 pop     eax
+CODE:0041720C                 mov     edx, [ebp+var_34]
+CODE:0041720F                 mov     large fs:0, edx
+CODE:00417216                 pop     edi
+CODE:00417217                 pop     esi
+CODE:00417218                 pop     ebx
+CODE:00417219                 mov     esp, ebp
+CODE:0041721B                 pop     ebp
+CODE:0041721C                 retn
+CODE:0041721C sub_417031      endp
+CODE:0041721C
+CODE:0041721D
