@@ -106,11 +106,12 @@ def analyze_function(binary, addr, struct_name):
     print("[2/5] Cross-References (who calls this)...")
     xrefs = run_r2_command(binary, addr, 'axt')
     if xrefs and 'Error' not in xrefs:
-        xref_lines = xrefs.split('\n')[:10]
-        for line in xref_lines:
+        xref_lines = xrefs.split('\n')
+        for line in xref_lines[:10]:
             print(f"  {line}")
-        if len(xrefs.split('\n')) > 10:
-            print(f"  ... and {len(xrefs.split('\n')) - 10} more")
+        xref_count = len(xref_lines)
+        if xref_count > 10:
+            print(f"  ... and {xref_count - 10} more")
     else:
         print("  No xrefs found")
     print()
@@ -129,8 +130,9 @@ def analyze_function(binary, addr, struct_name):
         if strings_found:
             for s in strings_found[:15]:  # First 15 strings
                 print(f"  {s}")
-            if len(strings_found) > 15:
-                print(f"  ... and {len(strings_found) - 15} more")
+            str_count = len(strings_found)
+            if str_count > 15:
+                print(f"  ... and {str_count - 15} more")
         else:
             print("  No strings found in disassembly")
     print()
@@ -139,11 +141,12 @@ def analyze_function(binary, addr, struct_name):
     print("[4/5] Function Calls (what this calls)...")
     calls = run_r2_command(binary, addr, 'axf @ $F')
     if calls and 'Error' not in calls:
-        call_lines = calls.split('\n')[:15]
-        for line in call_lines:
+        call_lines = calls.split('\n')
+        for line in call_lines[:15]:
             print(f"  {line}")
-        if len(calls.split('\n')) > 15:
-            print(f"  ... and {len(calls.split('\n')) - 15} more")
+        call_count = len(call_lines)
+        if call_count > 15:
+            print(f"  ... and {call_count - 15} more")
     else:
         print("  No function calls found")
     print()

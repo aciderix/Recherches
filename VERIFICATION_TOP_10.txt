@@ -1,0 +1,496 @@
+================================================================================
+TOP 10 CANDIDATES VERIFICATION
+Using already extracted LoadFromINI data
+================================================================================
+
+================================================================================
+Analyzing: TVNAviMedia @ 0x00405B50
+Expected: Video/AVI
+================================================================================
+
+[Metadata]
+  Rank: #61
+  Instructions: 246
+  Unique strings: 10
+
+[String Analysis]
+  Found 10 strings:
+     1. "Cur < Upper"
+     2. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     3. "Precondition"
+     4. "Lim > 0 && Data != 0 && index < Lim"
+     5. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     6. "Precondition"
+     7. "-m@"
+     8. "Illegal mode in _vector_new_"
+     9. "Illegal dtorMode in _vector_new_"
+    10. "Pure virtual function called"
+
+[First 20 Instructions]
+  00405B50  push     ebp
+  00405B51  mov      ebp, esp
+  00405B53  add      esp, -0x70
+  00405B56  push     ebx
+  00405B57  push     esi
+  00405B58  push     edi
+  00405B59  mov      ebx, dword ptr [ebp + 0xc]
+  00405B5C  mov      edi, dword ptr [ebp + 8]
+  00405B5F  lea      esi, [ebp - 0x3c]
+  00405B62  mov      eax, 0x43abd8
+  00405B67  call     0x403618
+  00405B6C  cmp      ebx, edi
+  00405B6E  jne      0x405b8c
+  00405B70  mov      eax, edi
+  00405B72  mov      edx, dword ptr [esi]
+  00405B74  mov      dword ptr fs:[0], edx
+  00405B7B  jmp      0x405e15
+  00405B80  jmp      0x405b8c
+  00405B82  cmp      dword ptr [edi + 0x19], 2
+  00405B86  je       0x405b8c
+
+[Verdict]
+  Confidence: HIGH ✓✓✓
+  Instructions: 246
+  Strings: 10
+
+================================================================================
+Analyzing: TVNBitmap @ 0x0041D902
+Expected: DIB/Bitmap
+================================================================================
+
+[Metadata]
+  Rank: #144
+  Instructions: 126
+  Unique strings: 3
+
+[String Analysis]
+  Found 3 strings:
+     1. "Dib && palette" ⭐ BITMAP RELATED
+     2. "gdiobjec.cpp" ⭐ GDI RELATED
+     3. "Precondition"
+
+[First 20 Instructions]
+  0041D902  push     ebp
+  0041D903  mov      ebp, esp
+  0041D905  add      esp, -0x30
+  0041D908  push     ebx
+  0041D909  push     esi
+  0041D90A  push     edi
+  0041D90B  mov      edi, dword ptr [ebp + 0xc]
+  0041D90E  mov      ebx, dword ptr [ebp + 8]
+  0041D911  mov      eax, 0x444554
+  0041D916  call     0x403618
+  0041D91B  cmp      dword ptr [ebx + 9], 0
+  0041D91F  je       0x41d929
+  0041D921  test     edi, edi
+  0041D923  jne      0x41d9ab
+  0041D929  lea      edx, [ebp - 0x2c]
+  0041D92C  push     edx
+  0041D92D  push     0
+  0041D92F  push     0
+  0041D931  push     0
+  0041D933  push     1
+
+[Verdict]
+  Confidence: MEDIUM ✓✓
+  Instructions: 126
+  Strings: 3
+
+================================================================================
+Analyzing: TVNHtmlText @ 0x0041FAA4
+Expected: HTML rendering
+================================================================================
+
+[Metadata]
+  Rank: #31
+  Instructions: 147
+  Unique strings: 2
+
+[String Analysis]
+  Found 2 strings:
+     1. "HREF" ⭐ HTML RELATED
+     2. "."'"
+
+[First 20 Instructions]
+  0041FAA4  push     ebp
+  0041FAA5  mov      ebp, esp
+  0041FAA7  add      esp, -0x40
+  0041FAAA  push     ebx
+  0041FAAB  push     esi
+  0041FAAC  push     edi
+  0041FAAD  mov      edi, dword ptr [ebp + 0x10]
+  0041FAB0  mov      esi, dword ptr [ebp + 0xc]
+  0041FAB3  mov      eax, 0x444f0c
+  0041FAB8  call     0x403618
+  0041FABD  mov      dword ptr [edi], 0xffffffff
+  0041FAC3  mov      word ptr [ebp - 0x28], 0x14
+  0041FAC9  push     0x446461
+  0041FACE  lea      edx, [ebp - 4]
+  0041FAD1  push     edx
+  0041FAD2  call     0x438e6e
+  0041FAD7  add      esp, 8
+  0041FADA  inc      dword ptr [ebp - 0x1c]
+  0041FADD  push     0
+  0041FADF  lea      ecx, [ebp - 4]
+
+[Verdict]
+  Confidence: MEDIUM ✓✓
+  Instructions: 147
+  Strings: 2
+
+================================================================================
+Analyzing: TVNCDAMedia @ 0x004357CF
+Expected: CD audio
+================================================================================
+
+[Metadata]
+  Rank: #109
+  Instructions: 61
+  Unique strings: 32
+
+[String Analysis]
+  Found 32 strings:
+     1. "Lim == 0 || Data != 0 && index < Lim"
+     2. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     3. "Precondition"
+     4. "SYSTEM"
+     5. "system"
+     6. "Cur < Upper"
+     7. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     8. "Precondition"
+     9. "Lim > 0 && Data != 0 && index < Lim"
+    10. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    11. "Precondition"
+    12. "Cur < Upper"
+    13. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    14. "Precondition"
+    15. "Lim > 0 && Data != 0 && index < Lim"
+    ... and 17 more
+
+[First 20 Instructions]
+  004357CF  push     ebp
+  004357D0  mov      ebp, esp
+  004357D2  push     ebx
+  004357D3  push     esi
+  004357D4  push     edi
+  004357D5  mov      ebx, dword ptr [ebp + 8]
+  004357D8  push     0x44ec70
+  004357DD  mov      eax, dword ptr [0x44ec9d]
+  004357E2  call     dword ptr [eax + 4]
+  004357E5  pop      ecx
+  004357E6  test     al, al
+  004357E8  je       0x435844
+  004357EA  push     ebx
+  004357EB  mov      edx, dword ptr [ebx + 8]
+  004357EE  call     dword ptr [edx + 0x7c]
+  004357F1  pop      ecx
+  004357F2  test     eax, eax
+  004357F4  jne      0x435837
+  004357F6  mov      esi, dword ptr [0x44ecb5]
+  004357FC  mov      edi, esi
+
+[Verdict]
+  Confidence: HIGH ✓✓✓
+  Instructions: 61
+  Strings: 32
+
+================================================================================
+Analyzing: TVNWaveMedia @ 0x00437289
+Expected: Wave audio
+================================================================================
+
+[Metadata]
+  Rank: #91
+  Instructions: 20
+  Unique strings: 0
+
+[String Analysis]
+  ⚠️  No strings found (wrapper function?)
+
+[First 20 Instructions]
+  00437289  push     ebp
+  0043728A  mov      ebp, esp
+  0043728C  push     ebx
+  0043728D  mov      ebx, dword ptr [ebp + 8]
+  00437290  test     ebx, ebx
+  00437292  je       0x4372b6
+  00437294  mov      dword ptr [ebx], 0x44d984
+  0043729A  cmp      dword ptr [ebx + 8], 0
+  0043729E  je       0x4372a9
+  004372A0  push     dword ptr [ebx + 8]
+  004372A3  call     0x438f82
+  004372A8  pop      ecx
+  004372A9  test     byte ptr [ebp + 0xc], 1
+  004372AD  je       0x4372b6
+  004372AF  push     ebx
+  004372B0  call     0x438f16
+  004372B5  pop      ecx
+  004372B6  pop      ebx
+  004372B7  pop      ebp
+  004372B8  ret      
+
+[Verdict]
+  Confidence: VERY LOW ✗ (small wrapper?)
+  Instructions: 20
+  Strings: 0
+
+================================================================================
+Analyzing: TVNMidiMedia @ 0x00437289
+Expected: MIDI audio
+================================================================================
+
+[Metadata]
+  Rank: #91
+  Instructions: 20
+  Unique strings: 0
+
+[String Analysis]
+  ⚠️  No strings found (wrapper function?)
+
+[First 20 Instructions]
+  00437289  push     ebp
+  0043728A  mov      ebp, esp
+  0043728C  push     ebx
+  0043728D  mov      ebx, dword ptr [ebp + 8]
+  00437290  test     ebx, ebx
+  00437292  je       0x4372b6
+  00437294  mov      dword ptr [ebx], 0x44d984
+  0043729A  cmp      dword ptr [ebx + 8], 0
+  0043729E  je       0x4372a9
+  004372A0  push     dword ptr [ebx + 8]
+  004372A3  call     0x438f82
+  004372A8  pop      ecx
+  004372A9  test     byte ptr [ebp + 0xc], 1
+  004372AD  je       0x4372b6
+  004372AF  push     ebx
+  004372B0  call     0x438f16
+  004372B5  pop      ecx
+  004372B6  pop      ebx
+  004372B7  pop      ebp
+  004372B8  ret      
+
+[Verdict]
+  Confidence: VERY LOW ✗ (small wrapper?)
+  Instructions: 20
+  Strings: 0
+
+================================================================================
+Analyzing: TVNBmpImg @ 0x004357CF
+Expected: Bitmap image
+================================================================================
+
+[Metadata]
+  Rank: #109
+  Instructions: 61
+  Unique strings: 32
+
+[String Analysis]
+  Found 32 strings:
+     1. "Lim == 0 || Data != 0 && index < Lim"
+     2. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     3. "Precondition"
+     4. "SYSTEM"
+     5. "system"
+     6. "Cur < Upper"
+     7. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     8. "Precondition"
+     9. "Lim > 0 && Data != 0 && index < Lim"
+    10. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    11. "Precondition"
+    12. "Cur < Upper"
+    13. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    14. "Precondition"
+    15. "Lim > 0 && Data != 0 && index < Lim"
+    ... and 17 more
+
+[First 20 Instructions]
+  004357CF  push     ebp
+  004357D0  mov      ebp, esp
+  004357D2  push     ebx
+  004357D3  push     esi
+  004357D4  push     edi
+  004357D5  mov      ebx, dword ptr [ebp + 8]
+  004357D8  push     0x44ec70
+  004357DD  mov      eax, dword ptr [0x44ec9d]
+  004357E2  call     dword ptr [eax + 4]
+  004357E5  pop      ecx
+  004357E6  test     al, al
+  004357E8  je       0x435844
+  004357EA  push     ebx
+  004357EB  mov      edx, dword ptr [ebx + 8]
+  004357EE  call     dword ptr [edx + 0x7c]
+  004357F1  pop      ecx
+  004357F2  test     eax, eax
+  004357F4  jne      0x435837
+  004357F6  mov      esi, dword ptr [0x44ecb5]
+  004357FC  mov      edi, esi
+
+[Verdict]
+  Confidence: HIGH ✓✓✓
+  Instructions: 61
+  Strings: 32
+
+================================================================================
+Analyzing: TVNGdiObject @ 0x0041EF0A
+Expected: GDI object
+================================================================================
+
+[Metadata]
+  Rank: #15
+  Instructions: 119
+  Unique strings: 0
+
+[String Analysis]
+  ⚠️  No strings found (wrapper function?)
+
+[First 20 Instructions]
+  0041EF0A  push     ebp
+  0041EF0B  mov      ebp, esp
+  0041EF0D  add      esp, -0x24
+  0041EF10  push     ebx
+  0041EF11  push     esi
+  0041EF12  mov      ebx, dword ptr [ebp + 8]
+  0041EF15  mov      eax, 0x444858
+  0041EF1A  call     0x403618
+  0041EF1F  test     ebx, ebx
+  0041EF21  je       0x41ef51
+  0041EF23  add      dword ptr [ebp - 8], 3
+  0041EF27  sub      dword ptr [ebp - 8], 2
+  0041EF2B  add      dword ptr [ebp - 8], 2
+  0041EF2F  dec      dword ptr [ebp - 8]
+  0041EF32  mov      dword ptr [ebx + 1], 0x43b500
+  0041EF39  push     dword ptr [ebx + 5]
+  0041EF3C  call     0x438f82
+  0041EF41  pop      ecx
+  0041EF42  test     byte ptr [ebp + 0xc], 1
+  0041EF46  je       0x41ef51
+
+[Verdict]
+  Confidence: VERY LOW ✗ (small wrapper?)
+  Instructions: 119
+  Strings: 0
+
+================================================================================
+Analyzing: TVNEventCommand @ 0x00411D4D
+Expected: Event/command
+================================================================================
+
+[Metadata]
+  Rank: #1
+  Instructions: 77
+  Unique strings: 2
+
+[String Analysis]
+  Found 2 strings:
+     1. "!EA"
+     2. "Illegal mode in _vector_delete_"
+
+[First 20 Instructions]
+  00411D4D  push     ebp
+  00411D4E  mov      ebp, esp
+  00411D50  add      esp, -0x28
+  00411D53  push     ebx
+  00411D54  push     esi
+  00411D55  lea      esi, [ebp - 0x28]
+  00411D58  mov      eax, 0x4404d8
+  00411D5D  call     0x403618
+  00411D62  mov      dword ptr [esi + 0x1c], 0xf
+  00411D69  cmp      dword ptr [ebp + 8], 0
+  00411D6D  je       0x411e4d
+  00411D73  mov      word ptr [esi + 0x10], 8
+  00411D79  mov      edx, dword ptr [ebp + 8]
+  00411D7C  mov      dword ptr [edx], 0x44181c
+  00411D82  mov      ecx, dword ptr [ebp + 8]
+  00411D85  mov      dword ptr [ecx + 4], 0x441848
+  00411D8C  mov      eax, dword ptr [ebp + 8]
+  00411D8F  push     eax
+  00411D90  mov      edx, dword ptr [eax]
+  00411D92  call     dword ptr [edx + 0xc]
+
+[Verdict]
+  Confidence: MEDIUM ✓✓
+  Instructions: 77
+  Strings: 2
+
+================================================================================
+Analyzing: TVNToolBar @ 0x004357CF
+Expected: Toolbar UI
+================================================================================
+
+[Metadata]
+  Rank: #109
+  Instructions: 61
+  Unique strings: 32
+
+[String Analysis]
+  Found 32 strings:
+     1. "Lim == 0 || Data != 0 && index < Lim"
+     2. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     3. "Precondition"
+     4. "SYSTEM"
+     5. "system"
+     6. "Cur < Upper"
+     7. "C:\BC5\INCLUDE\classlib/vectimp.h"
+     8. "Precondition"
+     9. "Lim > 0 && Data != 0 && index < Lim"
+    10. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    11. "Precondition"
+    12. "Cur < Upper"
+    13. "C:\BC5\INCLUDE\classlib/vectimp.h"
+    14. "Precondition"
+    15. "Lim > 0 && Data != 0 && index < Lim"
+    ... and 17 more
+
+[First 20 Instructions]
+  004357CF  push     ebp
+  004357D0  mov      ebp, esp
+  004357D2  push     ebx
+  004357D3  push     esi
+  004357D4  push     edi
+  004357D5  mov      ebx, dword ptr [ebp + 8]
+  004357D8  push     0x44ec70
+  004357DD  mov      eax, dword ptr [0x44ec9d]
+  004357E2  call     dword ptr [eax + 4]
+  004357E5  pop      ecx
+  004357E6  test     al, al
+  004357E8  je       0x435844
+  004357EA  push     ebx
+  004357EB  mov      edx, dword ptr [ebx + 8]
+  004357EE  call     dword ptr [edx + 0x7c]
+  004357F1  pop      ecx
+  004357F2  test     eax, eax
+  004357F4  jne      0x435837
+  004357F6  mov      esi, dword ptr [0x44ecb5]
+  004357FC  mov      edi, esi
+
+[Verdict]
+  Confidence: HIGH ✓✓✓
+  Instructions: 61
+  Strings: 32
+
+
+================================================================================
+SUMMARY
+================================================================================
+
+Structure            Address      Instr    Strings  Confidence
+--------------------------------------------------------------------------------
+TVNAviMedia          0x00405B50  246      10       HIGH ✓✓✓
+TVNBitmap            0x0041D902  126      3        MEDIUM ✓✓
+TVNHtmlText          0x0041FAA4  147      2        MEDIUM ✓✓
+TVNCDAMedia          0x004357CF  61       32       HIGH ✓✓✓
+TVNWaveMedia         0x00437289  20       0        VERY LOW ✗ (small wrapper?)
+TVNMidiMedia         0x00437289  20       0        VERY LOW ✗ (small wrapper?)
+TVNBmpImg            0x004357CF  61       32       HIGH ✓✓✓
+TVNGdiObject         0x0041EF0A  119      0        VERY LOW ✗ (small wrapper?)
+TVNEventCommand      0x00411D4D  77       2        MEDIUM ✓✓
+TVNToolBar           0x004357CF  61       32       HIGH ✓✓✓
+
+================================================================================
+BY CONFIDENCE LEVEL
+================================================================================
+
+HIGH confidence (4): TVNAviMedia, TVNCDAMedia, TVNBmpImg, TVNToolBar
+MEDIUM confidence (3): TVNBitmap, TVNHtmlText, TVNEventCommand
+LOW confidence (3): TVNWaveMedia, TVNMidiMedia, TVNGdiObject
+
