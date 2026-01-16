@@ -54,8 +54,8 @@ TVN_STRUCTURES = {
     "TVNBitmap": None,
     "TVNGdiObject": None,
     "TVNHtmlText": None,
-    "TVNImageObject": None,
-    "TVNTextObject": None,
+    "TVNImageObject": 0x0042A517,  # Found by standalone vtable finder
+    "TVNTextObject": 0x0042A3D0,   # Found by standalone vtable finder
     "TVNBmpImg": None,
 }
 
