@@ -90,7 +90,7 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 | **'l'** | 12 | 0x00432297 | MIDI Music | 94 | 6.4% | ✓ |
 | **'h'** | 8 | 0x00431B70 | Tooltip | 50 | 3.4% | ✓ |
 | **'g'** | 7 | 0x00431B2B | Tooltip variant | 44 | 3.0% | ✓ |
-| **'e'** | 5 | 0x004318EE | Unknown (UI?) | 35 | 2.4% | ⏳ |
+| **'e'** | 5 | 0x004318EE | Audio+Image | 35 | 2.4% | ✓ |
 | **'j'** | 10 | 0x00432201 | Bitmaps | 34 | 2.3% | ✓ |
 | **'k'** | 11 | 0x0043224C | Audio WAV | 11 | 0.8% | ✓ |
 | **'f'** | 6 | 0x0043198B | Navigation | 11 | 0.8% | ✓ |
@@ -103,7 +103,7 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 
 ## Handlers Analysés
 
-### Handlers Média (8 analysés sur 43)
+### Handlers Analysés (9 sur 43 - 20.9%)
 
 #### 'f' (6) - Navigation @ 0x0043198B
 
@@ -236,17 +236,35 @@ call 0x428373    ; sub_428373 = moteur logique
 
 ---
 
-### Handler À Analyser
+#### 'e' (5) - Audio+Image @ 0x004318EE ✅ ANALYSÉ
 
-#### 'e' (5) @ 0x004318EE ⏳ EN COURS
+**Fonction**: Handler combiné multimédia (Audio + Image)
+
+**Mécanisme découvert**:
+```asm
+push [esi+8]
+push esi
+push ebx
+call 0x427b56           ; ← sub_427B56 = Audio WAV (handler 'k')
+...
+jmp  0x4321b6           ; ← Handler 'i' (Images)
+```
+
+**Rôle**: Pré-processeur multimédia
+1. Charge/joue audio via 0x427B56 (fonction WAV handler 'k')
+2. Délègue à handler 'i' pour affichage image
 
 **Usage**: 35 occurrences (2.4%)
+- `runprj couleurs1.vnp 54e`
+- Scènes avec audio + visuel
 
-**Pattern découvert**: `runprj couleurs1.vnp 54e`
+**Fichiers**: holl.vnd (4×), autres pays
 
-**Fichiers**: holl.vnd (4×), autres
+**Pattern**: Opcode de convenance pour scènes audiovisuelles
 
-**Hypothèse**: Action post-chargement (comme f/g/h)
+---
+
+### Handlers À Analyser
 
 **TODO**: Désassembler et identifier fonction
 

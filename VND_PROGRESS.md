@@ -10,10 +10,11 @@
 
 ## 📊 État Actuel
 
-### Handlers Analysés: 8/43 (18.6%)
+### Handlers Analysés: 9/43 (20.9%)
 
 | Handler | Status | Fonction | Occurrences | Priorité |
 |---------|--------|----------|-------------|----------|
+| **'e' (5)** | ✅ | Audio+Image | 35 | - |
 | 'f' (6) | ✅ | Navigation | 11 | - |
 | **'g' (7)** | ✅ | Tooltip variant | 44 | - |
 | 'h' (8) | ✅ | Tooltip | 50 | - |
@@ -23,23 +24,22 @@
 | 'l' (12) | ✅ | MIDI Music | 94 | - |
 | 'u' (21) | ✅ | Logic if/then | 0 | - |
 
-**Nouveau découvert**: Handler 'g' (tooltip variant) - 44 occurrences
+**Dernière découverte**: Handler 'e' (Audio+Image combiné) - 35 occurrences
 
 ---
 
-### Handlers À Analyser: 35 restants
+### Handlers À Analyser: 34 restants
 
 #### Priorité HAUTE (avec occurrences)
 
 | Handler | Adresse | Occurrences | Raison |
 |---------|---------|-------------|--------|
-| **'e' (5)** | 0x004318EE | 35 | Pattern post-load détecté |
-| **'a' (1)** | ? | 1 | Rare mais existe |
-| **'b' (2)** | ? | 0? | À confirmer |
-| **'c' (3)** | ? | 0? | À confirmer |
-| **'d' (4)** | ? | 434 | Suffixe DIRECT mais handler? |
+| **'a' (1)** | 0x00431A20 | 1 | Rare mais existe |
+| **'b' (2)** | 0x00431A39 | 0? | À confirmer |
+| **'c' (3)** | 0x00431881 | 0? | À confirmer |
+| **'d' (4)** | 0x00431A53 | 434 | Suffixe DIRECT mais handler? |
 
-**Action**: Analyser 'e' en priorité (35 occ., pattern clair)
+**Action**: Analyser handlers 1-4 (a,b,c,d) pour compléter la base
 
 ---
 
@@ -100,14 +100,13 @@
 
 ## 🎯 TODO Actif
 
-### En Cours
+### Récemment Complété ✅
 
-- [ ] **Analyser handler 'e' (5)** @ 0x004318EE
-  - 35 occurrences trouvées
-  - Pattern: `runprj couleurs1.vnp 54e`
-  - Hypothèse: Action post-load (comme f/g/h)
-  - **Action**: Désassembler avec capstone
-  - **Output**: Mettre à jour VND_MASTER_REFERENCE.md
+- [x] **Handler 'e' (5)** @ 0x004318EE - ANALYSÉ
+  - Fonction: Handler combiné Audio+Image
+  - Appelle 0x427B56 (Audio WAV) puis jump vers handler 'i' (Images)
+  - Pattern: Opcode de convenance pour scènes audiovisuelles
+  - 35 occurrences dans holl.vnd et autres
 
 ---
 
@@ -230,15 +229,15 @@
 | Catégorie | Progression | Détails |
 |-----------|-------------|---------|
 | **Format VND** | ████████░░ 80% | Header/variables OK, Type 0 partiel |
-| **Opcodes** | ███████░░░ 70% | Système compris, 8/43 analysés |
-| **Handlers** | ██░░░░░░░░ 19% | 8 analysés, 35 restants |
+| **Opcodes** | ███████░░░ 70% | Système compris, 9/43 analysés |
+| **Handlers** | ██░░░░░░░░ 21% | 9 analysés, 34 restants |
 | **Records** | ██████░░░░ 60% | Types documentés, parsing partiel |
 | **Navigation** | █████████░ 90% | Système géographique compris |
 | **Médias** | ████████░░ 80% | Images/audio/vidéo bien compris |
 | **Logic** | ███████░░░ 70% | if/then compris, handler analysé |
 | **Tools** | ████████░░ 80% | Parsers OK, batch OK, amélioration possible |
 
-**Global**: ████████░░ 70%
+**Global**: ████████░░ 72%
 
 ---
 
