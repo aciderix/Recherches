@@ -1,0 +1,548 @@
+================================================================================
+COMPLETE LOADFROMINI EXTRACTION
+================================================================================
+
+Loading binary...
+✓ Parsed 9 sections
+
+Finding all strings...
+✓ Found 2307 strings
+
+Parsing LoadFromINI candidates...
+✓ Found 180 candidates
+
+Extracting ranks 51 to 180...
+
+[1/130] Extracting 0x004056E4...
+  → Unknown (score: 0)
+  → 28 instructions, 1 unique strings
+[2/130] Extracting 0x0040573D...
+  → Unknown (score: 0)
+  → 38 instructions, 0 unique strings
+[3/130] Extracting 0x004057A9...
+  → Unknown (score: 0)
+  → 27 instructions, 0 unique strings
+[4/130] Extracting 0x004057E2...
+  → Unknown (score: 0)
+  → 53 instructions, 0 unique strings
+[5/130] Extracting 0x00405874...
+  → Unknown (score: 0)
+  → 37 instructions, 2 unique strings
+[6/130] Extracting 0x004058E5...
+  → Unknown (score: 0)
+  → 29 instructions, 0 unique strings
+[7/130] Extracting 0x00405922...
+  → Unknown (score: 0)
+  → 32 instructions, 0 unique strings
+[8/130] Extracting 0x0040596C...
+  → Unknown (score: 0)
+  → 25 instructions, 0 unique strings
+[9/130] Extracting 0x004059A0...
+  → Unknown (score: 0)
+  → 56 instructions, 4 unique strings
+[10/130] Extracting 0x00405A63...
+  → Unknown (score: 0)
+  → 74 instructions, 1 unique strings
+[11/130] Extracting 0x00405B50...
+  → Unknown (score: 0)
+  → 246 instructions, 10 unique strings
+[12/130] Extracting 0x0040D6F4...
+  → Unknown (score: 0)
+  → 55 instructions, 0 unique strings
+[13/130] Extracting 0x0040D786...
+  → Unknown (score: 0)
+  → 80 instructions, 3 unique strings
+[14/130] Extracting 0x0040D8A9...
+  → Unknown (score: 0)
+  → 176 instructions, 10 unique strings
+[15/130] Extracting 0x0041318B...
+  → Unknown (score: 0)
+  → 95 instructions, 4 unique strings
+[16/130] Extracting 0x004132F1...
+  → Unknown (score: 0)
+  → 85 instructions, 3 unique strings
+[17/130] Extracting 0x004133BC...
+  → Unknown (score: 0)
+  → 74 instructions, 3 unique strings
+[18/130] Extracting 0x004134C7...
+  → Unknown (score: 0)
+  → 69 instructions, 0 unique strings
+[19/130] Extracting 0x004135B0...
+  → Unknown (score: 0)
+  → 138 instructions, 6 unique strings
+[20/130] Extracting 0x0041684E...
+  → Unknown (score: 0)
+  → 119 instructions, 2 unique strings
+[21/130] Extracting 0x004169C5...
+  → Unknown (score: 0)
+  → 88 instructions, 0 unique strings
+[22/130] Extracting 0x00416AC7...
+  → Unknown (score: 0)
+  → 414 instructions, 11 unique strings
+[23/130] Extracting 0x00418F0F...
+  → Unknown (score: 0)
+  → 22 instructions, 0 unique strings
+[24/130] Extracting 0x00418F46...
+  → Unknown (score: 0)
+  → 24 instructions, 0 unique strings
+[25/130] Extracting 0x00418F85...
+  → Unknown (score: 0)
+  → 28 instructions, 0 unique strings
+[26/130] Extracting 0x00418FDE...
+  → Unknown (score: 0)
+  → 76 instructions, 3 unique strings
+[27/130] Extracting 0x004190FF...
+  → Unknown (score: 0)
+  → 18 instructions, 0 unique strings
+[28/130] Extracting 0x0041912A...
+  → Unknown (score: 0)
+  → 79 instructions, 3 unique strings
+[29/130] Extracting 0x0041930A...
+  → Unknown (score: 0)
+  → 28 instructions, 3 unique strings
+[30/130] Extracting 0x00419361...
+  → Unknown (score: 0)
+  → 17 instructions, 0 unique strings
+[31/130] Extracting 0x00419387...
+  → Unknown (score: 0)
+  → 133 instructions, 0 unique strings
+[32/130] Extracting 0x004194E7...
+  → Unknown (score: 0)
+  → 75 instructions, 3 unique strings
+[33/130] Extracting 0x004195CC...
+  → Unknown (score: 0)
+  → 126 instructions, 3 unique strings
+[34/130] Extracting 0x00419750...
+  → TVNImageObject (score: 1)
+  → 252 instructions, 3 unique strings
+[35/130] Extracting 0x0041FF8F...
+  → Unknown (score: 0)
+  → 120 instructions, 1 unique strings
+[36/130] Extracting 0x004200CF...
+  → TVNTextObject (score: 2)
+  → 1898 instructions, 22 unique strings
+[37/130] Extracting 0x00436F85...
+  → Unknown (score: 0)
+  → 90 instructions, 0 unique strings
+[38/130] Extracting 0x00436FFE...
+  → Unknown (score: 0)
+  → 36 instructions, 0 unique strings
+[39/130] Extracting 0x0043706E...
+  → Unknown (score: 0)
+  → 168 instructions, 4 unique strings
+[40/130] Extracting 0x004370B8...
+  → Unknown (score: 0)
+  → 143 instructions, 4 unique strings
+[41/130] Extracting 0x00437289...
+  → Unknown (score: 0)
+  → 20 instructions, 0 unique strings
+[42/130] Extracting 0x004372B9...
+  → Unknown (score: 0)
+  → 58 instructions, 2 unique strings
+[43/130] Extracting 0x00401E68...
+  → Unknown (score: 0)
+  → 23 instructions, 1 unique strings
+[44/130] Extracting 0x00405E1C...
+  → Unknown (score: 0)
+  → 152 instructions, 6 unique strings
+[45/130] Extracting 0x0041372F...
+  → Unknown (score: 0)
+  → 297 instructions, 10 unique strings
+[46/130] Extracting 0x004161FA...
+  → Unknown (score: 0)
+  → 298 instructions, 0 unique strings
+[47/130] Extracting 0x004165DA...
+  → Unknown (score: 0)
+  → 42 instructions, 0 unique strings
+[48/130] Extracting 0x00416654...
+  → Unknown (score: 0)
+  → 76 instructions, 0 unique strings
+[49/130] Extracting 0x00416734...
+  → Unknown (score: 0)
+  → 35 instructions, 0 unique strings
+[50/130] Extracting 0x00416781...
+  → Unknown (score: 0)
+  → 68 instructions, 1 unique strings
+[51/130] Extracting 0x00416FCD...
+  → Unknown (score: 0)
+  → 43 instructions, 0 unique strings
+[52/130] Extracting 0x00417031...
+  → Unknown (score: 0)
+  → 165 instructions, 5 unique strings
+[53/130] Extracting 0x0041921B...
+  → Unknown (score: 0)
+  → 26 instructions, 0 unique strings
+[54/130] Extracting 0x00419256...
+  → Unknown (score: 0)
+  → 64 instructions, 0 unique strings
+[55/130] Extracting 0x004262D4...
+  → Unknown (score: 0)
+  → 91 instructions, 0 unique strings
+[56/130] Extracting 0x0042634D...
+  → Unknown (score: 0)
+  → 39 instructions, 0 unique strings
+[57/130] Extracting 0x00426399...
+  → Unknown (score: 0)
+  → 94 instructions, 3 unique strings
+[58/130] Extracting 0x00434070...
+  → Unknown (score: 0)
+  → 1548 instructions, 29 unique strings
+[59/130] Extracting 0x004357CF...
+  → Unknown (score: 0)
+  → 61 instructions, 32 unique strings
+[60/130] Extracting 0x00435863...
+  → TVNHotspot (score: 1)
+  → 16 instructions, 4 unique strings
+[61/130] Extracting 0x00401EBF...
+  → Unknown (score: 0)
+  → 23 instructions, 1 unique strings
+[62/130] Extracting 0x00401FC8...
+  → Unknown (score: 0)
+  → 61 instructions, 0 unique strings
+[63/130] Extracting 0x0040206C...
+  → Unknown (score: 0)
+  → 66 instructions, 0 unique strings
+[64/130] Extracting 0x00402126...
+  → Unknown (score: 0)
+  → 24 instructions, 0 unique strings
+[65/130] Extracting 0x0040215C...
+  → Unknown (score: 0)
+  → 87 instructions, 0 unique strings
+[66/130] Extracting 0x0040222E...
+  → Unknown (score: 0)
+  → 107 instructions, 0 unique strings
+[67/130] Extracting 0x0040235F...
+  → Unknown (score: 0)
+  → 42 instructions, 0 unique strings
+[68/130] Extracting 0x004023D3...
+  → Unknown (score: 0)
+  → 53 instructions, 0 unique strings
+[69/130] Extracting 0x00402461...
+  → Unknown (score: 0)
+  → 20 instructions, 0 unique strings
+[70/130] Extracting 0x0040248E...
+  → Unknown (score: 0)
+  → 28 instructions, 0 unique strings
+[71/130] Extracting 0x004024CB...
+  → Unknown (score: 0)
+  → 50 instructions, 0 unique strings
+[72/130] Extracting 0x00402541...
+  → Unknown (score: 0)
+  → 79 instructions, 2 unique strings
+[73/130] Extracting 0x0040AA17...
+  → Unknown (score: 0)
+  → 153 instructions, 3 unique strings
+[74/130] Extracting 0x0040ABCE...
+  → Unknown (score: 0)
+  → 211 instructions, 0 unique strings
+[75/130] Extracting 0x0040AE3E...
+  → Unknown (score: 0)
+  → 37 instructions, 1 unique strings
+[76/130] Extracting 0x0040AEB4...
+  → Unknown (score: 0)
+  → 312 instructions, 0 unique strings
+[77/130] Extracting 0x0040B235...
+  → Unknown (score: 0)
+  → 40 instructions, 1 unique strings
+[78/130] Extracting 0x0040B2B4...
+  → Unknown (score: 0)
+  → 161 instructions, 1 unique strings
+[79/130] Extracting 0x0040DAA9...
+  → Unknown (score: 0)
+  → 127 instructions, 6 unique strings
+[80/130] Extracting 0x00413AEF...
+  → Unknown (score: 0)
+  → 25 instructions, 7 unique strings
+[81/130] Extracting 0x00413B20...
+  → Unknown (score: 0)
+  → 156 instructions, 6 unique strings
+[82/130] Extracting 0x004190C1...
+  → Unknown (score: 0)
+  → 24 instructions, 0 unique strings
+[83/130] Extracting 0x00419A6C...
+  → Unknown (score: 0)
+  → 164 instructions, 3 unique strings
+[84/130] Extracting 0x00419C23...
+  → Unknown (score: 0)
+  → 169 instructions, 12 unique strings
+[85/130] Extracting 0x00419E29...
+  → Unknown (score: 0)
+  → 12 instructions, 0 unique strings
+[86/130] Extracting 0x00419E43...
+  → Unknown (score: 0)
+  → 12 instructions, 0 unique strings
+[87/130] Extracting 0x00419E5D...
+  → Unknown (score: 0)
+  → 96 instructions, 3 unique strings
+[88/130] Extracting 0x00419F78...
+  → Unknown (score: 0)
+  → 72 instructions, 3 unique strings
+[89/130] Extracting 0x0041A04F...
+  → TVNImageObject (score: 1)
+  → 84 instructions, 6 unique strings
+[90/130] Extracting 0x0041D5D3...
+  → Unknown (score: 0)
+  → 69 instructions, 0 unique strings
+[91/130] Extracting 0x0041D6AE...
+  → Unknown (score: 0)
+  → 79 instructions, 3 unique strings
+[92/130] Extracting 0x0041D7A5...
+  → Unknown (score: 0)
+  → 78 instructions, 3 unique strings
+[93/130] Extracting 0x0041D898...
+  → Unknown (score: 0)
+  → 31 instructions, 0 unique strings
+[94/130] Extracting 0x0041D902...
+  → Unknown (score: 0)
+  → 126 instructions, 3 unique strings
+[95/130] Extracting 0x0041DA7B...
+  → Unknown (score: 0)
+  → 49 instructions, 0 unique strings
+[96/130] Extracting 0x0041DB0D...
+  → Unknown (score: 0)
+  → 18 instructions, 0 unique strings
+[97/130] Extracting 0x0041DB36...
+  → Unknown (score: 0)
+  → 283 instructions, 0 unique strings
+[98/130] Extracting 0x0041DEBB...
+  → Unknown (score: 0)
+  → 56 instructions, 0 unique strings
+[99/130] Extracting 0x0041DF3E...
+  → Unknown (score: 0)
+  → 42 instructions, 0 unique strings
+[100/130] Extracting 0x0041DFA5...
+  → Unknown (score: 0)
+  → 54 instructions, 0 unique strings
+[101/130] Extracting 0x0041E044...
+  → Unknown (score: 0)
+  → 92 instructions, 0 unique strings
+[102/130] Extracting 0x0041E119...
+  → Unknown (score: 0)
+  → 74 instructions, 0 unique strings
+[103/130] Extracting 0x0041E206...
+  → Unknown (score: 0)
+  → 148 instructions, 6 unique strings
+[104/130] Extracting 0x004260ED...
+  → Unknown (score: 0)
+  → 51 instructions, 0 unique strings
+[105/130] Extracting 0x00426184...
+  → Unknown (score: 0)
+  → 111 instructions, 4 unique strings
+[106/130] Extracting 0x004264AF...
+  → Unknown (score: 0)
+  → 22 instructions, 0 unique strings
+[107/130] Extracting 0x004264F3...
+  → Unknown (score: 0)
+  → 37 instructions, 0 unique strings
+[108/130] Extracting 0x00426547...
+  → Unknown (score: 0)
+  → 26 instructions, 0 unique strings
+[109/130] Extracting 0x0042657C...
+  → Unknown (score: 0)
+  → 81 instructions, 0 unique strings
+[110/130] Extracting 0x00426608...
+  → Unknown (score: 0)
+  → 14 instructions, 0 unique strings
+[111/130] Extracting 0x0042662B...
+  → Unknown (score: 0)
+  → 41 instructions, 0 unique strings
+[112/130] Extracting 0x00426698...
+  → Unknown (score: 0)
+  → 6 instructions, 0 unique strings
+[113/130] Extracting 0x004266AE...
+  → Unknown (score: 0)
+  → 420 instructions, 9 unique strings
+[114/130] Extracting 0x004266F0...
+  → Unknown (score: 0)
+  → 388 instructions, 9 unique strings
+[115/130] Extracting 0x004268F8...
+  → Unknown (score: 0)
+  → 215 instructions, 3 unique strings
+[116/130] Extracting 0x004321C9...
+  → Unknown (score: 0)
+  → 91 instructions, 3 unique strings
+[117/130] Extracting 0x004322E7...
+  → Unknown (score: 0)
+  → 97 instructions, 3 unique strings
+[118/130] Extracting 0x0043241E...
+  → Unknown (score: 0)
+  → 13 instructions, 6 unique strings
+[119/130] Extracting 0x0043243C...
+  → Unknown (score: 0)
+  → 31 instructions, 10 unique strings
+[120/130] Extracting 0x00432480...
+  → Unknown (score: 0)
+  → 29 instructions, 13 unique strings
+[121/130] Extracting 0x004324C5...
+  → Unknown (score: 0)
+  → 23 instructions, 0 unique strings
+[122/130] Extracting 0x004324F9...
+  → Unknown (score: 0)
+  → 29 instructions, 13 unique strings
+[123/130] Extracting 0x0043253E...
+  → Unknown (score: 0)
+  → 23 instructions, 0 unique strings
+[124/130] Extracting 0x00432572...
+  → Unknown (score: 0)
+  → 117 instructions, 6 unique strings
+[125/130] Extracting 0x00433F55...
+  → Unknown (score: 0)
+  → 104 instructions, 0 unique strings
+[126/130] Extracting 0x004358A4...
+  → Unknown (score: 0)
+  → 17 instructions, 0 unique strings
+[127/130] Extracting 0x0043591A...
+  → Unknown (score: 0)
+  → 125 instructions, 0 unique strings
+[128/130] Extracting 0x004359A0...
+  → Unknown (score: 0)
+  → 73 instructions, 0 unique strings
+[129/130] Extracting 0x00435A6A...
+  → Unknown (score: 0)
+  → 94 instructions, 3 unique strings
+[130/130] Extracting 0x00437367...
+  → Unknown (score: 0)
+  → 58 instructions, 2 unique strings
+
+================================================================================
+SUMMARY
+================================================================================
+
+TVNHotspot: 1 functions
+  - 0x00435863 (rank #110)
+TVNImageObject: 2 functions
+  - 0x00419750 (rank #84)
+  - 0x0041A04F (rank #139)
+TVNTextObject: 1 functions
+  - 0x004200CF (rank #86)
+Unknown: 126 functions
+  - 0x004056E4 (rank #51)
+  - 0x0040573D (rank #52)
+  - 0x004057A9 (rank #53)
+  - 0x004057E2 (rank #54)
+  - 0x00405874 (rank #55)
+  - 0x004058E5 (rank #56)
+  - 0x00405922 (rank #57)
+  - 0x0040596C (rank #58)
+  - 0x004059A0 (rank #59)
+  - 0x00405A63 (rank #60)
+  - 0x00405B50 (rank #61)
+  - 0x0040D6F4 (rank #62)
+  - 0x0040D786 (rank #63)
+  - 0x0040D8A9 (rank #64)
+  - 0x0041318B (rank #65)
+  - 0x004132F1 (rank #66)
+  - 0x004133BC (rank #67)
+  - 0x004134C7 (rank #68)
+  - 0x004135B0 (rank #69)
+  - 0x0041684E (rank #70)
+  - 0x004169C5 (rank #71)
+  - 0x00416AC7 (rank #72)
+  - 0x00418F0F (rank #73)
+  - 0x00418F46 (rank #74)
+  - 0x00418F85 (rank #75)
+  - 0x00418FDE (rank #76)
+  - 0x004190FF (rank #77)
+  - 0x0041912A (rank #78)
+  - 0x0041930A (rank #79)
+  - 0x00419361 (rank #80)
+  - 0x00419387 (rank #81)
+  - 0x004194E7 (rank #82)
+  - 0x004195CC (rank #83)
+  - 0x0041FF8F (rank #85)
+  - 0x00436F85 (rank #87)
+  - 0x00436FFE (rank #88)
+  - 0x0043706E (rank #89)
+  - 0x004370B8 (rank #90)
+  - 0x00437289 (rank #91)
+  - 0x004372B9 (rank #92)
+  - 0x00401E68 (rank #93)
+  - 0x00405E1C (rank #94)
+  - 0x0041372F (rank #95)
+  - 0x004161FA (rank #96)
+  - 0x004165DA (rank #97)
+  - 0x00416654 (rank #98)
+  - 0x00416734 (rank #99)
+  - 0x00416781 (rank #100)
+  - 0x00416FCD (rank #101)
+  - 0x00417031 (rank #102)
+  - 0x0041921B (rank #103)
+  - 0x00419256 (rank #104)
+  - 0x004262D4 (rank #105)
+  - 0x0042634D (rank #106)
+  - 0x00426399 (rank #107)
+  - 0x00434070 (rank #108)
+  - 0x004357CF (rank #109)
+  - 0x00401EBF (rank #111)
+  - 0x00401FC8 (rank #112)
+  - 0x0040206C (rank #113)
+  - 0x00402126 (rank #114)
+  - 0x0040215C (rank #115)
+  - 0x0040222E (rank #116)
+  - 0x0040235F (rank #117)
+  - 0x004023D3 (rank #118)
+  - 0x00402461 (rank #119)
+  - 0x0040248E (rank #120)
+  - 0x004024CB (rank #121)
+  - 0x00402541 (rank #122)
+  - 0x0040AA17 (rank #123)
+  - 0x0040ABCE (rank #124)
+  - 0x0040AE3E (rank #125)
+  - 0x0040AEB4 (rank #126)
+  - 0x0040B235 (rank #127)
+  - 0x0040B2B4 (rank #128)
+  - 0x0040DAA9 (rank #129)
+  - 0x00413AEF (rank #130)
+  - 0x00413B20 (rank #131)
+  - 0x004190C1 (rank #132)
+  - 0x00419A6C (rank #133)
+  - 0x00419C23 (rank #134)
+  - 0x00419E29 (rank #135)
+  - 0x00419E43 (rank #136)
+  - 0x00419E5D (rank #137)
+  - 0x00419F78 (rank #138)
+  - 0x0041D5D3 (rank #140)
+  - 0x0041D6AE (rank #141)
+  - 0x0041D7A5 (rank #142)
+  - 0x0041D898 (rank #143)
+  - 0x0041D902 (rank #144)
+  - 0x0041DA7B (rank #145)
+  - 0x0041DB0D (rank #146)
+  - 0x0041DB36 (rank #147)
+  - 0x0041DEBB (rank #148)
+  - 0x0041DF3E (rank #149)
+  - 0x0041DFA5 (rank #150)
+  - 0x0041E044 (rank #151)
+  - 0x0041E119 (rank #152)
+  - 0x0041E206 (rank #153)
+  - 0x004260ED (rank #154)
+  - 0x00426184 (rank #155)
+  - 0x004264AF (rank #156)
+  - 0x004264F3 (rank #157)
+  - 0x00426547 (rank #158)
+  - 0x0042657C (rank #159)
+  - 0x00426608 (rank #160)
+  - 0x0042662B (rank #161)
+  - 0x00426698 (rank #162)
+  - 0x004266AE (rank #163)
+  - 0x004266F0 (rank #164)
+  - 0x004268F8 (rank #165)
+  - 0x004321C9 (rank #166)
+  - 0x004322E7 (rank #167)
+  - 0x0043241E (rank #168)
+  - 0x0043243C (rank #169)
+  - 0x00432480 (rank #170)
+  - 0x004324C5 (rank #171)
+  - 0x004324F9 (rank #172)
+  - 0x0043253E (rank #173)
+  - 0x00432572 (rank #174)
+  - 0x00433F55 (rank #175)
+  - 0x004358A4 (rank #176)
+  - 0x0043591A (rank #177)
+  - 0x004359A0 (rank #178)
+  - 0x00435A6A (rank #179)
+  - 0x00437367 (rank #180)
+
+✓ Extracted 130 functions (ranks 51-180)
+✓ Output directory: LOADFROMINI_EXTRACTED/
+

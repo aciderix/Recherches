@@ -379,14 +379,16 @@ def main():
     candidates = parse_loadfromini_candidates(candidates_file)
     print(f"✓ Found {len(candidates)} candidates")
 
-    # Extract top 50 candidates
-    print("\nExtracting top 50 candidates...")
+    # Extract remaining candidates (51-180)
+    start_rank = 50
+    end_rank = min(180, len(candidates))
+    print(f"\nExtracting ranks {start_rank+1} to {end_rank}...")
     print()
 
     structure_groups = defaultdict(list)
 
-    for i, candidate in enumerate(candidates[:50]):
-        print(f"[{i+1}/50] Extracting 0x{candidate['address']:08X}...")
+    for i, candidate in enumerate(candidates[start_rank:end_rank]):
+        print(f"[{i+1}/{end_rank-start_rank}] Extracting 0x{candidate['address']:08X}...")
 
         # Extract function
         instructions, strings_found, calls_found = extract_function_with_calls(
@@ -440,7 +442,7 @@ def main():
         for func in funcs:
             print(f"  - 0x{func['address']:08X} (rank #{func['rank']})")
 
-    print(f"\n✓ Extracted {len(candidates[:50])} functions")
+    print(f"\n✓ Extracted {end_rank - start_rank} functions (ranks {start_rank+1}-{end_rank})")
     print(f"✓ Output directory: LOADFROMINI_EXTRACTED/")
     print()
 

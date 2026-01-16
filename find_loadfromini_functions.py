@@ -233,8 +233,9 @@ def main():
         f.write("Functions with 3+ INI keyword string references.\n\n")
         f.write("---\n\n")
 
-        for i, candidate in enumerate(loadfromini_candidates[:50]):  # Top 50
-            print(f"#{i+1}: 0x{candidate['address']:08X} - {candidate['ini_strings']} INI strings")
+        for i, candidate in enumerate(loadfromini_candidates):  # All candidates
+            if i < 50 or i % 10 == 0:  # Print first 50 or every 10th
+                print(f"#{i+1}: 0x{candidate['address']:08X} - {candidate['ini_strings']} INI strings")
 
             f.write(f"## #{i+1}: Function @ 0x{candidate['address']:08X}\n\n")
             f.write(f"**INI Strings**: {candidate['ini_strings']}\n")
