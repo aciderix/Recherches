@@ -21,7 +21,12 @@
 
 ## Format VND
 
-### Structure Générale
+### ⚠️ RÉVÉLATION MAJEURE - Structure Séquentielle (2026-01-17)
+
+**ATTENTION**: Les scènes ne sont PAS délimitées par des séparateurs!
+Le format est **séquentiel** - le moteur sait qu'une scène commence car il a fini la précédente.
+
+### Structure Générale CORRECTE
 
 ```
 [HEADER]
@@ -30,14 +35,88 @@
   - Dimensions écran (640x480)
   - Checksum @ 0x4C
   - DLL path (..\VnStudio\vnresmod.dll)
+  - Nombre total de scènes (ex: 280)
 
 [TABLE VARIABLES] @ ~0x88
   Format: [LENGTH:4][NAME:ASCII][00][VALUE:4]
-  Variables: SACADOS, SCORE, FIOLE, CPAYS, etc.
+  Variables: SACADOS, SCORE, FIOLE, CPAYS, INDEX_ID, etc.
 
-[RECORDS] @ variable (chercher séparateur 01 00 00 00)
-  Format: [SEPARATOR:01000000][LENGTH:4][TYPE:4][DATA]
+[SCÈNES] @ après variables (structure SÉQUENTIELLE)
+  Pour chaque scène (i = 0 à N-1):
+
+    [6 FICHIERS DE FOND]
+      6 × (String Pascal + Int32)
+      Slot 1: Vide (souvent)
+      Slot 2: Musique (ex: "music.wav" + volume)
+      Slot 3-4: Images intermédiaires
+      Slot 5: Image de fond (ex: "euroland\face.bmp")
+      Slot 6: Autre
+
+    [INIT SCRIPT]
+      Flag (4 octets)
+      Count (4 octets)
+      Commands (Count × Command)
+
+    [CONFIG]
+      Flag (4 octets)
+      5 × Int32
+
+    [HOTSPOTS/OBJETS]
+      ObjCount (4 octets, ex: 6)
+
+      Pour chaque objet (j = 0 à ObjCount-1):
+
+        [SCRIPT OBJET]
+          CmdCount (4 octets, ex: 21)
+
+          Pour chaque commande (k = 0 à CmdCount-1):
+            CmdID (4 octets)
+            ParamString (String Pascal)
+              Ex: "18 0 #000000 Comic sans MS"
+              Ex: "euroland\home2.avi 1"
+              Ex: "5i" (scène 5, transition immediate)
+
+        [GÉOMÉTRIE OBJET]
+          CursorID (4 octets, ex: 101)
+          PointCount (4 octets, ex: 4)
+
+          Pour chaque point (p = 0 à PointCount-1):
+            X (4 octets, signed int)
+            Y (4 octets, signed int)
+
+          ExtraFlag (4 octets)
 ```
+
+### String Pascal Format
+
+Une string Pascal dans VND est:
+```
+[LENGTH:4 octets][CHARACTERS:LENGTH octets]
+```
+**PAS de null terminator!**
+
+Exemple: "music.wav"
+```
+09 00 00 00  6D 75 73 69 63 2E 77 61 76
+↑ Length=9   ↑ "music.wav" (9 octets)
+```
+
+### Structure de Commande
+
+Chaque commande dans un script de hotspot est:
+```
+[CmdID:4][SubType:4][ParamString:String Pascal]
+```
+
+Exemples découverts (couleurs1.vnd, Scène 1, Hotspot #1):
+- `Cmd 1.9`: "euroland\bibliobis.avi 1" → CmdID=1 (playavi), SubType=9 (opcode 'i')
+- `Cmd 1.6`: "5" → CmdID=1, SubType=6 (opcode 'f' = navigation)
+- `Cmd 0.39`: "18 0 #000000 Comic sans MS" → CmdID=0, SubType=39 (font spec)
+- `Cmd 0.38`: "57 60 125 365 0 La bibliothèque" → CmdID=0, SubType=38 (text coords)
+- `Cmd 2.21`: "espagne = 1 then dec_var espagne 1" → CmdID=2, SubType=21 (condition)
+- `Cmd 3.21`: "score < 0 then runprj..." → CmdID=3, SubType=21 (condition)
+
+Le SubType correspond aux Types de Records précédemment documentés!
 
 ### Types de Records Documentés
 
