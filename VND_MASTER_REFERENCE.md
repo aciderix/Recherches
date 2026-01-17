@@ -146,7 +146,9 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 
 ## Handlers Analysés
 
-### Handlers Analysés (21 sur 43 - 48.8%)
+### Handlers Analysés (42 sur 43 - 97.7%) ✅
+
+**Complétion quasi-totale!** Seul l'indice 0 n'est pas analysé.
 
 #### 'f' (6) - Navigation @ 0x0043198B
 
@@ -474,19 +476,63 @@ jmp  0x4321b6           ; → Handler 'i'
 
 ---
 
-### Handlers À Analyser
+### Handlers 22-42 (v-z + opcodes numériques) - ANALYSÉS ✅
 
-**TODO**: Désassembler handlers 22-42
+**Découverte majeure**: TOUS suivent le pattern Pre-processor → handler 'i'
+
+**Duplicates détectés**:
+- Handlers 22 ('v') = 36 (num_36) @ 0x00431AD9
+- Handlers 23 ('w') = 37 (num_37) @ 0x00431AF3
+- Handlers 24 ('x') = 38 (num_38) @ 0x00431B0F
+
+**Handler spécial**:
+- **Indice 34** (num_34) @ 0x004321B6 = **Handler 'i'** (Images) - déjà connu!
+
+**Handlers uniques analysés** (18 adresses):
+- **'v'-'z' (22-26)** : Tous pré-processeurs → handler 'i'
+- **num_27-33 (27-33)** : Tous pré-processeurs → handler 'i'
+- **num_34 (34)** : **= Handler 'i' (HUB CENTRAL)**
+- **num_35 (35)** : Pré-processeur → handler 'i'
+- **num_39-42 (39-42)** : Tous pré-processeurs → handler 'i'
+
+**Pattern commun** (17 handlers uniques):
+```asm
+; Pattern générique
+test esi, esi
+je   skip_or_jump_i
+; [1-4 function calls]
+jmp  0x4321b6           ; → Handler 'i'
+```
+
+**Outil créé**: analyze_handlers_22_42.py
 
 ---
 
-### Handlers Inconnus (30 restants)
+## 🎯 ARCHITECTURE GLOBALE DÉCOUVERTE
 
-**Avec occurrences**:
-- 'm' (13-20) @ ? - À vérifier
-- Autres (22-26, 27+)
+### Handler 'i' (Images) = HUB CENTRAL ABSOLU
 
-**Sans occurrences détectées**: À investiguer dans switch table
+**Statistique finale**:
+- **43 handlers** au total (indices 0-42)
+- **42 handlers analysés** (tous sauf indice 0)
+- **41 handlers** délèguent TOUS à handler 'i' @ 0x4321B6
+- **Handler 'i'** = point d'entrée final unique
+
+**Architecture Hub-and-Spoke**:
+```
+Tous les handlers (a-z, 0-42)
+         ↓
+    [Pre-process]
+         ↓
+    Handler 'i' @ 0x4321B6 (HUB CENTRAL)
+         ↓
+  [Exécution finale]
+```
+
+**Rôle de handler 'i'**:
+- Hub central de l'architecture
+- Tous les opcodes convergent vers lui
+- Gestion finale des images, navigation, logique, audio, etc.
 
 ---
 
