@@ -391,16 +391,23 @@ class VndDecompilerV4:
                         print(f"{clean_cond}")
                         printed_conditions.add(clean_cond)
 
-                # Cherche polygone
+                # Cherche références de navigation/scène (comme "5i", "51j", "35")
+                nav_refs = re.findall(r'\b(\d+)([a-z])\b', text)
+                for num, opcode in nav_refs:
+                    if len(num) <= 3:  # Limite aux numéros raisonnables
+                        print(f"{num}{opcode}")
+
+                # Cherche polygone avec coordonnées
                 for poly_offset, poly in self.polygons_map.items():
                     if offset <= poly_offset < next_offset:
                         bbox = poly['bbox']
                         print(f"[Polygone {poly['count']} points]")
-
-                # Cherche terminateur
-                terminator_matches = re.findall(r'\b([a-z])\s*$', text[:500])
-                if terminator_matches and len(terminator_matches[-1]) == 1:
-                    print(f"{terminator_matches[-1]}")
+                        # Affiche premiers points
+                        pts_str = ' '.join([f"({p[0]},{p[1]})" for p in poly['points'][:4]])
+                        if len(poly['points']) > 4:
+                            pts_str += " ..."
+                        print(f"  Points: {pts_str}")
+                        print(f"  BBox: ({bbox[0]},{bbox[1]})-({bbox[2]},{bbox[3]})")
 
             i += 1
 
