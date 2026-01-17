@@ -86,6 +86,16 @@ class VNDSequentialParser:
         self.offset = vnfile_pos + 300
         print(f"⚠️  Utilise fallback @ 0x{self.offset:08X}")
 
+    def parse_scene_name(self):
+        """Parse le nom optionnel de la scène (avant les 6 fichiers)"""
+        name_offset = self.offset
+        scene_name = self.read_pascal_string()
+
+        if scene_name:
+            print(f"\n  [NOM SCÈNE] @ 0x{name_offset:08X}: '{scene_name}'")
+
+        return scene_name
+
     def parse_scene_files(self, scene_num):
         """Parse les 6 fichiers de fond d'une scène"""
         print(f"\n  [6 FICHIERS DE FOND]")
@@ -179,7 +189,7 @@ class VNDSequentialParser:
         print(f"{'═'*80}")
 
         try:
-            # 1. Les 6 fichiers de fond
+            # Pas de champ nom - directement les 6 fichiers
             files = self.parse_scene_files(scene_num)
 
             # 2. InitScript
