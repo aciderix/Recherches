@@ -271,6 +271,26 @@ class VndDecompilerV4:
 
         return hotspots
 
+    def find_scene_boundaries(self):
+        """Trouve les limites des scènes basées sur les fichiers BMP"""
+        # Cherche tous les euroland\*.bmp (sans rollover)
+        scene_boundaries = []
+
+        for match in re.finditer(r'(euroland\\[\w]+\.bmp)', self.text_content, re.IGNORECASE):
+            bmp = match.group(1)
+            pos = match.start()
+
+            # Ignore fichiers rollover
+            if 'rollover' in bmp.lower():
+                continue
+
+            scene_boundaries.append({
+                'pos': pos,
+                'bmp': bmp
+            })
+
+        return scene_boundaries
+
     def parse_and_display(self):
         """Parse le fichier et affiche la structure"""
         print("=" * 80)
@@ -288,126 +308,129 @@ class VndDecompilerV4:
         if separators:
             separators[-1]['next_offset'] = len(self.data)
 
+        # Trouve les limites des scènes (par BMP)
+        scene_boundaries = self.find_scene_boundaries()
+
         print(f"Total records: {len(separators)}")
         print(f"Total polygones: {len(self.polygons_map)}")
+        print(f"Total scènes (BMP): {len(scene_boundaries)}")
         print()
 
-        # Parse scènes et hotspots
-        scene_num = 0
-        hotspot_num = 0
-        i = 0
+        # Parse scènes basées sur les BMP
+        for scene_idx, scene_bound in enumerate(scene_boundaries):
+            scene_num = scene_idx + 1
+            bmp_pos = scene_bound['pos']
+            bmp_file = scene_bound['bmp']
 
-        while i < len(separators):
-            sep = separators[i]
-            rec_type = sep['type']
-            offset = sep['data_offset']
-            next_offset = sep.get('next_offset', len(self.data))
-            length = next_offset - offset
-            text = self.extract_text_at(offset, min(length, 5000))
-
-            # Type 0 = Scène
-            if rec_type == 0:
-                scene_num += 1
-                hotspot_num = 0
-
-                print("\n" + "─" * 80)
-                print(f"SCÈNE #{scene_num} @ 0x{sep['pos']:08X}")
-                print("─" * 80)
-
-                # Scan les 5 prochains records pour collecter les infos de scène
-                scene_text = text
-                for j in range(1, min(6, len(separators) - i)):
-                    next_sep = separators[i + j]
-                    next_off = next_sep['data_offset']
-                    next_next_off = next_sep.get('next_offset', len(self.data))
-                    next_len = min(2000, next_next_off - next_off)
-                    scene_text += ' ' + self.extract_text_at(next_off, next_len)
-
-                # Cherche nom de scène (première ligne significative)
-                lines = text.split('\n')
-                scene_name = None
-                for line in lines[:10]:
-                    line = line.strip()
-                    if line and not line.endswith('.bmp') and not line.endswith('.wav') and not line.endswith('.dll') and not line.endswith('.avi'):
-                        if 3 < len(line) < 50 and not re.match(r'^\d+', line) and not re.search(r'then|playtext|addbmp', line):
-                            scene_name = line
-                            break
-
-                if scene_name:
-                    print(f"Nom: {scene_name}")
-
-                # Cherche fichiers dans scene_text
-                audio_files = list(set(re.findall(r'[\w\\/-]+\.wav', scene_text, re.IGNORECASE)))
-                image_files = list(set(re.findall(r'[\w\\/-]+\.bmp', scene_text, re.IGNORECASE)))
-
-                # Filtre les fichiers rollover
-                image_files = [f for f in image_files if 'rollover' not in f.lower()]
-
-                if audio_files:
-                    print(f"🔊 Audio: {audio_files[0]}")
-                if image_files:
-                    print(f"🖼️  Fond: {image_files[0]}")
-                print()
-
-            # Autres types = potentiellement hotspot
+            # Trouve la fin de cette scène (début de la prochaine)
+            if scene_idx + 1 < len(scene_boundaries):
+                scene_end = scene_boundaries[scene_idx + 1]['pos']
             else:
-                # Détecte si c'est un début de hotspot (contient une font spec)
-                font = self.parse_font_spec(text)
-                if font:
-                    hotspot_num += 1
-                    print(f"\n[HOTSPOT #{hotspot_num}]")
-                    print(f"{font['size']} {font['style']} {font['color']} {font['font']}")
+                scene_end = len(self.data)
 
-                # Affiche les coordonnées de texte
-                text_coords = self.parse_text_coords(text)
-                seen_coords = set()
-                for tc in text_coords:
-                    clean_text = tc['text'].replace('&', '').strip()
-                    # Nettoie davantage (enlève codes binaires résiduels)
-                    clean_text = re.sub(r'\s{3,}', ' ', clean_text)  # Multiple espaces
-                    clean_text = re.sub(r'^\d+\s+\d+\s+#[0-9a-fA-F]+', '', clean_text).strip()  # Codes de police
+            print("\n" + "═" * 80)
+            print(f"SCÈNE #{scene_num} @ 0x{bmp_pos:08X}")
+            print("═" * 80)
 
-                    # Ignore si c'est juste des codes ou déjà vu
-                    coord_key = (tc['x'], tc['y'], clean_text)
-                    if len(clean_text) > 2 and not re.match(r'^[\d\s#]+$', clean_text) and coord_key not in seen_coords:
-                        print(f"{tc['x']} {tc['y']} 125 365 {tc['layer']} {clean_text}")
-                        seen_coords.add(coord_key)
+            # Extrait le texte de la scène (200 chars avant le BMP pour le nom, WAV)
+            scene_start = max(0, bmp_pos - 200)
+            scene_text = self.extract_text_at(scene_start, min(5000, scene_end - scene_start))
 
-                # Affiche les vidéos
-                video_matches = re.findall(r'([\w\\/-]+\.avi)\s+(\d+)', text, re.IGNORECASE)
-                seen_videos = set()
-                for vm in video_matches:
-                    if vm[0] not in seen_videos:
-                        print(f"{vm[0]} {vm[1]}")
-                        seen_videos.add(vm[0])
+            # Cherche nom de scène (ligne avant le BMP)
+            before_bmp = self.extract_text_at(max(0, bmp_pos - 100), 100)
+            lines = before_bmp.split('\n')
+            scene_name = None
+            for line in reversed(lines[:-1]):  # Ignore dernière ligne (le BMP lui-même)
+                line = line.strip()
+                if line and not line.endswith('.bmp') and not line.endswith('.wav') and not line.endswith('.dll'):
+                    if 3 < len(line) < 60 and not re.search(r'then|playtext|addbmp|set_var|\d+\s+\d+\s+125', line):
+                        scene_name = line
+                        break
 
-                # Affiche les conditions séparément
-                conditions = self.parse_conditions_separately(text)
-                printed_conditions = set()
-                for cond in conditions:
-                    # Évite les doublons
-                    clean_cond = cond['text'].strip()
-                    if clean_cond not in printed_conditions and len(clean_cond) > 5:
-                        print(f"{clean_cond}")
-                        printed_conditions.add(clean_cond)
+            if scene_name:
+                print(f"{scene_name}")
 
-                # Cherche références de navigation/scène (comme "5i", "51j", "35")
-                nav_refs = re.findall(r'\b(\d+)([a-z])\b', text)
-                for num, opcode in nav_refs:
-                    if len(num) <= 3:  # Limite aux numéros raisonnables
-                        print(f"{num}{opcode}")
+            # Cherche fichier WAV avant ou après le BMP
+            audio_match = re.search(r'([\w\\/-]+\.wav)', scene_text[:500], re.IGNORECASE)
+            if audio_match:
+                print(f"{audio_match.group(1)}")
 
-                # Cherche polygone avec coordonnées
-                for poly_offset, poly in self.polygons_map.items():
-                    if offset <= poly_offset < next_offset:
-                        bbox = poly['bbox']
-                        print(f"[Polygone {poly['count']} points]")
-                        # Affiche premiers points
-                        pts_str = ' '.join([f"({p[0]},{p[1]})" for p in poly['points'][:4]])
-                        if len(poly['points']) > 4:
-                            pts_str += " ..."
-                        print(f"  Points: {pts_str}")
-                        print(f"  BBox: ({bbox[0]},{bbox[1]})-({bbox[2]},{bbox[3]})")
+            print(f"{bmp_file}")
+            print()
+
+            # Trouve tous les records dans cette scène
+            hotspot_num = 0
+            for sep in separators:
+                offset = sep['data_offset']
+                if bmp_pos <= offset < scene_end:
+                    next_offset = sep.get('next_offset', len(self.data))
+                    length = next_offset - offset
+                    text = self.extract_text_at(offset, min(length, 5000))
+                    rec_type = sep['type']
+
+                    # Type 0 au début de scène = déjà affiché (BMP)
+                    if rec_type == 0:
+                        continue
+
+                    # Autres types = potentiellement hotspot/contenu
+                    else:
+                        # Détecte si c'est un début de hotspot (contient une font spec)
+                        font = self.parse_font_spec(text)
+                        if font:
+                            hotspot_num += 1
+                            print(f"\n[HOTSPOT #{hotspot_num}]")
+                            print(f"{font['size']} {font['style']} {font['color']} {font['font']}")
+
+                        # Affiche les coordonnées de texte
+                        text_coords = self.parse_text_coords(text)
+                        seen_coords = set()
+                        for tc in text_coords:
+                            clean_text = tc['text'].replace('&', '').strip()
+                            # Nettoie davantage (enlève codes binaires résiduels)
+                            clean_text = re.sub(r'\s{3,}', ' ', clean_text)  # Multiple espaces
+                            clean_text = re.sub(r'^\d+\s+\d+\s+#[0-9a-fA-F]+', '', clean_text).strip()  # Codes de police
+
+                            # Ignore si c'est juste des codes ou déjà vu
+                            coord_key = (tc['x'], tc['y'], clean_text)
+                            if len(clean_text) > 2 and not re.match(r'^[\d\s#]+$', clean_text) and coord_key not in seen_coords:
+                                print(f"{tc['x']} {tc['y']} 125 365 {tc['layer']} {clean_text}")
+                                seen_coords.add(coord_key)
+
+                        # Affiche les vidéos
+                        video_matches = re.findall(r'([\w\\/-]+\.avi)\s+(\d+)', text, re.IGNORECASE)
+                        seen_videos = set()
+                        for vm in video_matches:
+                            if vm[0] not in seen_videos:
+                                print(f"{vm[0]} {vm[1]}")
+                                seen_videos.add(vm[0])
+
+                        # Affiche les conditions séparément
+                        conditions = self.parse_conditions_separately(text)
+                        printed_conditions = set()
+                        for cond in conditions:
+                            # Évite les doublons
+                            clean_cond = cond['text'].strip()
+                            if clean_cond not in printed_conditions and len(clean_cond) > 5:
+                                print(f"{clean_cond}")
+                                printed_conditions.add(clean_cond)
+
+                        # Cherche références de navigation/scène (comme "5i", "51j", "35")
+                        nav_refs = re.findall(r'\b(\d+)([a-z])\b', text)
+                        for num, opcode in nav_refs:
+                            if len(num) <= 3:  # Limite aux numéros raisonnables
+                                print(f"{num}{opcode}")
+
+                        # Cherche polygone avec coordonnées
+                        for poly_offset, poly in self.polygons_map.items():
+                            if offset <= poly_offset < next_offset:
+                                bbox = poly['bbox']
+                                print(f"[Polygone {poly['count']} points]")
+                                # Affiche premiers points
+                                pts_str = ' '.join([f"({p[0]},{p[1]})" for p in poly['points'][:4]])
+                                if len(poly['points']) > 4:
+                                    pts_str += " ..."
+                                print(f"  Points: {pts_str}")
+                                print(f"  BBox: ({bbox[0]},{bbox[1]})-({bbox[2]},{bbox[3]})")
 
             i += 1
 

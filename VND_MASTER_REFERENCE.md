@@ -67,6 +67,11 @@
 
 **Vraie longueur**: Distance au prochain séparateur `01 00 00 00`
 
+**⚠️ DÉCOUVERTE MAJEURE**: Type 0 n'est PAS le seul type contenant des scènes!
+- **Type 0**: Scènes principales (face.bmp, banque.bmp, etc.)
+- **Type 2**: Peut contenir des BMP (ex: transverteur2.bmp @ 0x468A dans couleurs1.vnd)
+- **Type 45**: Peut contenir des BMP (ex: maison.bmp @ 0x3AAE dans couleurs1.vnd)
+
 **Statistiques** (vnd_parser_v3.py):
 - **biblio.vnd**: 93 records Type 0, taille moyenne 620 bytes
   - LENGTH field: 0-99% d'erreur!
