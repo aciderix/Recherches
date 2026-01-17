@@ -10,53 +10,64 @@
 
 ## 📊 État Actuel
 
-### Handlers Analysés: 13/43 (30.2%)
+### Handlers Analysés: 21/43 (48.8%)
 
-| Handler | Status | Fonction | Occurrences | Priorité |
-|---------|--------|----------|-------------|----------|
+| Handler | Status | Fonction | Occurrences | Note |
+|---------|--------|----------|-------------|------|
 | **'a' (1)** | ✅ | Pre-processor A | 1 | - |
 | **'b' (2)** | ✅ | Pre-processor B | 0 | - |
-| **'c' (3)** | ✅ | Images variant | 0 | - |
-| **'d' (4)** | ✅ | Pre-processor D | 434* | - |
-| **'e' (5)** | ✅ | Audio+Image | 35 | - |
-| 'f' (6) | ✅ | Navigation | 11 | - |
+| **'c' (3)** | ✅ | Images variant | 0 | Appelle 0x42703A (Images func) |
+| **'d' (4)** | ✅ | Pre-processor D | 434* | *Probablement suffixe DIRECT |
+| **'e' (5)** | ✅ | Audio+Image | 35 | Combiné: WAV + Images |
+| 'f' (6) | ✅ | Navigation | 11 | Appelle 0x4268F8 |
 | **'g' (7)** | ✅ | Tooltip variant | 44 | - |
 | 'h' (8) | ✅ | Tooltip | 50 | - |
-| 'i' (9) | ✅ | Images/INDEX | 603 | - |
+| 'i' (9) | ✅ | Images/INDEX | 603 | Hub central - tous y délèguent |
 | 'j' (10) | ✅ | Bitmaps | 34 | - |
-| 'k' (11) | ✅ | Audio WAV | 11 | - |
+| 'k' (11) | ✅ | Audio WAV | 11 | Fonction 0x427B56 |
 | 'l' (12) | ✅ | MIDI Music | 94 | - |
-| 'u' (21) | ✅ | Logic if/then | 0 | - |
+| **'m' (13)** | ✅ | Pre-proc + Nav | 0 | Appelle 0x427EFF + Navigation |
+| **'n' (14)** | ✅ | Pre-processor | 0 | Vtable calls |
+| **'o' (15)** | ✅ | Pre-processor | 0 | Vtable calls |
+| **'p' (16)** | ✅ | Pre-proc + Vars | 0 | Utilise 0x44ECCE (table vars!) |
+| **'q' (17)** | ✅ | Pre-proc + Vars | 0 | Utilise 0x44ECCE (table vars!) |
+| **'r' (18)** | ✅ | Pre-proc + Vars | 0 | Utilise 0x44ECCE (table vars!) |
+| **'s' (19)** | ✅ | Comparaisons | 0 | Appelle 0x43353D |
+| **'t' (20)** | ✅ | Multi-fonctions | 0 | Appelle 0x428154, 0x42908F, 0x438F64 |
+| 'u' (21) | ✅ | Logic if/then | 0 | Appelle 0x428373 (moteur logique) |
 
-**Dernière découverte**: Handlers a,b,c,d analysés - Tous pré-processeurs → handler 'i'
-
-*Note: 'd' (434 occ.) = probablement suffixe DIRECT, pas le handler lui-même
-
----
-
-### Handlers À Analyser: 30 restants
-
-#### Priorité HAUTE (avec occurrences)
-
-**Tous les handlers de base (a-l, u) analysés!**
-
-Prochains handlers prioritaires:
-- 'm' (13) - À vérifier occurrences
-- 'n' (14) - 144 occurrences mais FAUX POSITIFS (noms fichiers)
-- 'o'-'t' (15-20) - À vérifier
-
-**Action**: Analyser handlers 13-20 (m-t) pour continuer la progression
+**Dernières découvertes**:
+- **Handlers 13-20 (m-t)**: Tous suivent pattern Pre-processor → handler 'i'
+- **Table Variables**: 0x44ECCE identifiée (section BSS, runtime)
+- **Pattern global**: Handler 'i' est le hub central, tous les autres y délèguent!
 
 ---
 
-#### Priorité MOYENNE (indices 13-20)
+### Handlers À Analyser: 22 restants
 
-| Handler | Adresse | Occurrences | Notes |
-|---------|---------|-------------|-------|
-| 'm' (13) | ? | ? | Inconnu |
-| 'n' (14) | ? | 0 | Faux positifs (filenames) |
-| 'o' (15) | ? | ? | Inconnu |
-| 'p' (16) | ? | ? | Inconnu |
+#### Handlers 22-42 (indices post-'u')
+
+**Priorité**: MOYENNE-BASSE
+
+**Note**: Handlers 1-21 sont analysés (48.8% de complétion)
+
+Les 22 handlers restants (indices 22-42) sont probablement:
+- Handlers spécialisés rarement utilisés
+- Variantes des handlers de base
+- Fonctionnalités avancées
+
+**Action**: Extraction de la switch table complète pour identifier leurs adresses
+
+---
+
+#### Handlers sans occurrences détectées
+
+La plupart des handlers 13-20 (m-t) n'ont **0 occurrences** dans les 19 fichiers VND analysés.
+
+**Hypothèses**:
+1. Utilisés dans d'autres fichiers VND non inclus
+2. Fonctionnalités inutilisées/debug
+3. Réservés pour extensions futures
 | 'q' (17) | ? | ? | Inconnu |
 | 'r' (18) | ? | ? | Inconnu |
 | 's' (19) | ? | ? | Inconnu |
@@ -108,64 +119,40 @@ Prochains handlers prioritaires:
 
 ### Récemment Complété ✅
 
-- [x] **Handlers a,b,c,d (1-4)** - ANALYSÉS
-  - Handler 'a' (1) @ 0x00431A20: Pre-processor A → calls 0x426b62 → handler 'i'
-  - Handler 'b' (2) @ 0x00431A39: Pre-processor B → calls 0x426d33 → handler 'i'
-  - Handler 'c' (3) @ 0x00431881: Images variant → calls 0x42703A (Images func) → handler 'i'
-  - Handler 'd' (4) @ 0x00431A53: Pre-processor D → calls 0x4275f6 → handler 'i'
-  - Pattern commun: Tous pré-processent puis délèguent à handler 'i'
+- [x] **Type 0 Structure Analysée** (biblio.vnd, irland.vnd)
+  - biblio.vnd: 903 records (93 Type 0, taille moyenne 620 bytes)
+  - irland.vnd: 921 records (41 Type 0, taille moyenne 151 bytes)
+  - LENGTH field: 0-4520% d'erreur! Totalement non fiable
+  - Vraie longueur: distance au prochain séparateur
+  - Outil créé: vnd_parser_v3.py, analyze_type0_structure.py
 
-- [x] **Handler 'e' (5)** @ 0x004318EE - ANALYSÉ
-  - Fonction: Handler combiné Audio+Image
-  - Appelle 0x427B56 (Audio WAV) puis jump vers handler 'i' (Images)
-  - Pattern: Opcode de convenance pour scènes audiovisuelles
-  - 35 occurrences dans holl.vnd et autres
+- [x] **Handlers 13-20 (m-t) Analysés**
+  - Handler 'm' (13) @ 0x004319CB: Pre-proc + Navigation (0x427EFF + 0x4268F8)
+  - Handlers 'n'-'r' (14-18): Pre-processors avec vtable calls
+  - **Handlers 'p', 'q', 'r': Utilisent 0x44ECCE (Table Variables!)**
+  - Handler 's' (19) @ 0x00431C2C: Comparaisons + 0x43353D
+  - Handler 't' (20) @ 0x00431D6A: Multi-fonctions (3 appels)
+  - Pattern: TOUS délèguent à handler 'i' @ 0x4321B6
+  - Outil créé: analyze_handlers_13_20.py
+
+- [x] **Table Variables @ 0x44ECCE Identifiée**
+  - Adresse: 0x0044ECCE (206 bytes après section DATA)
+  - Section: BSS (non initialisée, allouée au runtime)
+  - Utilisée par: handlers 'p' (16), 'q' (17), 'r' (18)
+  - Nature: Table runtime des variables du jeu
+  - Outil créé: dump_variable_table.py
+
+- [x] **Handlers a,b,c,d (1-4)** - Session précédente
+- [x] **Handler 'e' (5)** - Session précédente
 
 ---
 
 ### Priorité Haute
 
-- [ ] **Parser Type 0 complet**
-  - Problème: LENGTH non fiable
-  - Test sur biblio.vnd (galerie photos)
-  - Test sur irland.vnd (50 records)
-  - **Action**: Analyser structure empirique
-  - **Output**: Ajouter à VND_MASTER_REFERENCE.md section "Type 0"
-
-- [ ] **Dumper table variables @ 0x44ECCE**
-  - Voir INDEX_ID runtime
-  - Comprendre storage variables
-  - **Action**: Utiliser debugger (x32dbg/OllyDbg)
-  - **Output**: Ajouter à VND_MASTER_REFERENCE.md section "Table Variables"
-
-- [ ] **Analyser handlers 1-4 (a,b,c,d)**
-  - Trouver adresses dans switch table
-  - Vérifier occurrences réelles
-  - Désassembler si utilisés
-  - **Output**: Mettre à jour VND_MASTER_REFERENCE.md
-
----
-
-### Priorité Moyenne
-
-- [ ] **Améliorer extraction opcodes**
-  - Filtrer faux positifs (noms fichiers: "5n1.bmp")
-  - Détecter path separators (\ /) avant nombre+lettre
-  - Valider contexte (après runprj, scene, etc.)
-  - **Action**: Modifier extract_opcodes_from_vnd_v2.py
-  - **Output**: Mettre à jour VND_TOOLS_GUIDE.md
-
-- [ ] **Analyser handlers 13-20 (m-t)**
-  - Switch table → adresses
-  - Vérifier si appelés
-  - Désassembler si utilisés
-  - **Output**: Mettre à jour VND_MASTER_REFERENCE.md
-
-- [ ] **Créer VND parser v3**
-  - Parser complet Type 0
-  - Extraction opcodes inline
-  - Export human-readable
-  - **Action**: Nouveau script parser_v3.py
+- [ ] **Analyser handlers 22-42**
+  - Extraire switch table complète
+  - Identifier adresses et patterns
+  - Vérifier occurrences dans VND files
   - **Output**: Ajouter à VND_TOOLS_GUIDE.md
 
 ---

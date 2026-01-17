@@ -61,6 +61,47 @@
 
 ---
 
+### Structure Type 0 (Scènes) - ANALYSÉE ✅
+
+**Problème découvert**: Le champ LENGTH est **TOTALEMENT NON FIABLE** pour Type 0
+
+**Vraie longueur**: Distance au prochain séparateur `01 00 00 00`
+
+**Statistiques** (vnd_parser_v3.py):
+- **biblio.vnd**: 93 records Type 0, taille moyenne 620 bytes
+  - LENGTH field: 0-99% d'erreur!
+  - Exemples d'erreurs:
+    - Record avec LENGTH=0, vraie taille=4520 bytes (4520% erreur!)
+    - Record avec LENGTH=3, vraie taille=886 bytes (99% erreur)
+- **irland.vnd**: 41 records Type 0, taille moyenne 151 bytes
+  - LENGTH field: toujours 0 ou valeur incorrecte
+
+**Contenu Type 0** (structure composite):
+```
+[Type 0 Record Data]
+  - Fichiers audio (.wav)
+  - Fichiers images (.bmp)
+  - Fichiers HTML (.htm)
+  - Conditions if/then
+  - Opcodes (340d, 355i, 431d, 7o)
+  - Coordonnées (X Y W H)
+  - Polices (Comic sans MS, etc.)
+  - Variables (cpays, cmenu1-3)
+  - Textes affichés
+```
+
+**Exemples de contenu**:
+- `..\..\couleurs1\digit\music.wav`
+- `cuisinier2.bmp 0 476 358`
+- `18 0 #ff0000 Comic sans MS`
+- `455 420 125 365 0 Retour.d`
+- `cmenu1 = 1 then playhtml recette\r1.htm 0 200 20 630 340`
+- `340d` (opcode navigation)
+
+**Parser recommandé**: vnd_parser_v3.py
+
+---
+
 ## Système d'Opcodes
 
 ### Mécanisme de Parsing (sub_407FE5)
@@ -105,7 +146,7 @@ switch_table[index]();      // Saute vers handler via table @ 0x4317D5
 
 ## Handlers Analysés
 
-### Handlers Analysés (13 sur 43 - 30.2%)
+### Handlers Analysés (21 sur 43 - 48.8%)
 
 #### 'f' (6) - Navigation @ 0x0043198B
 
@@ -358,9 +399,84 @@ jmp  0x4321b6           ; → Handler 'i' (Images)
 
 ---
 
+### Handlers 13-20 (m-t) - ANALYSÉS ✅
+
+**Pattern découvert**: TOUS suivent le modèle Pre-processor → handler 'i'
+
+#### 'm' (13) @ 0x004319CB ✅
+
+**Fonction**: Appelle 0x427EFF + Navigation
+```asm
+call 0x427EFF           ; Fonction inconnue
+call 0x4268F8           ; ← Navigation (handler 'f')!
+jmp  0x4321b6           ; → Handler 'i'
+```
+**Usage**: 0 occurrences détectées
+
+---
+
+#### 'n', 'o', 'p', 'q', 'r' (14-18) @ 0x00431BAB-0x00431C0D ✅
+
+**Fonction**: Pré-processeurs avec accès à la table de variables
+
+**Découverte majeure**: Handlers 'p', 'q', 'r' utilisent **0x44ECCE** (Table Variables!)
+
+```asm
+push 0x44ecce           ; ← ADRESSE TABLE VARIABLES!
+push esi
+mov  ecx, [esi]
+call [ecx+8]            ; Vtable call
+jmp  0x4321b6           ; → Handler 'i'
+```
+
+**Usage**: 0 occurrences détectées pour tous
+
+**Note**: Ces handlers manipulent les variables du jeu avant de déléguer à handler 'i'
+
+---
+
+#### 's' (19) @ 0x00431C2C ✅
+
+**Fonction**: Logique de comparaison + fonction 0x43353D
+```asm
+cmp  eax, [ebp-0x9c]    ; Comparaisons
+jge  ...
+call 0x43353D           ; Fonction inconnue
+jmp  0x4321b6           ; → Handler 'i'
+```
+**Usage**: 0 occurrences détectées
+
+---
+
+#### 't' (20) @ 0x00431D6A ✅
+
+**Fonction**: Appels multiples (0x428154, 0x42908F, 0x438F64)
+```asm
+call 0x428154           ; Fonction 1
+call 0x42908F           ; Fonction 2
+call 0x438F64           ; Fonction 3
+jmp  0x4321b6           ; → Handler 'i'
+```
+**Usage**: 0 occurrences détectées
+
+---
+
+### Pattern Commun Handlers m-t (13-20)
+
+**Tous suivent le modèle**:
+1. Test paramètres (esi)
+2. Appels de fonctions spécifiques (directs ou vtable)
+3. Jump vers handler 'i' (Images) @ 0x4321b6
+
+**Rôle**: Pré-processeurs spécialisés avec accès aux variables du jeu
+
+**Référence table variables**: **0x44ECCE** (utilisé par handlers p, q, r)
+
+---
+
 ### Handlers À Analyser
 
-**TODO**: Désassembler handlers 13-20 (m-t) et 22-42
+**TODO**: Désassembler handlers 22-42
 
 ---
 
