@@ -94,28 +94,45 @@ class VndDecompilerV4:
         return separators
 
     def extract_text_at(self, offset, length):
-        """Extrait le texte à un offset donné, filtré des caractères binaires"""
+        """Extrait le texte à un offset donné, filtre les caractères binaires mais continue"""
         if offset + length > len(self.text_content):
             length = len(self.text_content) - offset
         text = self.text_content[offset:offset+length]
 
-        # Filtre les caractères binaires tout en gardant les caractères imprimables
+        # Filtre les caractères binaires mais continue (ne s'arrête pas)
         filtered = []
-        for char in text:
-            # Garde: lettres, chiffres, ponctuation, espaces, accents
-            if (32 <= ord(char) <= 126) or char in ['\n', '\r', '\t']:
-                filtered.append(char)
-            elif 128 <= ord(char) <= 255:
-                # Garde les accents français communs
-                if char in 'àâäéèêëïîôùûüÿçœæÀÂÄÉÈÊËÏÎÔÙÛÜŸÇŒÆ':
-                    filtered.append(char)
-                else:
-                    filtered.append(' ')
-            else:
-                # Remplace les autres par un espace
-                filtered.append(' ')
+        binary_count = 0
+        max_consec_binary = 30  # Saute les grosses zones binaires
 
-        return ''.join(filtered)
+        for i, char in enumerate(text):
+            ord_val = ord(char)
+
+            # Caractères imprimables normaux
+            if (32 <= ord_val <= 126) or char in ['\n', '\r', '\t']:
+                # Si on sortait d'une zone binaire, ajoute un espace
+                if binary_count > 5:
+                    filtered.append(' ')
+                filtered.append(char)
+                binary_count = 0
+            # Accents français
+            elif char in 'àâäéèêëïîôùûüÿçœæÀÂÄÉÈÊËÏÎÔÙÛÜŸÇŒÆ':
+                if binary_count > 5:
+                    filtered.append(' ')
+                filtered.append(char)
+                binary_count = 0
+            # Caractère binaire
+            else:
+                binary_count += 1
+                # Saute les grosses zones binaires (ne les affiche pas)
+                if binary_count <= max_consec_binary:
+                    # Petites zones binaires: remplace par espace
+                    if len(filtered) > 0 and filtered[-1] != ' ':
+                        filtered.append(' ')
+
+        # Nettoie les espaces multiples
+        result = ''.join(filtered)
+        result = re.sub(r' +', ' ', result)
+        return result.strip()
 
     def parse_conditions_separately(self, text):
         """Parse les conditions et les sépare proprement"""
@@ -302,7 +319,8 @@ class VndDecompilerV4:
                 for j in range(1, min(6, len(separators) - i)):
                     next_sep = separators[i + j]
                     next_off = next_sep['data_offset']
-                    next_len = min(2000, next_sep.get('next_offset', len(self.data)) - next_off)
+                    next_next_off = next_sep.get('next_offset', len(self.data))
+                    next_len = min(2000, next_next_off - next_off)
                     scene_text += ' ' + self.extract_text_at(next_off, next_len)
 
                 # Cherche nom de scène (première ligne significative)
