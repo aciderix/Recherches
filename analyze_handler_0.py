@@ -1,0 +1,127 @@
+#!/usr/bin/env python3
+"""
+Analyse du Handler indice 0 @ 0x004319FA
+Dernier handler non analysé!
+"""
+from capstone import *
+import struct
+
+EXE_FILE = "DOCS/europeo.exe"
+HANDLER_0_ADDR = 0x004319FA
+BASE_ADDR = 0x00400000
+
+def va_to_file_offset(va, sections):
+    """Convert VA to file offset"""
+    va_no_base = va - BASE_ADDR if va >= BASE_ADDR else va
+    for section in sections:
+        virt_start = section['VirtualAddress']
+        virt_end = virt_start + section['SizeOfRawData']
+        if virt_start <= va_no_base < virt_end:
+            offset_in_section = va_no_base - virt_start
+            return section['PointerToRawData'] + offset_in_section
+    return None
+
+def parse_pe_sections(data):
+    """Parse PE sections"""
+    pe_offset = struct.unpack('<I', data[0x3C:0x40])[0]
+    coff_offset = pe_offset + 4
+    num_sections = struct.unpack('<H', data[coff_offset+2:coff_offset+4])[0]
+    size_of_optional = struct.unpack('<H', data[coff_offset+16:coff_offset+18])[0]
+    section_offset = coff_offset + 20 + size_of_optional
+
+    sections = []
+    for i in range(num_sections):
+        sec_data = data[section_offset + i*40:section_offset + (i+1)*40]
+        sections.append({
+            'Name': sec_data[0:8].rstrip(b'\x00').decode('ascii', errors='ignore'),
+            'VirtualAddress': struct.unpack('<I', sec_data[12:16])[0],
+            'SizeOfRawData': struct.unpack('<I', sec_data[16:20])[0],
+            'PointerToRawData': struct.unpack('<I', sec_data[20:24])[0]
+        })
+    return sections
+
+def main():
+    print("="*80)
+    print("ANALYSE HANDLER INDICE 0 @ 0x004319FA")
+    print("="*80)
+    print("Dernier handler non analysé (43/43 - 100% completion!)")
+    print()
+
+    # Lit le fichier EXE
+    with open(EXE_FILE, 'rb') as f:
+        data = f.read()
+
+    # Parse les sections PE
+    sections = parse_pe_sections(data)
+
+    # Convertit VA en offset fichier
+    offset = va_to_file_offset(HANDLER_0_ADDR, sections)
+    if not offset:
+        print("✗ Impossible de trouver l'adresse")
+        return
+
+    print(f"Handler @ 0x{HANDLER_0_ADDR:08X}")
+    print(f"File offset: 0x{offset:08X}")
+    print()
+
+    # Lit 200 bytes
+    code = data[offset:offset+200]
+
+    # Désassemble avec capstone
+    md = Cs(CS_ARCH_X86, CS_MODE_32)
+    md.detail = True
+
+    print("DÉSASSEMBLAGE (50 premières instructions):")
+    print("-" * 80)
+
+    calls_found = []
+    jumps_found = []
+    jump_to_handler_i = False
+
+    for i, insn in enumerate(md.disasm(code, HANDLER_0_ADDR)):
+        if i >= 50:
+            break
+
+        print(f"{insn.address:08x}:  {insn.mnemonic:8} {insn.op_str:30}")
+
+        if insn.mnemonic == 'call':
+            calls_found.append({'addr': insn.address, 'target': insn.op_str})
+
+        if insn.mnemonic.startswith('j'):
+            jumps_found.append({'addr': insn.address, 'type': insn.mnemonic, 'target': insn.op_str})
+            # Détecte jump vers handler 'i'
+            if '0x4321b6' in insn.op_str.lower():
+                jump_to_handler_i = True
+
+    print()
+    print("="*80)
+    print("ANALYSE:")
+    print("="*80)
+    print()
+
+    print(f"✓ Trouvé {len(calls_found)} appels de fonction")
+    print(f"✓ Trouvé {len(jumps_found)} sauts")
+    print()
+
+    if calls_found:
+        print("APPELS DE FONCTION:")
+        print("-" * 80)
+        for call in calls_found[:10]:
+            print(f"  @ 0x{call['addr']:08X}  →  {call['target']}")
+        print()
+
+    # Pattern détecté
+    if jump_to_handler_i:
+        print("PATTERN: Pre-processor → handler 'i'")
+    elif len(calls_found) == 0 and len(jumps_found) > 0:
+        print("PATTERN: Direct jump (no preprocessing)")
+    else:
+        print("PATTERN: Custom handler")
+
+    print()
+    print("="*80)
+    print("🎉 HANDLER INDICE 0 ANALYSÉ - 43/43 HANDLERS COMPLÉTÉS!")
+    print("="*80)
+
+if __name__ == '__main__':
+    main()

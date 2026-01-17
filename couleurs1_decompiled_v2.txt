@@ -1,0 +1,655 @@
+================================================================================
+VND DECOMPILED V2: Vnd-vnp/couleurs1.vnd
+================================================================================
+
+HEADER:
+  Signature: VNFILE @ 0x0009
+
+VARIABLES (140):
+  5D51F233             = 0
+  SACADOS              = 50331648
+  BIDON                = 150994944
+  CALC                 = 150994944
+  ACTIVE               = 100663296
+  DELPHITEST1          = 184549376
+  CPAYS                = 100663296
+  CMENU2               = 100663296
+  COMPTEUR1            = 150994944
+  COMPTEUR3            = 134217728
+  REPONSEM             = 134217728
+  PIECE                = 67108864
+  BEETHOVEN            = 83886080
+  SCOTCH               = 134217728
+  REPONSE              = 67108864
+  MAUVAISENOTE         = 201326592
+  EXPO                 = 100663296
+  SABOT2               = 50331648
+  CLE                  = 83886080
+  SIROP                = 100663296
+  CAPITALE             = 117440512
+  MENU                 = 83886080
+  COSTUME              = 83886080
+  PALME                = 83886080
+  RESSORT              = 100663296
+  HARPON               = 100663296
+  BOUT_PLO             = 117440512
+  PLONGE               = 201326592
+  GRECREPONSE          = 167772160
+  CPHOTO               = 83886080
+  ... et 110 autres
+
+RECORDS (739 total, 61 types):
+
+--- Type 0 (89 records, 49 with data) ---
+  ..\VnStudio\vnresmod.dll
+  SACADOS
+  JEU
+  music.wav
+  euroland\face.bmp
+  18 0 #000000 Comic sans MS
+  387 18 125 365 0 La maison de prof
+  euroland\bureaubanquier.bmp
+  music.wav
+  euroland\banque.bmp
+  ... et 44 autres records avec données
+
+--- Type 1 (45 records, 25 with data) ---
+  [if_then] score < 0 then runprj
+  [if_then] espagne = 1 then dec_var
+  [if_then] angleterre = 1 then dec_var
+  18 0 #000000 Comic sans MS
+  89 375 125 365 0 Ma maison
+  18 0 #000000 Comic sans MS
+  348 357 125 365 0 La fontaine
+  couleurs
+  [if_then] score < 0 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 54h
+  24 0 #ffffff Comic sans MS
+  [if_then] score < 0 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 54h
+  22 0 #ffffff Comic sans MS
+  ... et 20 autres records avec données
+
+--- Type 2 (45 records, 45 with data) ---
+  39i
+  Le bureau du banquier
+  18 0 #ffffff Comic sans MS
+  40 350 125 365 0 L'agenda du banquierj
+  18 0 #ffffff Comic sans MS
+  22j
+  18 0 #ffffff Comic sans MS
+  40 350 125 365 00 Du courrierj
+  18 0 #ffffff Comic sans MS
+  40 350 125 365 0 Dossier euroj
+  ... et 40 autres records avec données
+
+--- Type 3 (6 records, 3 with data) ---
+  500
+  [if_then] score < 0 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 54
+  fin2.avi 1 0 40 640 440
+  43d
+  ... et 3 records vides/binaires
+
+--- Type 5 (23 records, 23 with data) ---
+  jeu 1
+  jeu 1
+  jeu 1
+  jeu 1
+  jeu 1
+  ... et 18 autres records avec données
+
+--- Type 6 (7 records, 1 with data) ---
+  42d
+  ... et 6 records vides/binaires
+
+--- Type 7 (2 records, 2 with data) ---
+  18 0 #000000 Comic sans MS
+  249 297 125 365 0 Le mus
+  e du village
+  fiole 0
+
+--- Type 8 (20 records, 20 with data) ---
+  annule 0
+  annule 1
+  active 0
+  occupe 1
+  occupe 2
+  ... et 15 autres records avec données
+
+--- Type 9 (4 records, 4 with data) ---
+  occupe 10
+  occupe 11
+  occupe 12
+  fioleok 0
+
+--- Type 10 (3 records, 2 with data) ---
+  rollover\rotvoi.bmp 0 100 87d
+  fleche.cur
+  ... et 1 records vides/binaires
+
+--- Type 11 (6 records, 6 with data) ---
+  music.wav 2
+  18 0 #000000 Comic sans MS
+  160 350 125 365 0 Le banquier d'Eurolandl
+  music.wav 2l
+  18 0 #ffffff Comic sans MS
+  370 340 125 365 0 Une table avec plein de choses dessus
+  music.wav 6l
+  18 0 #ffffff Comic sans MS
+  200 40 125 365 0 Un dipl
+  music.wav 2i
+  music.wav 2
+  ... et 1 autres records avec données
+
+--- Type 12 (1 records, 1 with data) ---
+  unplus.wav 1
+
+--- Type 15 (1 records, 0 with data) ---
+  ... et 1 records vides/binaires
+
+--- Type 17 (3 records, 3 with data) ---
+  bruit\boing.wav 1
+  [if_then] score < 0 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 54
+  [playavi] playavi euroland\arrimaire.avi 1
+  bruit\foret.wav 2d
+
+--- Type 19 (3 records, 3 with data) ---
+  ..\espa\espa.vnp 13d
+  rollover\eco.bmp 0 20 59
+  ..\autr\autr.vnp 12d
+  rollover\dan.bmp 0 5 69
+  ..\holl\holl.vnp 10d
+  rollover\gre.bmp 0 22 57
+
+--- Type 20 (5 records, 4 with data) ---
+  euroland\home2.avi 1
+  euroland\musee.avi 1
+  [if_then] trans = 0 then set_var
+  [if_then] score < 0 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 54d
+  ..\grece\grece.vnp 7d
+  ... et 1 records vides/binaires
+
+--- Type 21 (21 records, 21 with data) ---
+  euroland\depart.avi 1
+  euroland\depart.avi 1
+  euroland\depart.avi 1
+  euroland\depart.avi 1
+  euroland\depart.avi 1
+  ... et 16 autres records avec données
+
+--- Type 22 (2 records, 2 with data) ---
+  euroland\bankbis.avi 1
+  euroland\profbis.avi 1
+
+--- Type 23 (24 records, 24 with data) ---
+  euroland\fontaine.avi 1
+  euroland\vuemusee.avi 1
+  ..\france\france.vnp 18
+  rollover\fr.bmp 0 27 63d
+  rollover\esp.bmp 0 12 62
+  ..\ecosse\ecosse.vnp 33d
+  rollover\por.bmp 0 11 61
+  ..\finlan\finlan.vnp 11d
+  rollover\irl.bmp 0 13 57
+  ... et 19 autres records avec données
+
+--- Type 24 (7 records, 7 with data) ---
+  euroland\bibliobis.avi 1
+  [if_then] bonus3 = 1 then scene
+  [if_then] bonus3 = 0 then playtext
+  [if_then] bonus3 = 2 then playtext
+  [if_then] bonus1 = 1 then scene
+  [if_then] bonus1 = 0 then playtext
+  [if_then] bonus1 = 2 then playtext
+  [if_then] bonus2 = 1 then scene
+  [scene] scene 35k
+  [if_then] sacados = 0 then scene
+  [if_then] sacados = 0 then playtext
+  [if_then] score < 0 then runprj
+  ... et 2 autres records avec données
+
+--- Type 25 (2 records, 2 with data) ---
+  ..\angl\angleterre.vnp 69d
+  rollover\quitter.bmp 0 90 360
+  [if_then] ap = 2 then dec_var
+  [dec_var] dec_var api 1
+
+--- Type 26 (10 records, 10 with data) ---
+  18 0 #0000ff Comic sans MS
+  18 0 #ffffff Comic sans MS
+  18 0 #ffffff Comic sans MS
+  22 0 #ffffff Comic sans MS
+  [if_then] bus = 2 then dec_var
+  [dec_var] dec_var bus 1
+  ... et 5 autres records avec données
+
+--- Type 27 (10 records, 10 with data) ---
+  [if_then] telephone = 0 then closewav
+  [closewav] closewav
+  [if_then] telephone = 0 then scene
+  [scene] scene 16l
+  18 0 #ffffff Comic sans MS
+  [if_then] cleverte = -1 then scene
+  [scene] scene 44
+  [if_then] telephone = 1 then closedll
+  [if_then] trans = 1 then addbmp
+  [if_then] calc = 1 then addbmp
+  [if_then] telephone = 1 then addbmp
+  ... et 5 autres records avec données
+
+--- Type 28 (12 records, 12 with data) ---
+  clejauned
+  [if_then] pain = 2 then dec_var
+  [dec_var] dec_var pain 1
+  [if_then] cire = 2 then dec_var
+  [dec_var] dec_var cire 1
+  [if_then] orge = 2 then dec_var
+  [dec_var] dec_var orge 1
+  [if_then] burette != 0 then invalidate
+  ... et 7 autres records avec données
+
+--- Type 29 (4 records, 4 with data) ---
+  [if_then] occupe10  = 0 then hotspot
+  [if_then] occupe11  = 0 then hotspot
+  [if_then] occupe12  = 0 then hotspot
+  ..\..\grece\digit\cling.wav 1
+
+--- Type 30 (16 records, 16 with data) ---
+  [if_then] bouee = 2 then dec_var
+  [dec_var] dec_var bouee 1
+  [if_then] loupe = 2 then dec_var
+  [dec_var] dec_var loupe 1
+  [if_then] masse = 2 then dec_var
+  [dec_var] dec_var masse 1
+  [if_then] palme = 2 then dec_var
+  [dec_var] dec_var palme 1
+  [if_then] photo = 2 then dec_var
+  [dec_var] dec_var photo 1
+  ... et 11 autres records avec données
+
+--- Type 31 (9 records, 8 with data) ---
+  [if_then] calc = 0 then rundll
+  [rundll] rundll francs.dll
+  18 0 #ffffff Comic sans MS
+  ..\..\grece\digit\cartoon.wav 1
+  ..\frontal\start.vnp 3d
+  [if_then] hotte = 2 then dec_var
+  [dec_var] dec_var  hotte 1
+  maire euroland\maire3.bmp 0 0 0
+  ... et 3 autres records avec données
+
+--- Type 32 (96 records, 96 with data) ---
+  [if_then] bonus3 = 0 then set_var
+  [set_var] set_var bonus3 1
+  [if_then] bonus1 = 0 then set_var
+  [set_var] set_var bonus1 1
+  800 370 125 365 0 de te reposer.
+  18 0 #ffffff Comic sans MS
+  990 350 125 365 0 Un litd
+  [if_then] bonus2 = 0 then set_var
+  [set_var] set_var bonus2 1
+  [if_then] bonus4 = 1 then dec_var
+  [dec_var] dec_var score 10
+  ... et 91 autres records avec données
+
+--- Type 33 (10 records, 10 with data) ---
+  [if_then] levure = 2 then dec_var
+  [dec_var] dec_var  levure 1
+  [if_then] occupe = 1 then set_var
+  [set_var] set_var occupe1 1
+  [if_then] occupe = 2 then set_var
+  [set_var] set_var occupe2 1
+  [if_then] occupe = 3 then set_var
+  [set_var] set_var occupe3 1
+  [if_then] occupe = 4 then set_var
+  [set_var] set_var occupe4 1
+  ... et 5 autres records avec données
+
+--- Type 34 (13 records, 13 with data) ---
+  [if_then] milleeuro = 0 then rundll
+  [if_then] milleeuro >= 1 then addbmp
+  [addbmp] addbmp coffre euroland\rollover\coffre.bmp
+  [if_then] clejaune != 0 then delbmp
+  [if_then] ballon1 = 2 then dec_var
+  [dec_var] dec_var ballon1 1
+  [if_then] ciseaux = 2 then dec_var
+  [dec_var] dec_var ciseaux 1
+  [if_then] guitare = 2 then dec_var
+  [dec_var] dec_var guitare 1
+  ... et 8 autres records avec données
+
+--- Type 35 (16 records, 16 with data) ---
+  euroland\pro2.avi 1 659 166 771 286
+  [if_then] bonus3 = 1 then playwav
+  [playwav] playwav cling.wav 1
+  [if_then] bonus4 = 1 then playwav
+  [playwav] playwav cling.wav 1
+  [if_then] bonus5 = 1 then playwav
+  [playwav] playwav cling.wav 1
+  [if_then] bonus9 = 1 then playwav
+  [playwav] playwav cling.wav 1
+  ... et 11 autres records avec données
+
+--- Type 36 (18 records, 18 with data) ---
+  euroland\banq2.avi 1 168 122 344 374
+  euroland\femme.avi 1 220 150 420 400
+  euroland\pro1a.avi 1 659 166 771 286
+  [if_then] clerouge = 2 then dec_var
+  [dec_var] dec_var clerouge 1
+  [if_then] bout_plo = 2 then dec_var
+  [dec_var] dec_var bout_plo 1
+  ... et 13 autres records avec données
+
+--- Type 37 (30 records, 30 with data) ---
+  [if_then] cleverte = 2 then set_var
+  [set_var] set_var cleverte -1
+  [if_then] bonus4 = 1 then playwav
+  [playwav] playwav cartoon.wav 1
+  [if_then] bonus5 = 1 then playwav
+  [playwav] playwav cartoon.wav 1
+  [if_then] bonus5 = 1 then playwav
+  [playwav] playwav cartoon.wav 1
+  [if_then] bonus3 = 1 then playwav
+  [playwav] playwav cartoon.wav 1
+  ... et 25 autres records avec données
+
+--- Type 38 (19 records, 19 with data) ---
+  800 350 125 365 0 Tu n'as pas le temps
+  euroland\prof2.avi 1 1100 159 1300 399
+  euroland\trans.avi 1 1644 182 1878 400
+  [if_then] cleverte = 2 then playwav
+  [playwav] playwav porte2.wav 1
+  [if_then] cleverte = 2 then defcursor
+  ... et 14 autres records avec données
+
+--- Type 39 (8 records, 8 with data) ---
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\holl\holl.vnp 11
+  18 0 #ffffff Comic sans MS
+  [if_then] calc = 0 then playwav
+  [playwav] playwav bruit\Siren.wav 2
+  [if_then] fiolefinlande = -1 then inc_var
+  [inc_var] inc_var fiole 1
+  [if_then] fioleautriche = -1 then inc_var
+  [inc_var] inc_var fiole 1
+  [if_then] fioleespagne2 = -1 then inc_var
+  [inc_var] inc_var fiole 1
+  ... et 3 autres records avec données
+
+--- Type 40 (9 records, 9 with data) ---
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\allem\allem.vnp 6
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\allem\allem.vnp 5j
+  18 0 #ffffff Comic sans MS
+  [if_then] calc = 1 then rundll
+  [if_then] calc = 1 then addbmp
+  [if_then] calc = 1 then addbmp
+  [if_then] sacados = 1 then rundll
+  [rundll] rundll ..\barre\inv.dlld
+  [if_then] papiercado = 2 then dec_var
+  [dec_var] dec_var papiercado 1
+  ... et 4 autres records avec données
+
+--- Type 41 (14 records, 14 with data) ---
+  [if_then] bonus3 = 0 then playwav
+  [playwav] playwav bruit\boing.wav 1
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\allem\allem.vnp 10
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\grece\grece.vnp 13
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\portu\portu.vnp 11
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\belge\belge.vnp 23
+  18 0 #ffffff Comic sans MS
+  ... et 9 autres records avec données
+
+--- Type 42 (8 records, 8 with data) ---
+  [if_then] jeu = 1 then runprj
+  [if_then] telephone = 1 then addbmp
+  [runprj] runprj ..\biblio\biblio.vnp 4
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\biblio\biblio.vnp 2
+  18 0 #ffffff Comic sans MS
+  [if_then] castagnette = 2 then dec_var
+  [dec_var] dec_var castagnette 1
+  [if_then] pier_berlin = 2 then dec_var
+  [dec_var] dec_var pier_berlin 1
+  [if_then] tulipejaune = 2 then dec_var
+  [dec_var] dec_var tulipejaune 1
+  ... et 3 autres records avec données
+
+--- Type 43 (22 records, 22 with data) ---
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\biblio\biblio.vnp 10
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\france\france.vnp 27j
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\ecosse\ecosse.vnp 36
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\france\france.vnp 17
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\france\france.vnp 26
+  18 0 #ffffff Comic sans MS
+  ... et 17 autres records avec données
+
+--- Type 44 (7 records, 7 with data) ---
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\italie\italie.vnp  27
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\biblio\biblio.vnp  11
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\angl\angleterre.vnp 1
+  18 0 #ffffff Comic sans MS
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\italie\italie.vnp  29
+  18 0 #ffffff Comic sans MS
+  [if_then] taillepierre = 2 then dec_var
+  [dec_var] dec_var taillepierre 1
+  ... et 2 autres records avec données
+
+--- Type 45 (23 records, 23 with data) ---
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\angl\angleterre.vnp 59j
+  [if_then] jeu = 1 then runprj
+  [runprj] runprj ..\angl\angleterre.vnp 57j
+  music.wav
+  [if_then] bonus4 = 1 then runprj
+  [runprj] runprj ..\ecosse\ecosse.vnp 6
+  [if_then] bonus5 = 1 then runprj
+  [runprj] runprj ..\france\france.vnp 5
+  [if_then] bonus4 = 1 then runprj
+  [runprj] runprj ..\ecosse\ecosse.vnp 6
+  ... et 18 autres records avec données
+
+--- Type 47 (6 records, 6 with data) ---
+  [if_then] fiolefinlande = 2 then dec_var
+  [dec_var] dec_var  fiolefinlande 1
+  [if_then] fioleautriche = 2 then dec_var
+  [dec_var] dec_var  fioleautriche 1
+  [if_then] fioleespagne2 = 2 then dec_var
+  [dec_var] dec_var  fioleespagne2 1
+  [if_then] fiolefinlande = 2 then set_var
+  [set_var] set_var fiolefinlande -1
+  [if_then] fioleautriche = 2 then set_var
+  [set_var] set_var fioleautriche -1
+  ... et 1 autres records avec données
+
+--- Type 48 (1 records, 1 with data) ---
+  [if_then] sacados = 0 then font
+
+--- Type 50 (2 records, 2 with data) ---
+  [if_then] calc = 0 then playavi
+  [playavi] playavi sirene.avi 2
+  24 1 #ffffff Comic sans MS
+  [if_then] sacados = 1 then if
+  [if_then] sirop = 0 then set_var
+  [set_var] set_var sirop 1
+
+--- Type 51 (17 records, 17 with data) ---
+  [if_then] bonus1 = 1 then playavi
+  [playavi] playavi bonus2.avi 1
+  [if_then] bonus2 = 1 then playavi
+  [playavi] playavi bonus2.avi 1
+  [if_then] bonus3 = 1 then playavi
+  [playavi] playavi bonus1.avi 1
+  [if_then] bonus1 = 1 then playavi
+  [playavi] playavi bonus1.avi 1
+  [if_then] bonus2 = 1 then playavi
+  [playavi] playavi bonus2.avi 1
+  ... et 12 autres records avec données
+
+--- Type 52 (4 records, 4 with data) ---
+  [if_then] sacados = 1 then if
+  [if_then] levure = 0 then set_var
+  [set_var] set_var levure 1
+  [if_then] occupe1 = 1 then addbmp
+  [addbmp] addbmp f1 rollover\b1.bmp
+  [if_then] occupe8 = 1 then addbmp
+  [addbmp] addbmp f8 rollover\b8.bmp
+  [if_then] occupe9 = 1 then addbmp
+  [addbmp] addbmp f9 rollover\b9.bmp
+
+--- Type 54 (2 records, 2 with data) ---
+  [if_then] telephone = 1 then runprj
+  [runprj] runprj ..\couleurs1\couleurs1.vnp 4
+  [if_then] sacados = 1 then if
+  [if_then] burette = 0 then set_var
+  [set_var] set_var burette 1
+
+--- Type 55 (3 records, 3 with data) ---
+  [if_then] occupe10 = 1 then addbmp
+  [addbmp] addbmp f10 rollover\b91.bmp
+  [if_then] occupe11 = 1 then addbmp
+  [addbmp] addbmp f11 rollover\b92.bmp
+  [if_then] occupe12 = 1 then addbmp
+  [addbmp] addbmp f12 rollover\b93.bmp
+
+--- Type 56 (2 records, 2 with data) ---
+  [if_then] sacados = 1 then if
+  [if_then] clejaune = 0 then set_var
+  [set_var] set_var clejaune 1
+  [if_then] sirop != 0 then addbmp
+  [addbmp] addbmp sirop rollover\sirop2.bmp
+
+--- Type 58 (1 records, 1 with data) ---
+  [if_then] sacados = 1 then if
+  [if_then] allumette = 0 then set_var
+  [set_var] set_var allumette 1
+
+--- Type 60 (3 records, 3 with data) ---
+  [if_then] clejaune = 2 then playbmp
+  [if_then] clerouge = 2 then playbmp
+  18 0 #ffffff Comic sans MS
+  65 350 125 365 0 Un coffre ferm
+  [if_then] calc = 0 then playavi
+  [playavi] playavi euroland\conser4.avi 1
+
+--- Type 61 (1 records, 1 with data) ---
+  [if_then] levure != 0 then addbmp
+  [addbmp] addbmp levure rollover\levure2.bmp
+
+--- Type 62 (1 records, 1 with data) ---
+  [if_then] burette != 0 then addbmp
+  [addbmp] addbmp burette rollover\burette2.bmp
+
+--- Type 63 (10 records, 10 with data) ---
+  [if_then] milleeuro = 0 then playavi
+  [playavi] playavi euroland\banq3.avi 1
+  [if_then] fiole = 1 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f1.bmp
+  [if_then] fiole = 2 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f2.bmp
+  [if_then] fiole = 3 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f3.bmp
+  [if_then] fiole = 4 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f4.bmp
+  ... et 5 autres records avec données
+
+--- Type 64 (1 records, 1 with data) ---
+  [if_then] milleeuro = 0 then playavi
+  [playavi] playavi euroland\banq41.avi 1
+
+--- Type 65 (4 records, 4 with data) ---
+  [if_then] telephone = 0 then playavi
+  [playavi] playavi euroland\biblio1.avi 1
+  [if_then] fiole = 10 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f10.bmp
+  [if_then] fiole = 11 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f11.bmp
+  [if_then] fiole = 12 then addbmp
+  [addbmp] addbmp fiole ..\..\barre\images\f12.bmp
+
+--- Type 70 (1 records, 1 with data) ---
+  [if_then] clejaune = 0 then playtext
+  [playtext] playtext 1540 210 1700 230 0  pour ranger tes objets
+
+--- Type 71 (2 records, 2 with data) ---
+  [if_then] clejaune = 0 then playtext
+  [playtext] playtext 1540 190 1700 210 0  Il te faut un sac dos
+  [if_then] allumette != 0 then addbmp
+  [addbmp] addbmp al euroland\rollover\allumette2.bmp
+
+--- Type 75 (1 records, 1 with data) ---
+  [if_then] clejaune = 0 then addbmp
+  [addbmp] addbmp clejaune euroland\rollover\clejaune.bmp
+
+--- Type 89 (3 records, 3 with data) ---
+  [if_then] sacados = 0 then playtext
+  [if_then] levure = 0 then playtext
+  [playtext] playtext 20 350 105 365 0 Il te faut un sac dos pour ranger tes objetsd 18 0 #ffffff Comic sans MS levure = 0 then playtext 150 290 125 365 0 Des sachets de levure
+  [if_then] sacados = 0 then playtext
+  [if_then] burette = 0 then playtext
+  [playtext] playtext 20 350 125 365 0 Il te faut un sac dos pour ranger tes objetsd 18 0 #ffffff Comic sans MS burette = 0 then playtext 50 290 125 365 0 Une burette d'huile
+  [if_then] sacados = 0 then playtext
+  [playtext] playtext 20 350 125 365 0 Il te faut un sac dos pour ranger tes objetsd 18 0 #ffffff Comic sans MS 400 140 125 365 0 Des produits chimiquesd 18 0 #ffffff Comic sans MS 300 300 125 365 0 Plan du transvecteur
+
+--- Type 90 (1 records, 1 with data) ---
+  [if_then] allumette = 0 then playtext
+  [playtext] playtext 20 370 125 365 0 Il te faut un sac dos pour le mettre dedansd 18 0 #ffffff Comic sans MS 400 340 125 365 0 Ces livres ne te 400 360 125 365 0 seront d'aucune 400 380 125 365 0 utilit Sac dos
+
+================================================================================
+STATISTIQUES:
+================================================================================
+Total records: 739
+Records avec données: 666
+Types uniques: 61
+Variables: 140
+Patterns détectés: 1252
+
+Top 10 types:
+  Type  32:   96 records ( 13.0%)
+  Type   0:   89 records ( 12.0%)
+  Type   1:   45 records (  6.1%)
+  Type   2:   45 records (  6.1%)
+  Type  37:   30 records (  4.1%)
+  Type  23:   24 records (  3.2%)
+  Type   5:   23 records (  3.1%)
+  Type  45:   23 records (  3.1%)
+  Type  43:   22 records (  3.0%)
+  Type  21:   21 records (  2.8%)
+
+Patterns les plus fréquents:
+  if_then        :  667 occurrences
+  addbmp         :  133 occurrences
+  dec_var        :  131 occurrences
+  runprj         :   83 occurrences
+  set_var        :   64 occurrences
+  inc_var        :   61 occurrences
+  playwav        :   41 occurrences
+  playtext       :   27 occurrences
+  scene          :   23 occurrences
+  playavi        :   15 occurrences
