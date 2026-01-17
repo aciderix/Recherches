@@ -1,8 +1,8 @@
 # VND Progress - État de la Recherche
 
-**Version**: 2.0
-**Date**: 2026-01-16
-**Complétion globale**: 75%
+**Version**: 3.0
+**Date**: 2026-01-17
+**Complétion globale**: 95% ✅
 
 > **Note**: Document centralisé pour suivre l'avancement. Mettre à jour ce fichier au lieu de créer de nouveaux TODOs.
 
@@ -10,7 +10,9 @@
 
 ## 📊 État Actuel
 
-### Handlers Analysés: 21/43 (48.8%)
+### Handlers Analysés: 42/43 (97.7%) ✅
+
+**QUASI-COMPLET!** Seul l'indice 0 reste non analysé.
 
 | Handler | Status | Fonction | Occurrences | Note |
 |---------|--------|----------|-------------|------|
@@ -117,7 +119,35 @@ La plupart des handlers 13-20 (m-t) n'ont **0 occurrences** dans les 19 fichiers
 
 ## 🎯 TODO Actif
 
-### Récemment Complété ✅
+### Récemment Complété ✅ (Session Actuelle)
+
+- [x] **Handlers 22-42 (v-z + numériques) Analysés**
+  - **42/43 handlers** analysés (97.7% complétion!)
+  - 3 duplicates détectés: v=36, w=37, x=38
+  - Indice 34 = Handler 'i' (confirmé)
+  - **TOUS les 41 autres** délèguent à handler 'i' @ 0x4321B6
+  - **Architecture Hub-and-Spoke confirmée**
+  - Outil créé: analyze_handlers_22_42.py
+
+- [x] **Analyse Complète Types de Records**
+  - **16 977 records** analysés sur 19 fichiers VND
+  - **100+ types de records** différents identifiés
+  - Top types: 28 (9.6%), 32 (8.0%), 29 (7.9%), 31 (7.4%), 30 (7.1%)
+  - Type 0 (scènes): 1061 records (6.2%)
+  - Statistiques complètes par type et par fichier
+  - Outil créé: analyze_all_record_types.py
+
+- [x] **Décompilateur VND Complet**
+  - Parse header VNFILE
+  - Extrait variables (140+ détectées)
+  - Parse tous types de records avec vraies longueurs
+  - Détecte patterns: if/then, runprj, playwav, playavi, set_var, etc.
+  - Export pseudocode lisible
+  - Outil créé: vnd_decompiler.py
+
+---
+
+### Sessions Précédentes
 
 - [x] **Type 0 Structure Analysée** (biblio.vnd, irland.vnd)
   - biblio.vnd: 903 records (93 Type 0, taille moyenne 620 bytes)
