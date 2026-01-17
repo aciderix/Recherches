@@ -1,0 +1,140 @@
+================================================================================
+VND DECOMPILED: Vnd-vnp/couleurs1.vnd
+================================================================================
+
+HEADER:
+  Signature: VNFILE @ 0x0009
+
+VARIABLES (140):
+  5D51F233             = 0
+  SACADOS              = 50331648
+  BIDON                = 150994944
+  CALC                 = 150994944
+  ACTIVE               = 100663296
+  DELPHITEST1          = 184549376
+  CPAYS                = 100663296
+  CMENU2               = 100663296
+  COMPTEUR1            = 150994944
+  COMPTEUR3            = 134217728
+  REPONSEM             = 134217728
+  PIECE                = 67108864
+  BEETHOVEN            = 83886080
+  SCOTCH               = 134217728
+  REPONSE              = 67108864
+  MAUVAISENOTE         = 201326592
+  EXPO                 = 100663296
+  SABOT2               = 50331648
+  CLE                  = 83886080
+  SIROP                = 100663296
+  CAPITALE             = 117440512
+  MENU                 = 83886080
+  COSTUME              = 83886080
+  PALME                = 83886080
+  RESSORT              = 100663296
+  HARPON               = 100663296
+  BOUT_PLO             = 117440512
+  PLONGE               = 201326592
+  GRECREPONSE          = 167772160
+  CPHOTO               = 83886080
+  ... et 110 autres
+
+RECORDS (739 total, 61 types):
+
+--- Type 0 (89 records) ---
+  ......\VnStudio\vnresmod.dll........SACADOS........JEU........BIDON....	...MILLE
+  ....	...music.wav................euroland\face.bmp..............................
+  ........'.......18 0 #000000 Comic sans MS....&..."...387 18 125 365 0 La maison
+  ... et 86 autres records
+
+--- Type 1 (45 records) ---
+  [if_then] score < 0 then runprj ..\couleurs1\couleurs1.vnp 54........
+  [if_then] espagne = 1 then dec_var espagne 1........(...angleterre = 1 then dec_var angleterre 1........%...autriche = 1  then dec_var autriche 1........'...allemagne = 1  then dec_var allemagne 1........!...ecosse = 1  then dec_var ecosse 1........%...belgique = 1  then dec_var belgique 1........!...france = 1  then dec_var france 1........%...finlande = 1  then dec_var finlande 1........#...irlande = 1  then dec_var irlande 1........!...italie = 1  then dec_var italie 1........#...paysbas = 1  then dec_var paysbas 1............grece = 1  then dec_var grece 1........%...danemark = 1  then dec_var danemark 1........%...portugal = 1  then dec_var portugal 1............suede = 1  then dec_var suede 1i..............................y...8...x...#......+..................'.......18 0 #000000 Comic sans MS....&.......387 351 125 365 0 La banque
+  3i.........S....../...............................................g......}.....
+  5i.......	......2.........c..........&......
+  ... et 42 autres records
+
+--- Type 2 (45 records) ---
+  39i...........<......<......0......!......................!......./...........Le
+  20....'.......18 0 #ffffff Comic sans MS....&...%...40 350 125 365 0 L'agenda du
+  22j.......P.....................
+  ... et 42 autres records
+
+--- Type 3 (6 records) ---
+  500
+  [if_then] score < 0 then runprj ..\couleurs1\couleurs1.vnp 54
+  ... et 3 autres records
+
+--- Type 5 (23 records) ---
+  jeu 1
+  jeu 1
+  jeu 1
+  ... et 20 autres records
+
+--- Type 6 (7 records) ---
+  ... et 4 autres records
+
+--- Type 7 (2 records) ---
+  ...(.......<...<...\...B...~...8........................'.......18 0 #000000 Com
+  fiole 0
+
+--- Type 8 (20 records) ---
+  annule 0
+  annule 1
+  active 0
+  ... et 17 autres records
+
+--- Type 9 (4 records) ---
+  occupe 10
+  occupe 11
+  occupe 12
+  ... et 1 autres records
+
+--- Type 10 (3 records) ---
+  X...^...............................
+  ....rollover\rotvoi.bmp 0 100 87d..................
+  fleche.cur
+
+--- Type 11 (6 records) ---
+  music.wav 2....'.......18 0 #000000 Comic sans MS....&...(...160 350 125 365 0 L
+  music.wav 2l.........z.......S..................,......X......q......r......z..
+  music.wav 6l..........^........................................]...............'
+  ... et 3 autres records
+
+--- Type 12 (1 records) ---
+  unplus.wav 1
+
+--- Type 15 (1 records) ---
+  ................................................................................
+
+--- Type 17 (3 records) ---
+  bruit\boing.wav 1
+  [if_then] score < 0 then runprj ..\couleurs1\couleurs1.vnp 54 else playavi euroland\arrimaire.avi 1............maire euroland\maire3.bmp 0 0 0....'.......18 0 #000000 Comic sans MS....&...%...180 300 320 365 0 Le maire d'Eurolandl..........g...P...[...i.......K.......^......f...f......e...................-......r...........
+  [playavi] playavi euroland\arrimaire.avi
+  bruit\foret.wav 2d...........................
+
+--- Type 19 (3 records) ---
+  ..\espa\espa.vnp 13d...	.............	...........J...3...O...O.......`......b...
+  ..\autr\autr.vnp 12d...	......................................
+.................
+  ..\holl\holl.vnp 10d.......w......[......f......z........................
+......
+
+================================================================================
+STATISTIQUES:
+================================================================================
+Total records: 739
+Types uniques: 61
+Variables: 140
+Patterns détectés: 947
+
+Top 10 types:
+  Type  32:   96 records ( 13.0%)
+  Type   0:   89 records ( 12.0%)
+  Type   1:   45 records (  6.1%)
+  Type   2:   45 records (  6.1%)
+  Type  37:   30 records (  4.1%)
+  Type  23:   24 records (  3.2%)
+  Type   5:   23 records (  3.1%)
+  Type  45:   23 records (  3.1%)
+  Type  43:   22 records (  3.0%)
+  Type  21:   21 records (  2.8%)
