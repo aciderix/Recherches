@@ -59,7 +59,7 @@ Le format est **séquentiel** - le moteur sait qu'une scène commence car il a f
 
     [CONFIG]
       Flag (4 octets)
-      5 × Int32
+      7 × Int32
 
     [HOTSPOTS/OBJETS]
       ObjCount (4 octets, ex: 6)
@@ -86,6 +86,80 @@ Le format est **séquentiel** - le moteur sait qu'une scène commence car il a f
 
           ExtraFlag (4 octets)
 ```
+
+### ⚠️ VARIATIONS DE STRUCTURE ENTRE SCÈNES (2026-01-17)
+
+**DÉCOUVERTE CRITIQUE**: La structure n'est PAS uniforme entre toutes les scènes!
+
+#### Scène 1 (Structure Standard)
+```
+6 FICHIERS (tous avec params) → INIT SCRIPT → CONFIG → HOTSPOTS
+```
+- Tous les 6 slots ont format: `[String Pascal:4+N][Param:4]`
+- Pas de padding
+- Pas de fichier supplémentaire
+- CONFIG se termine directement avant HOTSPOTS
+- ObjCount immédiatement après CONFIG
+
+**Offset validé**: Scène 1 se termine exactement à `0x1A31`, Scène 2 commence à `0x1A31`
+
+#### Scène 2 (Structure Variable - ANALYSÉE EN DÉTAIL)
+```
+5 FICHIERS + SLOT 6 SANS PARAM → PADDING 3 BYTES →
+FICHIER BMP EXTRA → INIT SCRIPT → CONFIG →
+MYSTÈRE 16 BYTES → HOTSPOTS
+```
+
+**Différences spécifiques**:
+1. **Slot 6 @ 0x1A6F**: String vide (length=0) SANS param Int32
+   - Les 5 premiers slots ont tous des params ✓
+   - Slot 6 est juste `[Length:4=0]` sans param qui suit
+
+2. **Padding non-aligné** @ 0x1A73-0x1A75:
+   - 3 bytes de padding (0x00 0x00 0x00)
+   - Structure NON alignée sur 4 bytes!
+   - Anomalie unique à Scène 2
+
+3. **Fichier BMP supplémentaire** @ 0x1A76:
+   - `[Length:4=27][String:"euroland\bureaubanquier.bmp"][Param:4=16]`
+   - Équivalent à un "7ème slot"
+   - Param=16 (même que Scène 1 Slot 4)
+
+4. **Champ mystère 16 bytes** @ 0x1AC1-0x1AD0:
+   - Entre CONFIG et HOTSPOTS
+   - Valeur: `[00 00 00 00][00 00 00 00][00 00 00 00][00 00 00 00]`
+   - Fonction inconnue (padding? flags? bounding box?)
+   - Scène 1 n'a PAS ce champ!
+
+5. **ObjCount décalé** @ 0x1AD1 (pas @ 0x1AC1):
+   - ObjCount = 6 hotspots
+   - Offset +16 bytes par rapport à attendu
+   - Hotspots contiennent:
+     * "L'agenda du banquier"
+     * "Une tasse de café noir"
+     * "Une bouteille d'encre noire"
+     * "Du courrier"
+     * "Dossier euro"
+     * + 1 autre objet
+
+**Offsets clés Scène 2**:
+- Début: `0x1A31`
+- Slot 6 (sans param): `0x1A6F-0x1A72`
+- Padding 3 bytes: `0x1A73-0x1A75`
+- BMP extra: `0x1A76-0x1A98`
+- InitScript: `0x1A99`
+- Config: `0x1AA1-0x1AC0`
+- Mystère 16 bytes: `0x1AC1-0x1AD0`
+- ObjCount: `0x1AD1` (= 6)
+- Fin Scène 2: `~0x1E50` (début Scène 3)
+
+**Implications pour le parser**:
+- IMPOSSIBLE d'utiliser une structure fixe pour toutes les scènes
+- Nécessite détection adaptative:
+  * Vérifier si Slot 6 a un param (peek next 4 bytes)
+  * Détecter padding/alignment issues
+  * Chercher fichier BMP supplémentaire
+  * Gérer champs variables entre CONFIG et HOTSPOTS
 
 ### String Pascal Format
 
